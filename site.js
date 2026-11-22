@@ -1,156 +1,42 @@
 (() => {
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const mobile = window.matchMedia('(max-width: 760px)');
   const header = document.getElementById('site-header');
+  const menu = header.querySelector('.menu-toggle');
+  const menuLabel = menu.querySelector('.menu-label');
   const nav = document.getElementById('site-nav');
-  const toggle = header.querySelector('.menu-toggle');
-  const small = window.matchMedia('(max-width: 1023px)');
-  const hover = window.matchMedia('(hover: hover)');
-  const sections = {
-    about: {
-      title: 'About RELIAL',
-      links: [
-        ['代表メッセージ', 'company.html#message', 'meeting.webp'],
-        ['企業理念', 'company.html#philosophy', 'studio.webp']
-      ]
-    },
-    company: {
-      title: 'Company Information',
-      links: [
-        ['会社概要', 'company.html#profile', 'office.webp'],
-        ['本社・大阪オフィス', 'company.html#office', 'relial-logo.svg']
-      ]
-    }
-  };
+  const shade = document.createElement('div');
+  shade.className = 'menu-shade';
+  shade.setAttribute('aria-hidden', 'true');
+  shade.hidden = true;
+  header.after(shade);
 
-  let activeGroup = null;
-  let pinned = false;
-  let drawerOpen = false;
-  let expandedAt = null;
-
-  function closeGroup() {
-    if (!activeGroup) return;
-    activeGroup.button.setAttribute('aria-expanded', 'false');
-    activeGroup.panel.hidden = true;
-    activeGroup = null;
-    pinned = false;
+  function setMenu(open, restoreFocus = false) {
+    header.classList.toggle('is-open', open);
+    menu.setAttribute('aria-expanded', String(open));
+    menuLabel.textContent = open ? '閉じる' : 'メニュー';
+    shade.hidden = !open;
+    document.body.classList.toggle('menu-open', open);
+    for (const part of document.querySelectorAll('main, .site-footer')) part.inert = open;
+    if (restoreFocus) menu.focus({ preventScroll: true });
   }
 
-  function showGroup(group, pin) {
-    if (group !== activeGroup) closeGroup();
-    group.button.setAttribute('aria-expanded', 'true');
-    group.panel.hidden = false;
-    activeGroup = group;
-    pinned = pin;
-  }
-
-  for (const link of nav.querySelectorAll('[data-menu]')) {
-    const key = link.dataset.menu;
-    const section = sections[key];
-    const holder = document.createElement('div');
-    holder.className = 'nav-group';
-    const button = document.createElement('button');
-    button.className = 'group-button';
-    button.type = 'button';
-    button.textContent = link.textContent;
-    button.setAttribute('aria-controls', 'panel-' + key);
-    button.setAttribute('aria-expanded', 'false');
-
-    const panel = document.createElement('div');
-    panel.className = 'nav-panel';
-    panel.id = 'panel-' + key;
-    panel.hidden = true;
-    const title = document.createElement('span');
-    title.className = 'panel-title';
-    title.lang = 'en';
-    title.textContent = section.title;
-    const items = document.createElement('div');
-    items.className = 'panel-items';
-    for (const [name, href, file] of section.links) {
-      const item = document.createElement('a');
-      item.href = href;
-      const image = document.createElement('img');
-      image.src = 'assets/' + file;
-      image.alt = '';
-      image.loading = 'lazy';
-      if (file.endsWith('.svg')) image.className = 'panel-logo';
-      const label = document.createElement('b');
-      label.textContent = name;
-      item.append(image, label);
-      items.append(item);
-    }
-    panel.append(title, items);
-    holder.append(button, panel);
-    link.replaceWith(holder);
-
-    const group = { button, panel };
-    button.addEventListener('click', () => {
-      if (activeGroup === group && pinned) closeGroup();
-      else showGroup(group, true);
-    });
-    holder.addEventListener('pointerenter', () => {
-      if (!small.matches && hover.matches && activeGroup !== group) showGroup(group, false);
-    });
-    holder.addEventListener('pointerleave', () => {
-      if (!small.matches && activeGroup === group && !pinned && !holder.contains(document.activeElement)) closeGroup();
-    });
-    holder.addEventListener('focusout', event => {
-      if (!small.matches && activeGroup === group && !holder.contains(event.relatedTarget)) closeGroup();
-    });
-  }
-
-  function syncHeader() {
-    const pastHero = window.scrollY >= window.innerHeight / 2;
-    if (!pastHero || (expandedAt !== null && Math.abs(window.scrollY - expandedAt) > 140)) expandedAt = null;
-    const focusedInNav = nav.contains(document.activeElement) && document.activeElement.matches(':focus-visible');
-    const compact = pastHero && !drawerOpen && expandedAt === null && !focusedInNav;
-    if (compact) closeGroup();
-    header.classList.toggle('is-compact', compact);
-    toggle.hidden = !small.matches && !compact;
-    toggle.setAttribute('aria-expanded', String(drawerOpen || (!small.matches && !compact)));
-    toggle.setAttribute('aria-label', drawerOpen ? 'メニューを閉じる' : 'メニューを開く');
-  }
-
-  function setDrawer(open) {
-    drawerOpen = open && small.matches;
-    closeGroup();
-    header.classList.toggle('is-open', drawerOpen);
-    document.body.classList.toggle('menu-open', drawerOpen);
-    for (const region of document.querySelectorAll('main, .site-footer')) region.inert = drawerOpen;
-    syncHeader();
-  }
-
-  toggle.addEventListener('click', event => {
-    if (small.matches) {
-      setDrawer(!drawerOpen);
-      return;
-    }
-    expandedAt = window.scrollY;
-    syncHeader();
-    if (event.detail === 0) nav.querySelector('button, a').focus({ preventScroll: true });
-  });
-
-  document.addEventListener('pointerdown', event => {
-    if (header.contains(event.target)) return;
-    closeGroup();
-    expandedAt = null;
-  });
-  header.addEventListener('click', event => {
-    if (event.target.closest('a')) setDrawer(false);
+  menu.hidden = false;
+  document.documentElement.classList.add('js');
+  menu.addEventListener('click', () => setMenu(menu.getAttribute('aria-expanded') === 'false'));
+  shade.addEventListener('click', () => setMenu(false, true));
+  nav.addEventListener('click', event => {
+    if (event.target.closest('a')) setMenu(false);
   });
   document.addEventListener('keydown', event => {
+    if (shade.hidden) return;
     if (event.key === 'Escape') {
-      if (drawerOpen) {
-        setDrawer(false);
-        toggle.focus({ preventScroll: true });
-      } else if (activeGroup) {
-        const button = activeGroup.button;
-        closeGroup();
-        button.focus({ preventScroll: true });
-      }
+      setMenu(false, true);
+      return;
     }
-    if (event.key !== 'Tab' || !drawerOpen) return;
-    const visible = Array.from(header.querySelectorAll('a, button')).filter(el => el.getClientRects().length);
-    const first = visible[0];
-    const last = visible[visible.length - 1];
+    if (event.key !== 'Tab') return;
+    const first = header.querySelector('.brand');
+    const last = nav.lastElementChild;
     if (event.shiftKey && document.activeElement === first) {
       event.preventDefault();
       last.focus();
@@ -159,31 +45,99 @@
       first.focus();
     }
   });
+  mobile.addEventListener('change', () => setMenu(false));
+  window.addEventListener('pageshow', () => setMenu(false));
 
-  let frame = null;
-  window.addEventListener('scroll', () => {
-    if (frame !== null) return;
-    frame = requestAnimationFrame(() => {
-      frame = null;
-      syncHeader();
-    });
-  }, { passive: true });
-  small.addEventListener('change', () => setDrawer(false));
-  window.addEventListener('pageshow', () => setDrawer(false));
-  document.documentElement.classList.add('enhanced');
-  syncHeader();
+  const video = document.querySelector('.sky-video');
+  if (video && video.canPlayType('video/mp4')) {
+    const control = document.querySelector('.video-toggle');
+    let wantsPlayback = !reducedMotion.matches && !navigator.connection?.saveData;
+    let inView = video.getBoundingClientRect().bottom > 0;
+    let failed = false;
 
-  if ('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    const observer = new IntersectionObserver(entries => {
-      for (const entry of entries) {
-        if (!entry.isIntersecting) continue;
-        entry.target.classList.replace('awaiting', 'revealed');
-        observer.unobserve(entry.target);
-      }
-    }, { threshold: .08 });
-    for (const art of document.querySelectorAll('.story-art')) {
-      art.classList.add('awaiting');
-      observer.observe(art);
+    function updateControl() {
+      const playing = !video.paused;
+      control.classList.toggle('is-playing', playing);
+      const action = playing ? '背景動画を一時停止' : '背景動画を再生';
+      control.setAttribute('aria-label', action);
+      control.title = action;
     }
+
+    function syncPlayback() {
+      if (failed) return;
+      if (!wantsPlayback || !inView || document.hidden) {
+        video.pause();
+        return;
+      }
+      if (!video.hasAttribute('src')) video.src = video.dataset.src;
+      video.play().catch(error => {
+        if (error.name === 'NotAllowedError') wantsPlayback = false;
+        updateControl();
+      });
+    }
+
+    control.hidden = false;
+    video.muted = true;
+    control.addEventListener('click', () => {
+      wantsPlayback = video.paused;
+      syncPlayback();
+    });
+    video.addEventListener('play', updateControl);
+    video.addEventListener('pause', updateControl);
+    video.addEventListener('error', () => {
+      failed = true;
+      control.hidden = true;
+      video.hidden = true;
+    });
+    reducedMotion.addEventListener('change', () => {
+      if (reducedMotion.matches) {
+        wantsPlayback = false;
+        syncPlayback();
+      }
+    });
+    document.addEventListener('visibilitychange', syncPlayback);
+    if ('IntersectionObserver' in window) {
+      const visibility = new IntersectionObserver(([entry]) => {
+        inView = entry.isIntersecting && entry.intersectionRatio > 0;
+        syncPlayback();
+      }, { rootMargin: '-' + header.offsetHeight + 'px 0px 0px', threshold: .01 });
+      visibility.observe(video);
+    }
+    updateControl();
+    syncPlayback();
   }
+
+  if (!('IntersectionObserver' in window) || reducedMotion.matches) return;
+  const reveals = new IntersectionObserver(entries => {
+    for (const entry of entries) {
+      if (!entry.isIntersecting) continue;
+      entry.target.classList.remove('is-pending');
+      reveals.unobserve(entry.target);
+    }
+  }, { rootMargin: '0px 0px -14px', threshold: 0 });
+  for (const section of document.querySelectorAll('[data-reveal]')) {
+    if (section.getBoundingClientRect().top < window.innerHeight) continue;
+    section.classList.add('is-pending');
+    reveals.observe(section);
+  }
+
+  function countUp(number) {
+    const total = Number(number.dataset.count);
+    const start = performance.now();
+    function frame(time) {
+      const t = reducedMotion.matches ? 1 : Math.min(1, (time - start) / 1050);
+      number.textContent = String(Math.round(total * (1 - (1 - t) ** 3)));
+      if (t < 1) requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+  }
+
+  const counts = new IntersectionObserver(entries => {
+    for (const entry of entries) {
+      if (!entry.isIntersecting) continue;
+      countUp(entry.target);
+      counts.unobserve(entry.target);
+    }
+  }, { threshold: .5 });
+  for (const number of document.querySelectorAll('[data-count]')) counts.observe(number);
 })();
