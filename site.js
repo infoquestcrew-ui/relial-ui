@@ -8,15 +8,15 @@
     about: {
       title: 'About RELIAL',
       links: [
-        ['採用支援の考え方', './#why', 'meeting.webp'],
-        ['私たちの支援内容', './#service', 'studio.webp']
+        ['代表メッセージ', 'company.html#message', 'meeting.webp'],
+        ['企業理念', 'company.html#philosophy', 'studio.webp']
       ]
     },
     company: {
       title: 'Company Information',
       links: [
         ['会社概要', 'company.html#profile', 'office.webp'],
-        ['本社所在地', 'company.html#office', 'relial-logo.svg']
+        ['本社・大阪オフィス', 'company.html#office', 'relial-logo.svg']
       ]
     }
   };

@@ -1,12 +1,12 @@
 @font-face {
   font-family: "Yuji Boku";
-  src: url("assets/fonts/yuji-boku-headline.woff") format("woff");
+  src: url("assets/fonts/yuji-boku-headline.woff?v=2") format("woff");
   font-display: swap;
   font-weight: 400;
 }
 @font-face {
   font-family: "Barlow Condensed";
-  src: url("assets/fonts/barlow-condensed-headline.woff") format("woff");
+  src: url("assets/fonts/barlow-condensed-headline.woff?v=2") format("woff");
   font-display: swap;
   font-weight: 600;
 }
@@ -125,9 +125,10 @@ img { display: block; max-width: 100%; }
   letter-spacing: -.025em;
 }
 .hero-lockup h1 {
-  color: #fff; font: 400 clamp(47px, 4.5vw, 85px)/1.46 "Yuji Boku", "Hiragino Mincho ProN", serif;
-  letter-spacing: .06em; transform: rotate(-6deg); text-shadow: 0 2px 16px rgb(4 26 40 / 36%);
+  color: #fff; font: 400 clamp(25px, 2.75vw, 59px)/1.68 "Yuji Boku", "Hiragino Mincho ProN", serif;
+  letter-spacing: .01em; transform: rotate(-5deg); text-shadow: 0 2px 16px rgb(4 26 40 / 36%);
 }
+.hero-lockup h1 span { display: block; white-space: nowrap; }
 .hero-message { position: relative; width: 50%; margin-left: 50%; min-height: max(640px, 100vh); display: grid; place-items: center; background: #fff; }
 .hero-message > p {
   width: 66%;
@@ -223,6 +224,7 @@ img { display: block; max-width: 100%; }
 .site-footer { position: relative; background: #087db6; color: white; }
 .foot-services { padding: 45px 20px 42px; text-align: center; background: var(--paper); color: var(--ink); }
 .foot-services p { color: #0876aa; font: 400 clamp(25px, 2.4vw, 37px)/1.65 "Yuji Boku", serif; }
+.foot-services p span { display: inline-block; }
 .foot-services nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px 34px; margin-top: 18px; font-size: 14px; font-weight: 700; }
 .foot-services a:hover { color: #0076aa; text-decoration: underline; }
 .to-top { position: absolute; top: 0; right: var(--header-edge); transform: translateY(-50%); display: grid; place-items: center; width: 56px; height: 56px; border-radius: 50%; color: #008dcb; background: #fff; box-shadow: 0 2px 6px rgb(17 73 96 / 16%); }
@@ -249,6 +251,10 @@ img { display: block; max-width: 100%; }
 .section-links a:hover { border-color: #008bc4; color: #006894; }
 .detail-block { padding: 38px 0; border-top: 1px solid var(--line); }
 .detail-block h2 { margin-bottom: 18px; font-size: clamp(21px,2.2vw,30px); line-height: 1.55; }
+.detail-block h3 { margin: 26px 0 14px; font-size: 19px; }
+.detail-action { margin-top: 18px; }
+.news-link { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: .18em; text-decoration-color: #88b4cb; }
+.news-link:hover { color: #006da4; }
 .detail-block p { line-height: 2.05; max-width: 45em; }
 .process-list { padding-left: 1.5em; }
 .process-list li { padding: 0 0 14px 5px; }
@@ -256,7 +262,6 @@ img { display: block; max-width: 100%; }
 .facts > div { display: grid; grid-template-columns: 8em 1fr; gap: 20px; max-width: 580px; padding: 16px 0; border-bottom: 1px solid var(--line); }
 .facts dt { font-weight: 700; }
 .update .card-meta { margin-bottom: 15px; }
-.update-links { margin: 16px 0; padding-left: 1.5em; }
 .back-link { display: inline-block; margin-top: 36px; font-size: 14px; color: #006da4; font-weight: 700; text-decoration: underline; text-underline-offset: 4px; }
 
 @media (max-width: 1023px) {
@@ -311,7 +316,7 @@ img { display: block; max-width: 100%; }
   .hero-visual { position: relative; width: 100%; height: 72vh; min-height: 285px; }
   .hero-lockup { bottom: 9%; }
   .hero-english { font-size: clamp(82px, 14vw, 128px); }
-  .hero-lockup h1 { font-size: clamp(38px, 7.6vw, 62px); }
+  .hero-lockup h1 { font-size: clamp(25px, 4.4vw, 44px); }
   .hero-message { width: 100%; min-height: 0; margin-left: 0; padding: 50px 6.5%; }
   .hero-message > p { width: 100%; max-width: 690px; padding: 0; font-size: 18px; line-height: 1.9; }
   .story-cue { display: none; }
@@ -343,7 +348,7 @@ img { display: block; max-width: 100%; }
   .brand img { width: 104px; }
   .site-header.is-compact { width: 45px; height: 45px; }
   .hero-english { font-size: clamp(62px, 17vw, 96px); line-height: .94; }
-  .hero-lockup h1 { font-size: clamp(37px, 9vw, 51px); }
+  .hero-lockup h1 { font-size: clamp(19px, 5.75vw, 35px); }
   .hero-message > p { font-size: 16px; line-height: 1.8; letter-spacing: .05em; }
   .section-label { font-size: 12px; gap: 7px; letter-spacing: .075em; }
   .section-label::before { width: 30px; }
@@ -375,6 +380,7 @@ img { display: block; max-width: 100%; }
 @media (max-width: 739px) {
   .outline-link { width: 192px; min-height: 48px; font-size: 13px; }
   .foot-services nav { flex-direction: column; }
+  .foot-services p { font-size: clamp(17px, 5vw, 28px); }
 }
 @media (max-width: 1023px) and (prefers-reduced-motion: no-preference) {
   .home .hero-lockup { animation: copy-in .9s var(--ease) .35s backwards; }
