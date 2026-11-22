@@ -1,8 +1,30 @@
 @font-face {
-  font-family: "DM Sans";
-  src: url("assets/fonts/dm-sans-latin.woff") format("woff");
+  font-family: "Noto Sans JP";
+  src: url("assets/fonts/noto-sans-jp-ui.woff2") format("woff2");
   font-style: normal;
-  font-weight: 100 1000;
+  font-weight: 100 900;
+  font-display: swap;
+}
+/* Load the complete Japanese face on demand for names and other uncommon characters. */
+@font-face {
+  font-family: "Noto Sans JP Extended";
+  src: url("assets/fonts/noto-sans-jp.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Open Sans";
+  src: url("assets/fonts/open-sans-latin.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 300 800;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Open Sans";
+  src: url("assets/fonts/open-sans-italic-latin.woff2") format("woff2");
+  font-style: italic;
+  font-weight: 300 800;
   font-display: swap;
 }
 
@@ -14,8 +36,9 @@
   --rule: #d5e0e8;
   --pale: #eff5f8;
   --motion: cubic-bezier(.22,.68,.18,1);
-  --jp: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", YuGothic, "Noto Sans CJK JP", Meiryo, sans-serif;
-  --type: "DM Sans", var(--jp);
+  --jp: "Noto Sans JP", "Noto Sans JP Extended", "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", YuGothic, "Noto Sans CJK JP", Meiryo, sans-serif;
+  --en: "Open Sans", Arial, sans-serif;
+  --type: var(--jp);
 }
 *, *::before, *::after { box-sizing: border-box; }
 html { scroll-behavior: smooth; scroll-padding-top: 95px; }
@@ -25,6 +48,7 @@ ul, ol { padding: 0; }
 img { display: block; max-width: 100%; height: auto; }
 a { color: inherit; text-decoration: none; }
 button { font: inherit; }
+:where([lang="en"]) { font-family: var(--en); }
 button, a { -webkit-tap-highlight-color: transparent; }
 button { cursor: pointer; }
 [hidden] { display: none !important; }
@@ -95,11 +119,12 @@ body.menu-open { overflow: hidden; }
 .flash-label { display: inline-flex; align-items: center; gap: 10px; flex: 0 0 auto; font-size: 13px; font-weight: 700; }
 .flash-label::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--blue); }
 .news-flash a { width: 100%; min-width: 0; display: flex; align-items: center; gap: 25px; padding: 16px 0; font-size: 14px; line-height: 1.65; }
-.news-flash a time, .news-meta time, .card-meta time { color: #54677b; font: 550 13px/1.4 var(--type); letter-spacing: .035em; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.news-flash a time, .news-meta time, .card-meta time { color: #54677b; font: 500 13px/1.4 var(--en); letter-spacing: .035em; white-space: nowrap; font-variant-numeric: tabular-nums; }
 .flash-title { flex: 1; font-weight: 550; }
 .news-flash a > .arrow, .news-row > .arrow { color: var(--blue); width: 15px; }
 
 .eyebrow { margin-bottom: 12px; color: var(--blue); }
+.eyebrow[lang="en"] { font: italic 600 clamp(17px, 1.7vw, 24px)/1.35 var(--en); letter-spacing: normal; }
 .eyebrow::before { width: 24px; height: 2px; background: currentColor; }
 .section-head, .company-inner, .news-section { display: grid; gap: clamp(34px, 6vw, 100px); }
 .section-head { grid-template-columns: 1fr 1fr; align-items: end; margin-bottom: 38px; }
@@ -150,7 +175,7 @@ body.menu-open { overflow: hidden; }
 .metrics > div:first-child { padding-left: 0; border-left: 0; }
 .metrics dt { color: #e2edf5; font-size: 14px; font-weight: 650; }
 .metric-value { display: flex; align-items: baseline; gap: 8px; }
-.metric-value b { min-width: 3ch; font: 460 clamp(62px, 6.6vw, 105px)/1.22 var(--type); font-variant-numeric: tabular-nums; letter-spacing: -.055em; }
+.metric-value b { min-width: 3ch; font: italic 600 clamp(62px, 6.6vw, 105px)/1.22 var(--en); font-variant-numeric: tabular-nums; letter-spacing: -.055em; }
 .metric-value small { font-size: 15px; font-weight: 650; }
 
 .news-section { grid-template-columns: minmax(180px, .67fr) minmax(0, 1.8fr); align-items: start; }
@@ -166,9 +191,9 @@ body.menu-open { overflow: hidden; }
 .news-report > .arrow { grid-column: 3; }
 .report-cover { position: relative; isolation: isolate; display: flex; flex-direction: column; justify-content: center; grid-column: 1; grid-row: 1 / 3; width: 75px; aspect-ratio: .86; padding: 7px 9px; overflow: hidden; color: #fff; background: linear-gradient(153deg, #164687, #447eb6); border-left: 3px solid #92d9ff; }
 .report-cover::after { content: ""; position: absolute; z-index: -1; top: 64%; left: 16%; width: 140%; height: 42%; border: 1px solid #a7e8ff; border-radius: 50%; transform: rotate(-32deg); }
-.report-cover b { font: 640 23px/1 var(--type); letter-spacing: -.035em; }
+.report-cover b { font: italic 600 23px/1 var(--en); letter-spacing: -.035em; }
 .report-cover > span { margin-top: 4px; font-size: 9px; line-height: 1.3; font-weight: 650; }
-.report-cover small { margin-top: 7px; font: 550 11px/1 var(--type); }
+.report-cover small { margin-top: 7px; font: 500 11px/1 var(--en); }
 .news-tag, .tag { display: inline-block; padding: 2px 9px; border: 1px solid #ccdae5; color: #4a6179; border-radius: 3px; font-size: 11px; font-weight: 650; line-height: 1.55; }
 .company-section { padding: clamp(62px, 6.7vw, 105px) 0; background: var(--pale); }
 .company-inner { align-items: start; grid-template-columns: .95fr 1.1fr; }
@@ -200,8 +225,8 @@ body.menu-open { overflow: hidden; }
 .crumbs a { text-decoration: underline; text-underline-offset: 3px; }
 .detail-heading { padding-block: clamp(45px, 5.8vw, 90px); }
 .detail-heading.with-photo { display: grid; align-items: center; gap: clamp(26px, 5vw, 84px); grid-template-columns: minmax(0,1.2fr) minmax(0,1fr); }
-.detail-heading h1 { font: 680 clamp(33px, 3.4vw, 56px)/1.45 var(--jp); letter-spacing: .005em; }
-.detail-lead { max-width: 42em; margin-top: 22px; color: var(--muted); font-size: clamp(16px, 1.25vw, 19px); }
+.detail-heading h1 { font: 700 clamp(32px, 3.25vw, 44px)/1.4 var(--jp); letter-spacing: .03em; }
+.detail-lead { max-width: 42em; margin-top: 22px; color: var(--muted); font-size: clamp(16px, 1.2vw, 17px); line-height: 2; letter-spacing: .01em; }
 .detail-visual { overflow: hidden; aspect-ratio: 1.65; border-radius: 12px; }
 .detail-visual.concept-visual { aspect-ratio: 1.5; }
 .reading { max-width: 970px; }
@@ -216,11 +241,11 @@ body.menu-open { overflow: hidden; }
 .choice .card-action { margin-top: auto; padding-top: 10px; }
 .steps { list-style: decimal-leading-zero; padding-left: 3.1em; }
 .steps li { padding: 16px 0 18px 9px; border-top: 1px solid var(--rule); }
-.steps li::marker { color: var(--blue); font-family: var(--type); font-size: 18px; font-weight: 600; }
+.steps li::marker { color: var(--blue); font: italic 600 18px/1.5 var(--en); }
 .steps h3 { font-size: 19px; }
 .steps p { margin-top: 5px; color: var(--muted); }
 .detail-block .price-line { margin-block: 6px 16px; color: var(--blue); font-size: 23px; font-weight: 600; }
-.price-line strong { font: 550 64px/1.1 var(--type); letter-spacing: -.06em; }
+.price-line strong { font: 600 64px/1.1 var(--en); letter-spacing: -.06em; }
 .return-link { margin-block: 20px; }
 .return-link .arrow { order: -1; transform: rotate(180deg); }
 .archive-main .detail-wrap { max-width: 970px; }
@@ -305,7 +330,8 @@ body.menu-open { overflow: hidden; }
   .section-head, .news-section, .company-inner { grid-template-columns: 1fr; gap: 20px; }
   .section-head { margin-bottom: 24px; }
   .section-head > p { justify-self: start; }
-  .eyebrow { margin-bottom: 8px; font-size: 12px; }
+  .eyebrow { margin-bottom: 8px; }
+  .eyebrow[lang="en"] { font-size: 16px; }
   .flagship { grid-template-columns: 1fr; }
   .feature-copy { padding: 22px; }
   .service-pair { margin-top: 26px; gap: 23px; }
