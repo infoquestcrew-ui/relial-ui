@@ -11,36 +11,35 @@
 
     const screen = document.querySelector('.opening-scene');
     const clock = screen.getAnimations?.().find(animation => animation.animationName === 'opening-surface');
-    const curves = [];
+    const arrow = document.getElementById('flow-arrow');
+    const turn = document.createElementNS(arrow.namespaceURI, 'animate');
     const listeners = new AbortController();
-    clock?.ready.then(() => {
-      if (listeners.signal.aborted || !root.hasAttribute('data-opening')) return;
-      // Both strokes fold and reopen on the same timeline as the lettering and the curtain.
-      const duration = clock.effect.getTiming().duration;
-      for (const path of document.querySelectorAll('.flow-curve')) {
-        const morph = document.createElementNS(path.namespaceURI, 'animate');
-        if (typeof morph.beginElementAt !== 'function') continue;
-        const open = path.getAttribute('d');
-        const folded = path.dataset.fold;
-        morph.setAttribute('attributeName', 'd');
-        morph.setAttribute('values', [open, folded, folded, path.dataset.land].join(';'));
-        morph.setAttribute('keyTimes', '0;.37;.49;1');
-        morph.setAttribute('calcMode', 'spline');
-        morph.setAttribute('keySplines', '.52 0 .3 1;0 0 1 1;.15 .79 .22 1');
-        morph.setAttribute('begin', 'indefinite');
-        morph.setAttribute('fill', 'freeze');
-        morph.setAttribute('dur', duration * .245 + 'ms');
-        path.append(morph);
-        morph.beginElementAt((duration * .66 - clock.currentTime) / 1000);
-        curves.push(morph);
-      }
-    }, () => {}); // Skipping before the first paint cancels the opening's ready promise.
     const options = { signal: listeners.signal, passive: true };
     const finish = () => {
       root.removeAttribute('data-opening');
-      curves.forEach(morph => morph.remove());
+      turn.remove();
       listeners.abort();
     };
+
+    if (!clock || typeof turn.beginElementAt !== 'function') {
+      finish();
+      return;
+    }
+    clock.ready.then(() => {
+      if (listeners.signal.aborted || !root.hasAttribute('data-opening')) return;
+      // The opposed arrows share a contour. Its point becomes the cut edge of each logo half.
+      const duration = clock.effect.getTiming().duration;
+      turn.setAttribute('attributeName', 'd');
+      turn.setAttribute('values', [arrow.getAttribute('d'), arrow.dataset.bend, arrow.dataset.mark].join(';'));
+      turn.setAttribute('keyTimes', '0;.48;1');
+      turn.setAttribute('calcMode', 'spline');
+      turn.setAttribute('keySplines', '.43 0 .33 .88;.36 .12 .23 1');
+      turn.setAttribute('begin', 'indefinite');
+      turn.setAttribute('fill', 'freeze');
+      turn.setAttribute('dur', duration * .30 + 'ms');
+      arrow.append(turn);
+      turn.beginElementAt((duration * .637 - clock.currentTime) / 1000);
+    }, finish);
 
     screen.addEventListener('animationend', event => {
       if (event.target === screen && event.animationName === 'opening-surface') finish();
