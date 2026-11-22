@@ -45,13 +45,11 @@
 }
 .flow-frame { position: absolute; inset: clamp(66px, 8svh, 104px) 2% clamp(18px, 3svh, 48px) auto; width: 67%; }
 .hero-flow { display: block; width: 100%; height: 100%; overflow: visible; stroke-linecap: round; stroke-linejoin: round; }
-.flow-north { color: #00449b; }
-.flow-south { color: #00a1e9; }
-.flow-guide { stroke: currentColor; stroke-width: 1; opacity: .19; }
-.flow-pulse { stroke: currentColor; stroke-width: 2.5; stroke-dasharray: 3.3 110; opacity: 0; }
+.flow-rails { stroke-width: 28; opacity: .52; }
+.flow-pulse { stroke: #efffff; stroke-width: 23; stroke-dasharray: 5 110; opacity: 0; }
 .flow-gleam { opacity: 0; }
+html:not([data-opening]) .flow-settled { mask: none; }
 .flow-drawing { display: none; }
-.flow-trail { stroke: currentColor; stroke-width: 2; }
 .hero-art::after {
   content: ""; position: absolute; inset: 0;
   background: linear-gradient(98deg, rgb(252 253 253 / 79%) 5%, rgb(252 253 253 / 58%) 29%, transparent 55%);
@@ -70,11 +68,11 @@
     isolation: isolate; pointer-events: none; background: #fbfcfc;
     animation: opening-surface var(--opening-duration) ease both;
   }
-  [data-opening] .flow-drawing { display: inline; animation: arrow-finish var(--opening-duration) linear both; }
-  [data-opening] .flow-arrival { animation: arrow-arrival var(--opening-duration) linear both; }
-  [data-opening] .flow-trail { animation: arrow-trail var(--opening-duration) linear both; }
-  [data-opening] .flow-settled { animation: mark-appear var(--opening-duration) linear both; }
-  [data-opening] .flow-rails { animation: guides-appear var(--opening-duration) ease both; }
+  [data-opening] .flow-drawing { display: inline; }
+  [data-opening] .flow-curve { stroke-dasharray: 100 130; stroke-width: 42; }
+  [data-opening] .flow-north { animation: draw-north var(--opening-duration) linear both; }
+  [data-opening] .flow-south { animation: draw-south var(--opening-duration) linear both; }
+  [data-opening] .flow-sweep { animation: register-strokes var(--opening-duration) linear both; }
   [data-opening] .opening-scene::before, [data-opening] .opening-scene::after {
     content: ""; position: absolute; z-index: -1; width: 52vmax; aspect-ratio: 264 / 295;
     background: #e5eff4;
@@ -121,33 +119,23 @@
   [data-opening] .home-intro .intro-body, [data-opening] .home-intro .hero-action, [data-opening] .home-wire {
     animation: opening-copy-in var(--opening-duration) var(--turn) both;
   }
-  [data-opening] .film-tools { animation: opening-header-in var(--opening-duration) ease both; }
 }
 @media (min-width: 761px) and (hover: hover) and (pointer: fine) {
   .opening-title { font-size: min(13.14vw, 22.5vh, 225px); }
 }
-@keyframes arrow-arrival {
-  0%, 35% { transform: translate(418px, -274px); animation-timing-function: cubic-bezier(.27,.47,.46,.95); }
-  57% { transform: translate(15px, -10px); animation-timing-function: cubic-bezier(.27,.68,.23,1); }
-  63%, 64% { transform: none; animation-timing-function: cubic-bezier(.42,0,.27,1); }
-  71% { transform: translate(-25px, -18px); animation-timing-function: cubic-bezier(.6,0,.3,1); }
-  81%, 100% { transform: none; }
+@keyframes draw-north {
+  0%, 30% { stroke-dashoffset: 113; }
+  57%, 100% { stroke-dashoffset: 0; }
 }
-@keyframes arrow-trail {
-  0%, 52% { opacity: .55; }
-  66%, 100% { opacity: 0; }
+@keyframes draw-south {
+  0%, 36.5% { stroke-dashoffset: 113; }
+  60.5%, 100% { stroke-dashoffset: 0; }
 }
-@keyframes arrow-finish {
-  0%, 95% { opacity: 1; }
-  98%, 100% { opacity: 0; }
-}
-@keyframes mark-appear {
-  0%, 93% { opacity: 0; }
-  95%, 100% { opacity: 1; }
-}
-@keyframes guides-appear {
-  0%, 74% { opacity: 0; }
-  96%, 100% { opacity: 1; }
+@keyframes register-strokes {
+  0%, 85.5% { transform: translateX(-940px) skewX(-16deg); }
+  88.5% { transform: translateX(-55px) skewX(-16deg); }
+  97% { transform: translateX(385px) skewX(-16deg); }
+  100% { transform: translateX(1100px) skewX(-16deg); }
 }
 @keyframes copy-unfold {
   0%, 77% { opacity: 0; mask-position: 100% 0; }
@@ -189,23 +177,6 @@
   83% { visibility: visible; opacity: 0; }
   100% { visibility: visible; opacity: 1; }
 }
-.film-tools, .diagram-tools {
-  position: absolute; z-index: 1; display: flex; align-items: center; color: #fff;
-  background: #174363;
-}
-.film-tools {
-  right: clamp(24px, 4.4vw, 86px); bottom: 25px; border: 1px solid #c1d5dc; border-radius: 30px;
-  background: rgb(255 255 255 / 90%); color: #284b5d;
-}
-.motion-control {
-  display: flex; align-items: center; justify-content: center; gap: 8px;
-  min-height: 44px; padding: 0 12px; border: 0; color: inherit; background: transparent;
-  font: 600 12px/1.4 var(--type); letter-spacing: .03em;
-}
-.film-tools .motion-control { padding-inline: 15px; border-radius: inherit; }
-.motion-control i { width: 0; height: 0; border-block: 5px solid transparent; border-left: 7px solid currentColor; }
-.motion-control[data-requested] i { width: 8px; height: 11px; border: solid currentColor; border-width: 0 2px; }
-.motion-control:focus-visible { outline-color: #bde6ff; outline-offset: -3px; }
 [data-motion] { --motion-state: paused; }
 [data-motion][data-playing] { --motion-state: running; }
 .home-hero[data-started] .flow-pulse {
@@ -307,8 +278,6 @@
 .diagram-wire, .diagram-pulse { fill: none; stroke: #8fb9cc; stroke-width: 2.7; stroke-linecap: round; stroke-linejoin: round; }
 .diagram-pulse { stroke: #007bb4; stroke-width: 6; stroke-dasharray: 7 93; stroke-dashoffset: -30; }
 .pulse-later { stroke: #487eac; }
-.diagram-tools { left: 12px; top: 12px; }
-.diagram-tools .motion-control { min-width: 44px; color: #254d61; background: white; }
 .map-node {
   position: absolute; display: grid; place-items: center; transform: translate(-50%,-50%);
   min-height: clamp(32px,3.3vw,51px); padding: 5px clamp(8px,1.2vw,21px); border: 1px solid #a5c4d1;
@@ -410,13 +379,6 @@
   @keyframes text-arrive { from { transform: translateY(12px); opacity: 0; } }
   @keyframes diagram-arrive { from { clip-path: inset(0 6% 0 0); } to { clip-path: inset(0); } }
 }
-@media (prefers-reduced-motion: reduce) {
-  /* These loops start in reduced-motion mode only after the visitor presses Play. */
-  .home-hero[data-started] .strategy-water { animation-duration: 3.6s !important; }
-  .home-hero[data-started] .hero-art::before { animation-duration: 6s !important; }
-  .home-hero[data-started] :is(.flow-pulse, .flow-gleam) { animation-duration: 5.6s !important; }
-  .offer-stage[data-started] :is(.diagram-pulse, .event-point i) { animation-duration: var(--diagram-loop) !important; }
-}
 @media (hover: hover) {
   .home-page .nav-contact:hover { background: #003c6b; }
   .hero-action:hover { background: #065d84; }
@@ -453,7 +415,6 @@
     transform: translateX(-55.8%);
   }
   .hero-art::after { background: linear-gradient(180deg, transparent 42%, rgb(250 253 253 / 55%) 63%, transparent 89%); }
-  .film-tools { right: var(--home-gutter); bottom: 18px; }
   .home-intro { padding-block: clamp(180px, 32svh, 325px) clamp(83px, 10svh, 105px); }
   .home-intro h1 { margin: 0 0 13px; font-size: clamp(24px, 7.6vw, 32px); line-height: 1.4; letter-spacing: 0; }
   .opening-title { font-size: min(16.6vw, 25vh); }
@@ -477,7 +438,6 @@
   .service-route small { margin-top: 4px; }
   .service-route .direction { width: 33px; height: 33px; }
   .offer-diagram { aspect-ratio: 1.85; min-height: 204px; }
-  .diagram-tools { top: 8px; left: 8px; }
   .map-node { font-size: clamp(10px,2.9vw,15px); }
   .preview-copy { margin: -13px 0 0 16px; padding: 16px 0 0 15px; }
   .preview-copy > p { font-size: 14px; }
@@ -514,9 +474,9 @@
   .home-intro { padding-block: 30px; }
   .hero-art { display: none; }
   .strategy-water { color: var(--home-blue); background: none; }
-  .film-tools, .diagram-tools, .offer-controls, .news-filters { display: none !important; }
+  .offer-controls, .news-filters { display: none !important; }
 }
 @media (forced-colors: active) {
   .water-letters, .strategy-water { color: Highlight; background: none; }
-  .hero-art, .film-tools { display: none; }
+  .hero-art { display: none; }
 }

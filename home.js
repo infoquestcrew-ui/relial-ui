@@ -5,41 +5,78 @@
   window.addEventListener('pageshow', syncHeader);
   syncHeader();
 
+  function strokeTipOutline(path) {
+    // The leading edge of the visible dash travels along the changing curve.
+    const offset = parseFloat(getComputedStyle(path).strokeDashoffset);
+    const progress = 1 - offset / path.pathLength.baseVal;
+    if (!(progress > 0)) return '';
+
+    const length = path.getTotalLength();
+    const distance = Math.min(progress, 1) * length;
+    const point = path.getPointAtLength(distance);
+    const before = path.getPointAtLength(Math.max(0, distance - 1));
+    const after = path.getPointAtLength(Math.min(length, distance + 1));
+    const angle = Math.atan2(after.y - before.y, after.x - before.x);
+    const dx = Math.cos(angle);
+    const dy = Math.sin(angle);
+    // Draw in the stroke's coordinates so the same gradient runs through its tip.
+    const vertex = (along, across) => {
+      const x = point.x + along * dx - across * dy;
+      const y = point.y + along * dy + across * dx;
+      return x.toFixed(2) + ' ' + y.toFixed(2);
+    };
+    return `M ${vertex(35, 0)} L ${vertex(-11, 36)} L ${vertex(0, 0)} L ${vertex(-11, -36)} Z`;
+  }
+
   function setUpOpening() {
     const root = document.documentElement;
     if (!root.hasAttribute('data-opening')) return;
 
     const screen = document.querySelector('.opening-scene');
     const clock = screen.getAnimations?.().find(animation => animation.animationName === 'opening-surface');
-    const arrow = document.getElementById('flow-arrow');
-    const turn = document.createElementNS(arrow.namespaceURI, 'animate');
+    const paths = Array.from(document.querySelectorAll('.flow-curve'));
+    const curves = [];
     const listeners = new AbortController();
+    let tipFrame;
+    function followTips() {
+      if (!root.hasAttribute('data-opening')) return;
+      const outlines = paths.map(strokeTipOutline);
+      paths.forEach((path, index) => {
+        const tip = path.nextElementSibling;
+        if (tip.getAttribute('d') !== outlines[index]) tip.setAttribute('d', outlines[index]);
+      });
+      tipFrame = requestAnimationFrame(followTips);
+    }
+    clock?.ready.then(() => {
+      if (listeners.signal.aborted || !root.hasAttribute('data-opening')) return;
+      // Both strokes fold and reopen on the same timeline as the lettering and the curtain.
+      const duration = clock.effect.getTiming().duration;
+      for (const path of paths) {
+        const morph = document.createElementNS(path.namespaceURI, 'animate');
+        if (typeof morph.beginElementAt !== 'function') continue;
+        const open = path.getAttribute('d');
+        const folded = path.dataset.fold;
+        morph.setAttribute('attributeName', 'd');
+        morph.setAttribute('values', [open, folded, folded, path.dataset.land].join(';'));
+        morph.setAttribute('keyTimes', '0;.37;.49;1');
+        morph.setAttribute('calcMode', 'spline');
+        morph.setAttribute('keySplines', '.52 0 .3 1;0 0 1 1;.15 .79 .22 1');
+        morph.setAttribute('begin', 'indefinite');
+        morph.setAttribute('fill', 'freeze');
+        morph.setAttribute('dur', duration * .245 + 'ms');
+        path.append(morph);
+        morph.beginElementAt((duration * .66 - clock.currentTime) / 1000);
+        curves.push(morph);
+      }
+      tipFrame = requestAnimationFrame(followTips);
+    }, () => {}); // Skipping before the first paint cancels the opening's ready promise.
     const options = { signal: listeners.signal, passive: true };
     const finish = () => {
       root.removeAttribute('data-opening');
-      turn.remove();
+      cancelAnimationFrame(tipFrame);
+      curves.forEach(morph => morph.remove());
       listeners.abort();
     };
-
-    if (!clock || typeof turn.beginElementAt !== 'function') {
-      finish();
-      return;
-    }
-    clock.ready.then(() => {
-      if (listeners.signal.aborted || !root.hasAttribute('data-opening')) return;
-      // The opposed arrows share a contour. Its point becomes the cut edge of each logo half.
-      const duration = clock.effect.getTiming().duration;
-      turn.setAttribute('attributeName', 'd');
-      turn.setAttribute('values', [arrow.getAttribute('d'), arrow.dataset.bend, arrow.dataset.mark].join(';'));
-      turn.setAttribute('keyTimes', '0;.48;1');
-      turn.setAttribute('calcMode', 'spline');
-      turn.setAttribute('keySplines', '.43 0 .33 .88;.36 .12 .23 1');
-      turn.setAttribute('begin', 'indefinite');
-      turn.setAttribute('fill', 'freeze');
-      turn.setAttribute('dur', duration * .30 + 'ms');
-      arrow.append(turn);
-      turn.beginElementAt((duration * .637 - clock.currentTime) / 1000);
-    }, finish);
 
     screen.addEventListener('animationend', event => {
       if (event.target === screen && event.animationName === 'opening-surface') finish();
@@ -54,34 +91,17 @@
 
   function setUpMotion(stage) {
     const preference = matchMedia('(prefers-reduced-motion: reduce)');
-    const controls = stage.querySelector('[data-motion-tools]');
-    const control = controls.querySelector('.motion-control');
-    const label = control.querySelector('.control-label');
     const bounds = stage.getBoundingClientRect();
-    let requested = !preference.matches;
     let visible = bounds.bottom > 0 && bounds.top < window.innerHeight;
 
     function sync() {
-      const playing = requested && visible && !document.hidden;
+      const playing = !preference.matches && visible && !document.hidden;
       if (playing) stage.setAttribute('data-started', '');
+      if (preference.matches) stage.removeAttribute('data-started');
       stage.toggleAttribute('data-playing', playing);
-      control.toggleAttribute('data-requested', requested);
-      label.textContent = requested ? '一時停止' : '再生';
-      control.setAttribute('aria-label', stage.dataset.motion + 'を' + label.textContent);
     }
 
-    controls.hidden = false;
-    control.addEventListener('click', () => {
-      requested = !requested;
-      sync();
-    });
-    preference.addEventListener('change', () => {
-      if (preference.matches) {
-        requested = false;
-        stage.removeAttribute('data-started');
-      }
-      sync();
-    });
+    preference.addEventListener('change', sync);
     document.addEventListener('visibilitychange', sync);
     window.addEventListener('pageshow', sync);
     if ('IntersectionObserver' in window) {
