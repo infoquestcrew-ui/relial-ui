@@ -5,6 +5,29 @@
   window.addEventListener('pageshow', syncHeader);
   syncHeader();
 
+  function setUpOpening() {
+    const root = document.documentElement;
+    if (!root.hasAttribute('data-opening')) return;
+
+    const screen = document.querySelector('.brand-screen');
+    const listeners = new AbortController();
+    const options = { signal: listeners.signal, passive: true };
+    const finish = () => {
+      root.removeAttribute('data-opening');
+      listeners.abort();
+    };
+
+    screen.addEventListener('animationend', event => {
+      if (event.target === screen && event.animationName === 'opening-fold') finish();
+    }, options);
+    window.addEventListener('keydown', finish, options);
+    window.addEventListener('pointerdown', finish, options);
+    window.addEventListener('wheel', finish, options);
+    window.addEventListener('scroll', () => { if (scrollY > 1) finish(); }, options);
+    window.addEventListener('pagehide', finish, options);
+    matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change', finish, options);
+  }
+
   function setUpMotion(stage) {
     const preference = matchMedia('(prefers-reduced-motion: reduce)');
     const controls = stage.querySelector('[data-motion-tools]');
@@ -105,6 +128,7 @@
     controls.hidden = false;
   }
 
+  setUpOpening();
   document.querySelectorAll('[data-motion]').forEach(setUpMotion);
   setUpServices(document.querySelector('[data-services]'));
   setUpNews(document.querySelector('[data-news]'));
