@@ -35,24 +35,29 @@
 }
 .hero-art {
   position: absolute; inset: 0; z-index: -1; overflow: hidden; pointer-events: none;
-  background: linear-gradient(125deg, #f8fafb, #fff 45%, #f6fafd);
+  background: linear-gradient(135deg, #f7faf9, #fff 46%, #f3f8fb);
 }
 .hero-art::before {
   content: ""; position: absolute; inset: -13%;
-  background: radial-gradient(ellipse at 79% 39%, #dcebf6, transparent 38%),
-    radial-gradient(ellipse at 25% 88%, #e5f3f3, transparent 36%);
-  opacity: .65;
+  background: radial-gradient(ellipse at 83% 23%, #d3efee, transparent 42%),
+    radial-gradient(ellipse at 27% 96%, #e0edf6, transparent 40%);
+  opacity: .8;
 }
-.emblem-frame { position: absolute; inset: clamp(50px, 6svh, 78px) 0 0; mix-blend-mode: multiply; }
-.hero-emblem { display: block; width: 100%; height: 100%; object-fit: contain; object-position: right center; }
+.flow-frame { position: absolute; inset: clamp(66px, 8svh, 104px) 2% clamp(18px, 3svh, 48px) auto; width: 67%; }
+.hero-flow { display: block; width: 100%; height: 100%; overflow: visible; stroke-linecap: round; stroke-linejoin: round; }
+.flow-rails { stroke-width: 28; opacity: .52; }
+.flow-pulse { stroke: #efffff; stroke-width: 23; stroke-dasharray: 5 110; opacity: 0; }
+.flow-gleam { opacity: 0; }
+html:not([data-opening]) .flow-settled { mask: none; }
+.flow-drawing { display: none; }
 .hero-art::after {
   content: ""; position: absolute; inset: 0;
-  background: linear-gradient(98deg, rgb(252 253 253 / 74%) 5%, rgb(252 253 253 / 54%) 29%, transparent 52%);
+  background: linear-gradient(98deg, rgb(252 253 253 / 79%) 5%, rgb(252 253 253 / 58%) 29%, transparent 55%);
 }
 .opening-scene { display: none; }
 
 @media screen and (prefers-reduced-motion: no-preference) {
-  html[data-opening] { --opening-duration: 4.4s; --opening-height: 100vh; overflow-x: clip; }
+  html[data-opening] { --opening-duration: 5.4s; --opening-height: 100vh; overflow-x: clip; }
   @supports (height: 100dvh) {
     html[data-opening] { --opening-height: 100dvh; }
   }
@@ -63,10 +68,11 @@
     isolation: isolate; pointer-events: none; background: #fbfcfc;
     animation: opening-surface var(--opening-duration) ease both;
   }
-  [data-opening] .emblem-frame {
-    transform-origin: 75% 46%;
-    animation: emblem-arrive var(--opening-duration) var(--turn) both;
-  }
+  [data-opening] .flow-drawing { display: inline; }
+  [data-opening] .flow-curve { stroke-dasharray: 100 130; stroke-width: 42; }
+  [data-opening] .flow-north { animation: draw-north var(--opening-duration) linear both; }
+  [data-opening] .flow-south { animation: draw-south var(--opening-duration) linear both; }
+  [data-opening] .flow-sweep { animation: register-strokes var(--opening-duration) linear both; }
   [data-opening] .opening-scene::before, [data-opening] .opening-scene::after {
     content: ""; position: absolute; z-index: -1; width: 52vmax; aspect-ratio: 264 / 295;
     background: #e5eff4;
@@ -103,7 +109,14 @@
   [data-opening] .home-page .site-header {
     position: fixed; z-index: 8; animation: opening-header-in var(--opening-duration) ease both;
   }
-  [data-opening] .home-intro, [data-opening] .home-wire {
+  [data-opening] .home-intro h1 > span {
+    -webkit-mask-image: linear-gradient(90deg, black 42%, transparent 58%);
+    mask-image: linear-gradient(90deg, black 42%, transparent 58%);
+    -webkit-mask-size: 270% 100%; mask-size: 270% 100%;
+    animation: copy-unfold var(--opening-duration) linear both;
+  }
+  [data-opening] .home-intro h1 > span + span { animation-name: copy-unfold-later; }
+  [data-opening] .home-intro .intro-body, [data-opening] .home-intro .hero-action, [data-opening] .home-wire {
     animation: opening-copy-in var(--opening-duration) var(--turn) both;
   }
   [data-opening] .film-tools { animation: opening-header-in var(--opening-duration) ease both; }
@@ -111,13 +124,33 @@
 @media (min-width: 761px) and (hover: hover) and (pointer: fine) {
   .opening-title { font-size: min(13.14vw, 22.5vh, 225px); }
 }
-@keyframes emblem-arrive {
-  0%, 62% { opacity: 0; transform: scale(1.07) translateY(1.3%); }
-  94%, 100% { opacity: 1; transform: none; }
+@keyframes draw-north {
+  0%, 30% { stroke-dashoffset: 113; }
+  57%, 100% { stroke-dashoffset: 0; }
+}
+@keyframes draw-south {
+  0%, 36.5% { stroke-dashoffset: 113; }
+  60.5%, 100% { stroke-dashoffset: 0; }
+}
+@keyframes register-strokes {
+  0%, 85.5% { transform: translateX(-940px) skewX(-16deg); }
+  88.5% { transform: translateX(-55px) skewX(-16deg); }
+  97% { transform: translateX(385px) skewX(-16deg); }
+  100% { transform: translateX(1100px) skewX(-16deg); }
+}
+@keyframes copy-unfold {
+  0%, 77% { opacity: 0; mask-position: 100% 0; }
+  79% { opacity: 1; }
+  91%, 100% { opacity: 1; mask-position: 0% 0; }
+}
+@keyframes copy-unfold-later {
+  0%, 80% { opacity: 0; mask-position: 100% 0; }
+  82% { opacity: 1; }
+  95%, 100% { opacity: 1; mask-position: 0% 0; }
 }
 @keyframes opening-surface {
-  0%, 67% { opacity: 1; }
-  91%, 100% { opacity: 0; }
+  0%, 36% { opacity: 1; }
+  48%, 100% { opacity: 0; }
 }
 @keyframes opening-current {
   from { transform: translate(-5%, 6%) rotate(-9deg); }
@@ -133,11 +166,11 @@
   to { background-position: var(--water-position), .9em .67em; }
 }
 @keyframes opening-type-out {
-  0%, 58% { opacity: 1; transform: none; }
-  73%, 100% { opacity: 0; transform: translateY(-.11em); }
+  0%, 32% { opacity: 1; transform: none; }
+  45%, 100% { opacity: 0; transform: translateY(-.11em); }
 }
 @keyframes opening-copy-in {
-  0%, 75% { opacity: 0; transform: translateY(12px); }
+  0%, 84% { opacity: 0; transform: translateY(9px); }
   100% { opacity: 1; transform: none; }
 }
 @keyframes opening-header-in {
@@ -164,6 +197,26 @@
 .motion-control:focus-visible { outline-color: #bde6ff; outline-offset: -3px; }
 [data-motion] { --motion-state: paused; }
 [data-motion][data-playing] { --motion-state: running; }
+.home-hero[data-started] .flow-pulse {
+  animation: flow-travel 5.6s linear infinite;
+  animation-delay: var(--pulse-delay, 0s); animation-play-state: var(--motion-state);
+}
+.flow-pulse-later { --pulse-delay: -2.4s; }
+.home-hero[data-started] .flow-gleam {
+  animation: flow-glint 5.6s ease-in-out infinite;
+  animation-play-state: var(--motion-state);
+}
+@keyframes flow-travel {
+  0% { stroke-dashoffset: 8; opacity: 0; }
+  16% { opacity: .58; }
+  57% { opacity: .72; }
+  76%, 100% { stroke-dashoffset: -104; opacity: 0; }
+}
+@keyframes flow-glint {
+  0%, 43% { opacity: 0; transform: translateX(0) skewX(-19deg); }
+  54% { opacity: .54; }
+  82%, 100% { opacity: 0; transform: translateX(502px) skewX(-19deg); }
+}
 @keyframes strategy-tide { from { background-position-y: 0%; } to { background-position-y: 100%; } }
 @keyframes hero-light { from { transform: translate(-3%, 1%); } to { transform: translate(5%, -4%); } }
 .home-hero[data-started] .hero-art::before {
@@ -176,7 +229,7 @@
   padding-block: clamp(125px, 17svh, 185px) clamp(75px, 10svh, 125px);
 }
 .home-intro h1 { margin: 0 0 20px; font: 800 clamp(43px, 4.6vw, 58px)/1.32 var(--jp); letter-spacing: .005em; }
-.home-intro h1 span { display: block; white-space: nowrap; }
+.home-intro h1 span { display: block; width: fit-content; white-space: nowrap; }
 .strategy-water { font-style: normal; color: var(--home-blue); }
 @supports (background-clip: text) or (-webkit-background-clip: text) {
   .strategy-water {
@@ -341,9 +394,6 @@
 .home-page .site-footer { border: 0; }
 
 @media (prefers-reduced-motion: no-preference) {
-  .home-intro h1, .home-intro .intro-body, .home-intro .hero-action { animation: text-arrive .68s var(--turn) backwards; }
-  .home-intro .intro-body { animation-delay: .12s; }
-  .home-intro .hero-action { animation-delay: .22s; }
   .offer-stage.is-ready .service-preview:not([hidden]) .offer-diagram { animation: diagram-arrive .45s var(--turn); }
   .offer-stage.is-ready .service-preview:not([hidden]) .preview-copy { animation: text-arrive .43s var(--turn); }
   @keyframes text-arrive { from { transform: translateY(12px); opacity: 0; } }
@@ -353,6 +403,7 @@
   /* These loops start in reduced-motion mode only after the visitor presses Play. */
   .home-hero[data-started] .strategy-water { animation-duration: 3.6s !important; }
   .home-hero[data-started] .hero-art::before { animation-duration: 6s !important; }
+  .home-hero[data-started] :is(.flow-pulse, .flow-gleam) { animation-duration: 5.6s !important; }
   .offer-stage[data-started] :is(.diagram-pulse, .event-point i) { animation-duration: var(--diagram-loop) !important; }
 }
 @media (hover: hover) {
@@ -382,11 +433,13 @@
   .home-page .site-nav { gap: 8px 15px; }
   .home-page .is-open .site-nav { gap: 0; max-height: calc(100dvh - 78px); }
   .home-hero { align-items: end; min-height: clamp(570px, 90svh, 830px); }
-  .emblem-frame { inset: clamp(60px, 7svh, 66px) 0 auto; height: clamp(202px, calc(80svh - 258px), 437px); }
-  /* The mark is centered at 71.7% of the film. Place that point above the mobile copy. */
-  .hero-emblem {
-    position: absolute; left: 60%; width: auto; max-width: none; height: 100%; aspect-ratio: 8 / 5;
-    transform: translateX(-71.7%); mask-image: linear-gradient(to bottom, #000 86%, transparent);
+  .flow-frame {
+    inset: clamp(60px, 7svh, 70px) 0 auto; width: 100%; height: clamp(194px, calc(87svh - 308px), 460px);
+    overflow: hidden; mask-image: linear-gradient(180deg, transparent, black 10%, black 83%, transparent);
+  }
+  .hero-flow {
+    position: absolute; left: 59%; width: auto; height: 100%; aspect-ratio: 640 / 470;
+    transform: translateX(-55.8%);
   }
   .hero-art::after { background: linear-gradient(180deg, transparent 42%, rgb(250 253 253 / 55%) 63%, transparent 89%); }
   .film-tools { right: var(--home-gutter); bottom: 18px; }
@@ -454,5 +507,5 @@
 }
 @media (forced-colors: active) {
   .water-letters, .strategy-water { color: Highlight; background: none; }
-  .hero-art { display: none; }
+  .hero-art, .film-tools { display: none; }
 }
