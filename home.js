@@ -9,7 +9,7 @@
     const root = document.documentElement;
     if (!root.hasAttribute('data-opening')) return;
 
-    const screen = document.querySelector('.brand-screen');
+    const screen = document.querySelector('.opening-scene');
     const listeners = new AbortController();
     const options = { signal: listeners.signal, passive: true };
     const finish = () => {
@@ -18,7 +18,7 @@
     };
 
     screen.addEventListener('animationend', event => {
-      if (event.target === screen && event.animationName === 'opening-fold') finish();
+      if (event.target === screen && event.animationName === 'opening-surface') finish();
     }, options);
     window.addEventListener('keydown', finish, options);
     window.addEventListener('pointerdown', finish, options);
@@ -33,19 +33,39 @@
     const controls = stage.querySelector('[data-motion-tools]');
     const control = controls.querySelector('.motion-control');
     const label = control.querySelector('.control-label');
+    const movie = stage.querySelector('video[data-src]');
     const bounds = stage.getBoundingClientRect();
     let requested = !preference.matches;
     let visible = bounds.bottom > 0 && bounds.top < window.innerHeight;
 
     function sync() {
       const playing = requested && visible && !document.hidden;
+      const changed = playing !== stage.hasAttribute('data-playing');
       if (playing) stage.setAttribute('data-started', '');
       stage.toggleAttribute('data-playing', playing);
       control.toggleAttribute('data-requested', requested);
       label.textContent = requested ? '一時停止' : '再生';
       control.setAttribute('aria-label', stage.dataset.motion + 'を' + label.textContent);
+      if (!movie || !changed) return;
+      if (!playing) {
+        movie.pause();
+      } else if (movie.canPlayType('video/mp4')) {
+        if (!movie.hasAttribute('src')) movie.src = movie.dataset.src;
+        movie.play().catch(error => {
+          if (error.name === 'NotAllowedError' && movie.paused && stage.hasAttribute('data-playing')) {
+            requested = false;
+            sync();
+          }
+        });
+      }
     }
 
+    movie?.addEventListener('error', () => {
+      if (movie.hasAttribute('src')) {
+        movie.removeAttribute('src');
+        movie.load();
+      }
+    });
     controls.hidden = false;
     control.addEventListener('click', () => {
       requested = !requested;
