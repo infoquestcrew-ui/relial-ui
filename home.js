@@ -154,12 +154,10 @@
     const mouse = matchMedia('(any-hover: hover) and (any-pointer: fine)');
     const forcedColors = matchMedia('(forced-colors: active)');
     let activeGlow = null;
-    let lastMouse = null;
 
     function reset() {
       activeGlow?.remove();
       activeGlow = null;
-      lastMouse = null;
     }
     motion.addEventListener('change', reset);
     forcedColors.addEventListener('change', reset);
@@ -172,16 +170,10 @@
 
       function showGlow(event) {
         if (!motion.matches || forcedColors.matches || activeGlow) return;
-        const touch = event.pointerType === 'touch';
-        if (touch) {
-          if (event.type !== 'pointerdown' || !event.isPrimary) return;
-          lastMouse = null;
-        } else {
-          if (event.type !== 'pointermove' || event.pointerType !== 'mouse' || !mouse.matches || event.buttons) return;
-          if (lastMouse && Math.hypot(event.pageX - lastMouse.x, event.pageY - lastMouse.y) < 120) return;
-          lastMouse = { x: event.pageX, y: event.pageY };
-        }
-        layer.classList.toggle('touch-glow', touch);
+        const touchStart = event.pointerType === 'touch' && event.type === 'pointerdown' && event.isPrimary;
+        const mouseMove = event.pointerType === 'mouse' && event.type === 'pointermove' && mouse.matches && !event.buttons;
+        if (!touchStart && !mouseMove) return;
+        layer.classList.toggle('touch-glow', touchStart);
         const bounds = layer.getBoundingClientRect();
         const bloom = document.createElement('span');
         bloom.className = 'cursor-bloom';

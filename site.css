@@ -1798,7 +1798,7 @@ body.menu-open { overflow: hidden; }
   aspect-ratio: 1;
   border-radius: 50%;
   background: radial-gradient(closest-side, color-mix(in srgb, var(--blue-2) 37%, transparent), color-mix(in srgb, var(--blue-2) 18%, transparent) 52%, transparent);
-  animation: cursor-bloom 6.4s ease-out both;
+  animation: cursor-bloom 4s ease-out both;
 }
 .cursor-bloom::after {
   content: "";
