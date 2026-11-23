@@ -32,14 +32,25 @@
     const root = document.documentElement;
     if (!root.hasAttribute('data-opening')) return;
 
-    const screen = document.querySelector('.opening-scene');
-    const clock = screen.getAnimations?.().find(animation => animation.animationName === 'opening-surface');
-    const paths = Array.from(document.querySelectorAll('.flow-curve'));
+    const mobile = root.dataset.opening === 'mobile';
+    const scene = document.querySelector('.opening-scene');
+    const svg = document.querySelector('.hero-flow');
+    const clockElement = mobile ? svg.querySelector('.flow-sweep') : scene;
+    const clockName = mobile ? 'register-strokes' : 'opening-surface';
+    const clock = clockElement.getAnimations?.().find(animation => animation.animationName === clockName);
+    const paths = Array.from(svg.querySelectorAll('.flow-curve'));
     const curves = [];
     const listeners = new AbortController();
     let tipFrame;
+    let morphAt = null;
     function followTips() {
       if (!root.hasAttribute('data-opening')) return;
+      // Start the mobile morph on the drawing frame itself, independent of SVG loading time.
+      if (morphAt !== null && (!mobile || clock.currentTime >= morphAt)) {
+        const offset = (morphAt - clock.currentTime) / 1000;
+        for (const morph of curves) morph.beginElementAt(offset);
+        morphAt = null;
+      }
       const outlines = paths.map(strokeTipOutline);
       paths.forEach((path, index) => {
         const tip = path.nextElementSibling;
@@ -49,8 +60,8 @@
     }
     clock?.ready.then(() => {
       if (listeners.signal.aborted || !root.hasAttribute('data-opening')) return;
-      // Both strokes fold and reopen on the same timeline as the lettering and the curtain.
-      const duration = clock.effect.getTiming().duration;
+      const { duration, delay } = clock.effect.getTiming();
+      morphAt = duration * .66 + delay;
       for (const path of paths) {
         const morph = document.createElementNS(path.namespaceURI, 'animate');
         if (typeof morph.beginElementAt !== 'function') continue;
@@ -65,10 +76,9 @@
         morph.setAttribute('fill', 'freeze');
         morph.setAttribute('dur', duration * .245 + 'ms');
         path.append(morph);
-        morph.beginElementAt((duration * .66 - clock.currentTime) / 1000);
         curves.push(morph);
       }
-      tipFrame = requestAnimationFrame(followTips);
+      followTips();
     }, () => {}); // Skipping before the first paint cancels the opening's ready promise.
     const options = { signal: listeners.signal, passive: true };
     const finish = () => {
@@ -78,8 +88,10 @@
       listeners.abort();
     };
 
-    screen.addEventListener('animationend', event => {
-      if (event.target === screen && event.animationName === 'opening-surface') finish();
+    const lastElement = mobile ? document.querySelector('.home-wire') : scene;
+    const lastAnimation = mobile ? 'opening-copy-in' : 'opening-surface';
+    lastElement.addEventListener('animationend', event => {
+      if (event.target === lastElement && event.animationName === lastAnimation) finish();
     }, options);
     window.addEventListener('keydown', finish, options);
     window.addEventListener('pointerdown', finish, options);
@@ -138,18 +150,18 @@
   }
 
   function setUpCursorGlows() {
-    const enabled = matchMedia('(any-hover: hover) and (any-pointer: fine) and (prefers-reduced-motion: no-preference)');
+    const motion = matchMedia('(prefers-reduced-motion: no-preference)');
+    const mouse = matchMedia('(any-hover: hover) and (any-pointer: fine)');
     const forcedColors = matchMedia('(forced-colors: active)');
-    // Share the spacing and the two-glow limit across adjacent sections.
-    const activeGlows = new Set();
-    let lastGlow = null;
+    let activeGlow = null;
+    let lastMouse = null;
 
     function reset() {
-      for (const glow of activeGlows) glow.remove();
-      activeGlows.clear();
-      lastGlow = null;
+      activeGlow?.remove();
+      activeGlow = null;
+      lastMouse = null;
     }
-    enabled.addEventListener('change', reset);
+    motion.addEventListener('change', reset);
     forcedColors.addEventListener('change', reset);
 
     for (const section of document.querySelectorAll('[data-cursor-glow]')) {
@@ -158,28 +170,34 @@
       layer.setAttribute('aria-hidden', 'true');
       section.prepend(layer);
 
-      section.addEventListener('pointermove', event => {
-        if (!enabled.matches || forcedColors.matches || event.pointerType !== 'mouse' || event.buttons) return;
-        if (activeGlows.size >= 2) return;
-        const now = performance.now();
-        if (lastGlow && (now - lastGlow.time < 1800 ||
-            Math.hypot(event.pageX - lastGlow.x, event.pageY - lastGlow.y) < 120)) return;
-
+      function showGlow(event) {
+        if (!motion.matches || forcedColors.matches || activeGlow) return;
+        const touch = event.pointerType === 'touch';
+        if (touch) {
+          if (event.type !== 'pointerdown' || !event.isPrimary) return;
+          lastMouse = null;
+        } else {
+          if (event.type !== 'pointermove' || event.pointerType !== 'mouse' || !mouse.matches || event.buttons) return;
+          if (lastMouse && Math.hypot(event.pageX - lastMouse.x, event.pageY - lastMouse.y) < 120) return;
+          lastMouse = { x: event.pageX, y: event.pageY };
+        }
+        layer.classList.toggle('touch-glow', touch);
         const bounds = layer.getBoundingClientRect();
         const bloom = document.createElement('span');
         bloom.className = 'cursor-bloom';
         bloom.style.left = (event.clientX - bounds.left) + 'px';
         bloom.style.top = (event.clientY - bounds.top) + 'px';
-        lastGlow = { time: now, x: event.pageX, y: event.pageY };
-        activeGlows.add(bloom);
+        activeGlow = bloom;
         const remove = () => {
-          activeGlows.delete(bloom);
+          if (activeGlow === bloom) activeGlow = null;
           bloom.remove();
         };
         bloom.addEventListener('animationend', remove, { once: true });
         bloom.addEventListener('animationcancel', remove, { once: true });
         layer.append(bloom);
-      }, { passive: true });
+      }
+      section.addEventListener('pointermove', showGlow, { passive: true });
+      section.addEventListener('pointerdown', showGlow, { passive: true });
     }
   }
 

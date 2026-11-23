@@ -14,7 +14,8 @@
         const visit = performance.getEntriesByType('navigation')[0];
         if (location.hash || scrollY || visit?.type === 'back_forward') return;
         if (matchMedia('(prefers-reduced-motion: reduce), (forced-colors: active)').matches) return;
-        document.documentElement.setAttribute('data-opening', '');
+        const mobile = matchMedia('(max-width: 768px)').matches;
+        document.documentElement.setAttribute('data-opening', mobile ? 'mobile' : 'desktop');
         const water = document.createElement('link');
         water.rel = 'preload';
         water.as = 'image';
@@ -27,17 +28,17 @@
       })();
     </script>
     <link rel="preload" as="font" type="font/woff2" href="assets/fonts/noto-sans-jp-ui.woff2" crossorigin>
-    <link rel="stylesheet" href="site.css?v=18">
-    <link rel="stylesheet" href="home.css?v=13">
+    <link rel="stylesheet" href="site.css?v=19">
+    <link rel="stylesheet" href="home.css?v=14">
     <script src="site.js?v=5" defer></script>
-    <script src="home.js?v=8" defer></script>
+    <script src="home.js?v=9" defer></script>
   </head>
   <body id="top" class="home-page">
     <a class="skip" href="#main">本文へ移動</a>
     <header class="site-header" id="site-header">
       <div class="header-inner">
         <a class="brand" href="./" aria-label="RELIAL トップページ"><img src="assets/relial-logo.svg" width="154" height="40" alt="RELIAL"></a>
-        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" hidden><span class="menu-icon" aria-hidden="true"></span><span class="menu-label">メニュー</span></button>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" hidden><span class="menu-icon" aria-hidden="true"></span><span class="menu-label sr-only">メニュー</span></button>
         <nav id="site-nav" class="site-nav" aria-label="メインナビゲーション">
           <details class="nav-dropdown nav-about" name="site-sections">
             <summary aria-controls="nav-about-panel">RELIALについて</summary>
