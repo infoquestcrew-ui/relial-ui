@@ -328,7 +328,6 @@ html:not([data-opening]) .flow-settled { mask: none; }
 .record-grid dt a { display: inline-flex; align-items: center; gap: 10px; font-size: 15px; font-weight: 600; }
 .record-grid dt .arrow { width: 12px; color: #4e758d; }
 .record-grid dd > [aria-hidden] { display: flex; align-items: baseline; gap: 9px; color: #174664; line-height: 1.2; }
-.record-grid > div:first-child dd > [aria-hidden] { color: var(--home-blue); }
 .record-grid b { font: italic 600 clamp(65px, 7.1vw, 115px)/1.18 var(--en); letter-spacing: -.05em; font-variant-numeric: tabular-nums; }
 .record-grid small { font-size: 16px; font-weight: 580; }
 .home-news .heading-line { margin-bottom: 27px; }
@@ -361,9 +360,6 @@ html:not([data-opening]) .flow-settled { mask: none; }
 .press-grid[data-view="company"] .notice-list a { grid-template-columns: minmax(160px,.34fr) 1fr auto; padding-block: 22px; }
 .press-grid[data-view="company"] .notice-list strong, .press-grid[data-view="company"] .notice-list .arrow { grid-column: auto; grid-row: auto; }
 
-.home-company { padding-block: clamp(65px, 6.4vw, 107px); background: #f6f8f8; border-top: 1px solid #e2e9ea; }
-.company-columns { display: grid; align-items: center; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: clamp(34px, 6vw, 95px); }
-.company-mission { margin: 28px 0 16px; font-size: clamp(21px, 2vw, 34px); line-height: 1.65; font-weight: 600; }
 .home-contact { background: #104274; color: white; }
 .home-contact a { min-height: clamp(126px,11vw,185px); display: flex; align-items: center; justify-content: space-between; gap: 16px; }
 .home-contact a > span:first-child { font-size: clamp(21px,2.5vw,44px); letter-spacing: .035em; font-weight: 550; }
@@ -449,7 +445,6 @@ html:not([data-opening]) .flow-settled { mask: none; }
   .news-filters { gap: 15px; margin-bottom: 20px; }
   .news-filters button { font-size: 13px; }
   .report-art { aspect-ratio: 2.05; }
-  .company-mission { margin: 19px 0 13px; }
 }
 @media (max-width: 520px) {
   .record-grid { grid-template-columns: 1fr; padding: 0; }

@@ -172,8 +172,53 @@
     controls.hidden = false;
   }
 
+  function setUpCursorGlows() {
+    const enabled = matchMedia('(any-hover: hover) and (any-pointer: fine) and (prefers-reduced-motion: no-preference)');
+    const forcedColors = matchMedia('(forced-colors: active)');
+
+    for (const section of document.querySelectorAll('[data-cursor-glow]')) {
+      const layer = document.createElement('div');
+      layer.className = 'cursor-field';
+      layer.setAttribute('aria-hidden', 'true');
+      section.prepend(layer);
+      let lastTime = -Infinity;
+      let lastX = 0;
+      let lastY = 0;
+
+      function reset() {
+        lastTime = -Infinity;
+        layer.replaceChildren();
+      }
+      section.addEventListener('pointermove', event => {
+        if (!enabled.matches || forcedColors.matches || event.pointerType !== 'mouse' || event.buttons) return;
+        const now = performance.now();
+        const elapsed = now - lastTime;
+        if (elapsed < 310) return;
+        const bounds = layer.getBoundingClientRect();
+        const x = event.clientX - bounds.left;
+        const y = event.clientY - bounds.top;
+        if (elapsed < 2100 && Math.hypot(x - lastX, y - lastY) < 54) return;
+        lastTime = now;
+        lastX = x;
+        lastY = y;
+
+        const bloom = document.createElement('span');
+        bloom.className = 'cursor-bloom';
+        bloom.style.left = x + 'px';
+        bloom.style.top = y + 'px';
+        const remove = () => bloom.remove();
+        bloom.addEventListener('animationend', remove, { once: true });
+        bloom.addEventListener('animationcancel', remove, { once: true });
+        layer.append(bloom);
+      }, { passive: true });
+      enabled.addEventListener('change', reset);
+      forcedColors.addEventListener('change', reset);
+    }
+  }
+
   setUpOpening();
   document.querySelectorAll('[data-motion]').forEach(setUpMotion);
   setUpServices(document.querySelector('[data-services]'));
   setUpNews(document.querySelector('[data-news]'));
+  setUpCursorGlows();
 })();
