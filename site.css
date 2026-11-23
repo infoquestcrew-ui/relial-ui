@@ -1817,55 +1817,44 @@ body.menu-open { overflow: hidden; }
 
 /* The four services on the home page */
 .home-services {
-  padding-block: clamp(64px, 7.4vw, 112px);
-  color: white;
-  background-color: var(--ink);
-  background-color: color-mix(in srgb, var(--ink) 63%, var(--blue));
+  padding-block: clamp(54px, 4.8vw, 80px);
+  color: var(--ink);
+  background: white;
 }
-.home-services::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -2;
-  background: url("assets/office.webp") center 46% / cover no-repeat;
-  opacity: .14;
-  pointer-events: none;
-}
-.services-title { display: flex; align-items: baseline; flex-wrap: wrap; gap: 8px clamp(18px, 2vw, 32px); }
-.services-title [lang] {
-  font: 800 clamp(46px, 4.65vw, 74px)/1 var(--en);
-  letter-spacing: .015em;
-}
-.services-title > :last-child { font: 700 clamp(16px, 1.25vw, 20px)/1.6 var(--jp); }
-.services-intro { margin-top: clamp(24px, 2.6vw, 40px); font-size: clamp(14px, 1.08vw, 17px); line-height: 1.9; }
+.home-services .home-title > :last-child { padding-left: 0; border-left: 0; }
+.services-intro { margin-top: clamp(18px, 1.7vw, 26px); }
 .services-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  margin-top: clamp(28px, 3vw, 48px);
+  margin-top: clamp(24px, 2.3vw, 36px);
   list-style: none;
-  border: solid color-mix(in srgb, currentColor 45%, transparent);
+  border: solid var(--rule);
   border-width: 1px 0 0 1px;
 }
 .services-grid > li {
   min-width: 0;
-  border: solid color-mix(in srgb, currentColor 45%, transparent);
+  border: solid var(--rule);
   border-width: 0 1px 1px 0;
 }
 .services-grid a {
   display: grid;
-  grid-template-columns: 36% minmax(0, 1fr);
-  align-items: start;
-  gap: clamp(16px, 2.1vw, 34px);
+  grid-template-columns: clamp(98px, 30%, 180px) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(16px, 1.9vw, 30px);
   height: 100%;
-  padding: clamp(18px, 2.1vw, 34px);
+  padding: clamp(18px, 1.75vw, 28px);
 }
-.services-grid img { width: 100%; height: auto; aspect-ratio: 1; object-fit: contain; background: white; }
-.services-grid a > div { padding-top: clamp(4px, .9vw, 16px); }
-.services-grid h3 { font: 650 clamp(17px, 1.35vw, 22px)/1.6 var(--jp); word-break: auto-phrase; }
-.services-grid p { margin-top: 10px; font-size: clamp(14px, 1.03vw, 16px); line-height: 1.85; }
-.services-grid a:focus-visible { outline: 2px solid currentColor; outline-offset: -5px; }
+.services-grid picture {
+  display: flex;
+  justify-content: center;
+  min-width: 0;
+}
+.services-grid img { width: auto; max-height: clamp(135px, 13.2vw, 190px); }
+.services-grid h3 { word-break: auto-phrase; }
+.services-grid p { margin-top: 8px; }
+.services-grid a:focus-visible { outline: 2px solid var(--blue); outline-offset: -5px; }
 @media (hover: hover) {
-  .services-grid a:hover { background: rgb(255 255 255 / 8%); }
+  .services-grid a:hover { background: var(--pale); color: var(--blue); }
   .services-grid a:hover h3 { text-decoration: underline; text-underline-offset: .24em; }
 }
 @media (prefers-reduced-motion: no-preference) {
@@ -1873,17 +1862,13 @@ body.menu-open { overflow: hidden; }
 }
 @media (max-width: 768px) {
   .home-services { padding-block: 54px; }
-  .services-title { display: grid; justify-items: start; gap: 7px; }
-  .services-title [lang] { font-size: 44px; }
+  .home-services .home-title { flex-direction: column; align-items: flex-start; gap: 7px; }
   .services-intro { margin-top: 21px; }
   .services-grid { grid-template-columns: minmax(0, 1fr); margin-top: 26px; }
-  .services-grid a { grid-template-columns: clamp(68px, 22vw, 130px) minmax(0, 1fr); gap: clamp(12px, 4vw, 24px); padding: clamp(14px, 4.5vw, 24px); }
-  .services-grid a > div { padding-top: 0; }
-  .services-grid h3 { font-size: 16px; }
-  .services-grid p { margin-top: 6px; font-size: 13px; line-height: 1.8; }
+  .services-grid a { grid-template-columns: clamp(68px, 22vw, 130px) minmax(0, 1fr); align-items: start; gap: clamp(12px, 4vw, 24px); padding: clamp(14px, 4.5vw, 24px); }
+  .services-grid img { width: 100%; max-height: none; }
+  .services-grid p { margin-top: 6px; }
 }
 @media print {
-  .home-services { color: var(--ink); background: white; }
-  .home-services::before { display: none; }
   .services-grid > li { break-inside: avoid; }
 }

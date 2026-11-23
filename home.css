@@ -250,7 +250,8 @@ html:not([data-opening]) .flow-settled { mask: none; }
 .home-title { display: flex; align-items: baseline; flex-wrap: wrap; column-gap: clamp(14px, 1.8vw, 26px); row-gap: 8px; line-height: 1; }
 .home-title > :first-child { font: italic 600 clamp(42px, 4.2vw, 53px)/1.35 var(--en); letter-spacing: normal; }
 .home-title > :last-child { padding-left: 13px; border-left: 1px solid #9db0b8; color: #40565f; font-size: 16px; font-weight: 700; line-height: 1.6; letter-spacing: normal; }
-.heading-line > p { max-width: 29em; color: var(--home-text); font-size: 15px; line-height: 1.95; }
+.heading-line > p { max-width: 29em; }
+.heading-line > p, .services-intro, .services-grid p { color: var(--home-text); font-size: 15px; line-height: 1.95; }
 .notice-list { list-style: none; }
 
 .home-results { padding-block: clamp(64px, 6.5vw, 107px); background: var(--home-paper); }
@@ -281,7 +282,8 @@ html:not([data-opening]) .flow-settled { mask: none; }
 .report-art b span { margin-left: .15em; font-weight: 370; }
 .report-art strong { display: block; padding-top: 7px; border-top: 1px solid rgb(255 255 255 / 63%); font-size: 14px; letter-spacing: .12em; }
 .report-info { position: relative; padding: 17px 26px 0 0; }
-.report-info h3 { margin-top: 9px; font-size: clamp(17px, 1.35vw, 22px); font-weight: 650; line-height: 1.75; }
+.report-info h3 { margin-top: 9px; }
+.report-info h3, .services-grid h3 { font-size: clamp(17px, 1.35vw, 22px); font-weight: 650; line-height: 1.75; }
 .report-info > .arrow { position: absolute; bottom: 9px; right: 1px; }
 .notice-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
 .notice-meta > span { font-size: 11px; padding: 2px 9px; line-height: 1.6; color: #425861; background: #eef3f4; }
@@ -346,7 +348,8 @@ html:not([data-opening]) .flow-settled { mask: none; }
   .home-wire a .arrow { position: absolute; top: 50%; right: 1px; }
   .home-space { padding-block: 63px; }
   .heading-line { flex-wrap: wrap; gap: 19px; margin-bottom: 25px; }
-  .heading-line > p { max-width: 35em; font-size: 14px; }
+  .heading-line > p { max-width: 35em; }
+  .heading-line > p, .services-intro, .services-grid p { font-size: 14px; }
   .home-title > :first-child { font-size: 36px; }
   .home-title > :last-child { font-size: 14px; padding-left: 10px; }
   .record-grid { padding-top: 18px; }

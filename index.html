@@ -27,8 +27,8 @@
       })();
     </script>
     <link rel="preload" as="font" type="font/woff2" href="assets/fonts/noto-sans-jp-ui.woff2" crossorigin>
-    <link rel="stylesheet" href="site.css?v=16">
-    <link rel="stylesheet" href="home.css?v=11">
+    <link rel="stylesheet" href="site.css?v=17">
+    <link rel="stylesheet" href="home.css?v=12">
     <script src="site.js?v=5" defer></script>
     <script src="home.js?v=8" defer></script>
   </head>
@@ -153,13 +153,16 @@
 
       <section class="home-services" id="service" aria-labelledby="service-title" data-cursor-glow>
         <div data-reveal>
-          <h2 class="services-title" id="service-title"><span lang="en" aria-hidden="true">SERVICE</span><span>RELIALの事業内容</span></h2>
+          <h2 class="home-title" id="service-title"><span lang="en" aria-hidden="true">Service</span><span>RELIALの事業内容</span></h2>
           <p class="services-intro">業種ごとの採用支援、企業が学び合うコミュニティ、新卒会社説明会の企画・制作、月額制の採用代行。<br class="on-wide">RELIALは4つの事業を通じて、採用計画の設計から、応募者と向き合う日々の実務まで支援します。</p>
         </div>
         <ul class="services-grid" data-reveal>
           <li>
             <a href="services.html" aria-labelledby="service-industry-name">
-              <img src="assets/service-industry.webp" width="480" height="480" loading="lazy" decoding="async" alt="">
+              <picture>
+                <source media="(max-width: 768px)" srcset="assets/service-industry.webp" width="480" height="480">
+                <img src="assets/service-industry-full.webp" width="453" height="640" loading="lazy" decoding="async" alt="">
+              </picture>
               <div>
                 <h3 id="service-industry-name">業種特化の採用支援サービス</h3>
                 <p>業界の採用動向と求める人物像を踏まえ、採用戦略の設計から求人媒体の選定、スカウトの運用まで支援します。</p>
@@ -168,7 +171,10 @@
           </li>
           <li>
             <a href="community.html" aria-labelledby="service-community-name">
-              <img src="assets/service-community.webp" width="480" height="480" loading="lazy" decoding="async" alt="">
+              <picture>
+                <source media="(max-width: 768px)" srcset="assets/service-community.webp" width="480" height="480">
+                <img src="assets/service-community-full.webp" width="480" height="640" loading="lazy" decoding="async" alt="">
+              </picture>
               <div>
                 <h3 id="service-community-name">コミュニティサービス</h3>
                 <p>同じ業界の中小企業が、採用の成功例や失敗例を共有する場です。ほかの企業の経験を、自社の採用に活かせます。</p>
@@ -177,7 +183,10 @@
           </li>
           <li>
             <a href="graduate-events.html" aria-labelledby="service-graduates-name">
-              <img src="assets/service-graduates.webp" width="480" height="480" loading="lazy" decoding="async" alt="">
+              <picture>
+                <source media="(max-width: 768px)" srcset="assets/service-graduates.webp" width="480" height="480">
+                <img src="assets/service-graduates-full.webp" width="640" height="426" loading="lazy" decoding="async" alt="">
+              </picture>
               <div>
                 <h3 id="service-graduates-name"><span class="phrase">新卒会社説明会</span> <span class="phrase">企画・制作支援サービス</span></h3>
                 <p>学生に会社の魅力が伝わる説明会を企画。構成づくり、資料・台本の制作、開催前の準備まで支援します。</p>
@@ -186,7 +195,10 @@
           </li>
           <li>
             <a href="monthly-rpo.html" aria-labelledby="service-monthly-name">
-              <img src="assets/service-monthly.webp" width="480" height="480" loading="lazy" decoding="async" alt="">
+              <picture>
+                <source media="(max-width: 768px)" srcset="assets/service-monthly.webp" width="480" height="480">
+                <img src="assets/service-monthly-full.webp" width="640" height="427" loading="lazy" decoding="async" alt="">
+              </picture>
               <div>
                 <h3 id="service-monthly-name">月額採用代行サービス</h3>
                 <p>月額10万円〜。求人運用やスカウト、応募者対応・面接日程の調整など、必要な業務を選んで依頼できます。</p>
