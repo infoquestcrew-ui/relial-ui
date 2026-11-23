@@ -1333,3 +1333,162 @@ body.menu-open { overflow: hidden; }
   .office-guide figcaption { padding-inline: 20px; }
   .office-map-detail summary { margin-inline: 20px; }
 }
+
+/* Graduate briefing design and production */
+.grad-introduction { background: linear-gradient(120deg, white 45%, var(--pale)); }
+.grad-introduction .detail-wrap, .grad-index .detail-wrap { width: min(1200px, calc(100% - var(--edge) * 2)); }
+.graduate-page .grad-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.16fr) minmax(0, 1fr);
+  grid-template-areas: "headline cover" "copy cover";
+  align-items: center;
+  gap: 22px clamp(28px, 4.2vw, 68px);
+  padding-block: clamp(40px, 4.6vw, 74px) clamp(54px, 5.3vw, 84px);
+}
+.grad-headline { grid-area: headline; align-self: end; }
+.grad-name { display: flex; align-items: center; gap: 12px; color: var(--blue); font-size: clamp(14px, 1.25vw, 17px); font-weight: 700; }
+.grad-name::before { flex: none; width: 26px; height: 3px; border-radius: 2px; background: linear-gradient(90deg, var(--blue), var(--blue-2)); content: ""; }
+.grad-hero h1 { margin-top: 18px; font-size: clamp(36px, 3.6vw, 56px); line-height: 1.38; letter-spacing: .015em; }
+.grad-cover { grid-area: cover; min-width: 0; overflow: hidden; border: 1px solid var(--rule); border-radius: 20px clamp(36px, 4.2vw, 68px) 20px 20px; background: white; box-shadow: 8px 9px 0 color-mix(in srgb, var(--blue-2) 15%, var(--pale)); }
+.grad-cover img { width: 100%; height: clamp(308px, 28vw, 420px); object-fit: cover; object-position: 57% 46%; }
+.grad-cover-links { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); padding-block: 4px; }
+.grad-cover-links a { display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 46px; padding-inline: 6px; color: var(--ink); font-size: clamp(12px, 1vw, 15px); font-weight: 650; }
+.grad-cover-links a + a { border-left: 1px solid var(--rule); }
+.grad-cover-links a:is(:hover, :focus-visible) { color: var(--blue); outline-offset: -4px; text-decoration: underline; text-underline-offset: .25em; }
+.grad-cover .arrow { width: 14px; color: var(--blue); }
+.grad-intro-copy { grid-area: copy; align-self: start; }
+.grad-intro-copy > p { color: var(--muted); line-height: 1.9; }
+.grad-intro-copy > p + p { margin-top: 10px; }
+.grad-intro-copy .grad-standfirst { color: var(--ink); font-size: clamp(17px, 1.45vw, 21px); line-height: 1.7; font-weight: 650; }
+.grad-intro-copy strong { color: var(--ink); font-weight: 700; }
+.grad-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; }
+.graduate-page .grad-hero .grad-actions { margin-top: 25px; }
+.graduate-page .grad-hero .button { margin: 0; gap: 9px; padding-inline: 18px; }
+.graduate-page .grad-hero .grad-estimate { border-color: var(--blue); color: var(--blue); background: white; }
+.grad-index { border-block: 1px solid var(--rule); background: white; }
+.grad-index > div { display: flex; justify-content: center; flex-wrap: wrap; }
+.grad-index a { display: flex; align-items: center; justify-content: center; gap: 9px; padding: 16px clamp(12px, 2.3vw, 38px); color: var(--ink); font-size: 14px; font-weight: 650; }
+.grad-index .arrow { width: 13px; color: var(--blue); }
+.grad-index a:hover, .grad-invitation a:hover { color: var(--blue); text-decoration: underline; text-underline-offset: .25em; }
+.graduate-page .section-head .detail-lead + .detail-lead { margin-top: 8px; }
+.grad-challenges { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .94fr); align-items: start; gap: clamp(28px, 5vw, 64px); }
+.grad-voices { display: grid; gap: 12px; list-style: none; counter-reset: voice; }
+.grad-voices li { position: relative; padding: 20px 24px 20px 63px; border: 1px solid var(--rule); border-radius: 16px 16px 16px 3px; background: white; box-shadow: var(--shadow); font-weight: 550; counter-increment: voice; }
+.grad-voices li::before { position: absolute; left: 19px; top: 20px; content: counter(voice, decimal-leading-zero); color: var(--blue); font: italic 650 20px/1.55 var(--en); }
+.grad-response { border-top: 3px solid var(--blue); padding-top: 14px; }
+.grad-response img { width: 100%; aspect-ratio: 3.4; border-radius: 12px; object-fit: cover; object-position: 50% 60%; }
+.grad-response h3 { margin: 20px 0 12px; font-size: clamp(22px, 2vw, 29px); line-height: 1.6; }
+.grad-response p, .grad-service-copy > p, .grad-menu-copy > p, .grad-flow p { color: var(--muted); line-height: 1.85; }
+.grad-response p + p { margin-top: 9px; }
+.graduate-page :is(.grad-points, .grad-menus) { margin: 0; padding-top: 22px; list-style: none; gap: 44px 24px; }
+.graduate-page :is(.grad-points, .grad-menus) .industry-card { position: relative; padding-top: 36px; gap: 10px; }
+.grad-points .number-badge { display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 1px; }
+.grad-points .number-badge small { font: 700 9px/1 var(--en); letter-spacing: .035em; }
+.grad-menus li[id] { scroll-margin-top: 28px; }
+.grad-points h3, .grad-menu-copy h3, .grad-service-copy h3, .grad-flow h3 { text-wrap: pretty; line-break: strict; }
+.grad-services, .grad-formats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; }
+.grad-services:has(details[open]) { align-items: start; }
+.graduate-page .grad-service { gap: 0; padding: 0; scroll-margin-top: 12px; }
+.grad-art { display: grid; place-items: center; height: clamp(134px, 12vw, 166px); overflow: hidden; border-radius: 15px 15px 0 0; background: color-mix(in srgb, var(--blue-2) 10%, white); }
+.grad-art-planning { background-image: radial-gradient(color-mix(in srgb, var(--blue) 16%, transparent) 1px, transparent 1px); background-size: 14px 14px; }
+.grad-art-production { background: linear-gradient(135deg, var(--pale), color-mix(in srgb, var(--blue) 16%, white)); }
+.grad-art-preparation { background-image: repeating-linear-gradient(0deg, transparent 0 18px, color-mix(in srgb, var(--blue-2) 9%, transparent) 18px 19px); }
+.grad-sheet { position: relative; border: 1px solid color-mix(in srgb, var(--blue) 45%, white); border-radius: 6px; background: white; color: var(--ink); line-height: 1.5; }
+.grad-sheet > b { display: block; margin-bottom: 5px; font-size: 15px; }
+.grad-agenda, .grad-checklist { width: 154px; padding: 8px 15px; box-shadow: 5px 5px 0 color-mix(in srgb, var(--blue-2) 20%, white); }
+.grad-agenda { border-left: 6px solid var(--blue); transform: rotate(-4deg); }
+.grad-agenda span, .grad-checklist span { display: flex; align-items: center; gap: 8px; font-size: 12px; line-height: 1.65; }
+.grad-agenda span::before { content: ""; width: 7px; height: 7px; border: 2px solid var(--blue-2); border-radius: 50%; }
+.grad-slide { display: grid; grid-template-columns: 1fr .9fr; overflow: hidden; width: 177px; aspect-ratio: 1.65; box-shadow: 5px 5px white, 6px 6px var(--blue), 11px 11px color-mix(in srgb, var(--blue-2) 28%, white); transform: rotate(-3deg); }
+.grad-slide > div { padding: 13px 0 8px 12px; }
+.grad-slide b { font-size: 16px; }
+.grad-slide i { display: block; width: 25px; height: 4px; margin-top: 8px; background: var(--blue); }
+.grad-slide img { width: 100%; height: 100%; object-fit: cover; }
+.grad-checklist { transform: rotate(4deg); padding-top: 13px; }
+.grad-checklist::before { position: absolute; content: ""; top: -6px; left: 48px; width: 52px; height: 10px; border-radius: 4px; background: var(--blue); }
+.grad-checklist span::before { content: ""; flex: none; width: 10px; height: 6px; border: solid var(--blue); border-width: 0 0 2px 2px; transform: rotate(-45deg); }
+.grad-service-copy { position: relative; display: flex; flex-direction: column; flex: 1; padding: 36px clamp(20px, 2vw, 32px) 18px; }
+.grad-service-copy > p { flex: 1; }
+.grad-service-copy > p, .grad-menu-copy > p { margin-top: 12px; }
+.grad-disclosure summary { display: flex; align-items: center; gap: 14px; font-weight: 650; cursor: pointer; list-style: none; }
+.grad-disclosure summary::-webkit-details-marker { display: none; }
+.grad-disclosure summary > .nav-plus { margin-left: auto; }
+.grad-disclosure[open] .nav-plus::after { transform: translateY(-50%) rotate(0); }
+.grad-disclosure summary:hover, .grad-disclosure[open] summary { color: var(--blue); }
+.grad-service .grad-disclosure { margin-top: 20px; border-top: 1px solid var(--rule); }
+.grad-service summary { min-height: 48px; padding-top: 5px; color: var(--blue); }
+.grad-task-count { font-size: 13px; }
+.grad-service ul { padding: 8px 0 7px 1.15em; }
+.grad-service li + li { margin-top: 7px; }
+.grad-service li::marker { color: var(--blue); }
+.grad-scope { margin-top: 28px; padding: 16px 20px; border-inline-start: 3px solid var(--blue); border-radius: 0 8px 8px 0; background: white; font-size: 15px; font-weight: 550; }
+.grad-menu-copy .grad-quote { padding-left: 12px; border-left: 2px solid var(--blue-2); color: var(--ink); font-weight: 550; }
+.graduate-page .grad-menus .grad-complete { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, .75fr); align-items: center; gap: 28px; border-color: color-mix(in srgb, var(--blue) 55%, white); background: linear-gradient(115deg, white 45%, var(--pale)); }
+.grad-menu-photo { width: 100%; height: 165px; border-radius: 12px; object-fit: cover; }
+.grad-invitation { margin: 34px auto 0; text-align: center; }
+.grad-invitation .text-link { color: var(--blue); font-size: clamp(17px, 1.7vw, 21px); }
+.grad-invitation p + p { margin-top: 10px; color: var(--muted); }
+.graduate-page .grad-formats .industry-card { gap: 10px; }
+.grad-format-art { display: flex; align-items: center; justify-content: center; gap: 7px; height: 94px; border-radius: 10px; background: var(--pale); color: var(--blue); }
+.grad-room { display: grid; justify-items: center; gap: 7px; }
+.grad-room i { display: block; width: 45px; height: 24px; border: 2px solid currentColor; border-top-width: 5px; border-radius: 2px; background: white; }
+.grad-room b { width: 49px; height: 20px; background: radial-gradient(ellipse at center, var(--blue) 39%, transparent 42%) 0 0 / 16px 10px; }
+.grad-laptop { display: grid; justify-items: center; }
+.grad-laptop i { display: block; width: 50px; height: 34px; border: 2px solid currentColor; border-top-width: 5px; border-radius: 4px 4px 1px 1px; background: linear-gradient(90deg, transparent 46%, white 46% 53%, transparent 53%), linear-gradient(0deg, transparent 46%, white 46% 55%, transparent 55%), color-mix(in srgb, var(--blue-2) 32%, white); }
+.grad-laptop::after { width: 62px; height: 5px; border-radius: 1px 1px 6px 6px; background: currentColor; content: ""; }
+.grad-connection { width: 23px; border-top: 2px dotted var(--blue-2); }
+.grad-flow { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 22px; list-style: none; }
+.grad-flow li { min-width: 0; }
+.grad-step { display: flex; align-items: center; gap: 10px; color: var(--blue); font: italic 700 17px/1.5 var(--en); }
+.grad-step::after { height: 2px; flex: 1; background: linear-gradient(90deg, var(--blue-2), var(--rule)); content: ""; }
+.grad-flow h3 { margin: 12px 0 7px; font-size: 18px; line-height: 1.55; }
+.grad-flow p { font-size: 15px; }
+.grad-faq { display: grid; gap: 12px; max-width: 880px; margin-inline: auto; }
+.grad-faq details { padding: 0 24px; border: 1px solid var(--rule); border-radius: 16px; background: white; box-shadow: var(--shadow); }
+.grad-faq summary, .grad-faq details > p { display: flex; align-items: baseline; gap: 14px; padding-block: 19px; line-height: 1.75; }
+.grad-faq summary .nav-plus { align-self: center; }
+.grad-qa-mark { flex: none; color: var(--blue); font: italic 700 19px/1 var(--en); }
+.grad-faq details > p { border-top: 1px solid var(--rule); color: var(--muted); }
+.graduate-page .contact-band .grad-estimate { border-color: white; background: transparent; color: white; }
+@media (hover: hover) {
+  .graduate-page .grad-hero .grad-estimate:hover { color: white; background: var(--blue); }
+  .graduate-page .contact-band .grad-estimate:hover { background: white; color: var(--blue); }
+}
+@media (min-width: 769px) and (max-width: 1060px) {
+  .grad-services, .grad-formats { gap: 14px; }
+  .graduate-page .grad-formats .industry-card { padding-inline: 20px; }
+  .grad-flow { gap: 14px; }
+}
+@media (max-width: 768px) {
+  .graduate-page .grad-hero { grid-template-columns: minmax(0, 1fr); grid-template-areas: "headline" "cover" "copy"; gap: 21px; padding-block: 32px 40px; }
+  .grad-hero h1 { margin-top: 12px; font-size: clamp(28px, 7.6vw, 43px); }
+  .grad-name { gap: 8px; }
+  .grad-name::before { width: 16px; }
+  .grad-cover { box-shadow: 5px 6px 0 color-mix(in srgb, var(--blue-2) 15%, var(--pale)); }
+  .grad-cover img { height: clamp(165px, 48vw, 285px); object-position: center 43%; }
+  .grad-cover-links { padding-block: 0; }
+  .grad-intro-copy { display: flex; flex-direction: column; }
+  .grad-intro-copy .grad-standfirst { order: -2; }
+  .graduate-page .grad-intro-copy .grad-actions { order: -1; margin-block: 14px 6px; }
+  .grad-index > div { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); padding-block: 6px; }
+  .grad-index a { justify-content: space-between; padding: 10px 9px; min-height: 44px; font-size: 13px; }
+  .grad-challenges, .grad-services, .grad-formats, .grad-flow, .graduate-page .grad-menus .grad-complete { grid-template-columns: minmax(0, 1fr); }
+  .grad-challenges { gap: 32px; }
+  .grad-voices li { padding: 14px 16px 14px 50px; }
+  .grad-voices li::before { left: 14px; top: 14px; font-size: 18px; }
+  .grad-services, .grad-formats { gap: 20px; }
+  .graduate-page .grad-menus .grad-complete { gap: 18px; }
+  .grad-response img { aspect-ratio: 2.8; }
+  .grad-step::after { max-width: 68px; }
+  .grad-flow { gap: 0; }
+  .grad-flow li { position: relative; padding: 0 0 24px 25px; border-left: 2px solid var(--rule); margin-left: 5px; }
+  .grad-flow li::before { content: ""; position: absolute; left: -6px; top: 7px; width: 10px; height: 10px; border-radius: 50%; background: var(--blue); }
+  .grad-flow li:last-child { padding-bottom: 0; border-left-color: transparent; }
+  .grad-flow h3 { margin-block: 5px; }
+  .grad-faq details { padding-inline: 16px; }
+}
+@media (max-width: 540px) {
+  .graduate-page .grad-actions { flex-direction: column; align-items: stretch; }
+  .graduate-page .grad-actions .button { width: 100%; }
+  .graduate-page .contact-band .grad-actions { width: min(100%, 22em); }
+}

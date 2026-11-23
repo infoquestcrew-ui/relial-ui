@@ -11,7 +11,7 @@
     <link rel="preload" as="font" type="font/woff2" href="assets/fonts/noto-sans-jp-ui.woff2" crossorigin>
     <link rel="stylesheet" href="site.css?v=11">
     <script src="site.js?v=4" defer></script>
-    <script src="contact.js?v=3" defer></script>
+    <script src="contact.js?v=4" defer></script>
   </head>
   <body id="top" class="industry-page contact-page">
     <a class="skip" href="#main">本文へ移動</a>
@@ -26,7 +26,7 @@
             <ul id="nav-service-links">
                 <li><a href="services.html">業界特化の採用支援サービス</a></li>
                 <li><a href="community.html">コミニティサービス</a></li>
-                <li><a href="graduate-events.html">新卒説明会の企画・運営支援サービス</a></li>
+                <li><a href="graduate-events.html">新卒会社説明会 企画・制作支援サービス</a></li>
                 <li><a href="monthly-rpo.html">月額採用代行サービス</a></li>
             </ul>
           </details>
@@ -58,12 +58,20 @@
                 <option data-type="other">その他</option>
               </select>
             </div>
-            <div class="contact-row" id="service-row" hidden>
+            <div class="contact-row" id="service-row">
               <label for="contact-service">対象サービス<span class="field-badge">任意</span></label>
-              <select id="contact-service" name="対象サービス" disabled>
+              <select id="contact-service" name="対象サービス">
                 <option value="">選択してください</option>
-                <option data-type="graduate-events">新卒説明会 企画・運営支援サービス</option>
+                <option data-type="graduate-events">新卒会社説明会 企画・制作支援サービス</option>
                 <option data-type="monthly-rpo">月額の採用代行</option>
+              </select>
+            </div>
+            <div class="contact-row" id="graduate-purpose-row">
+              <label for="graduate-purpose">新卒会社説明会のご相談の目的<span class="field-badge">任意</span></label>
+              <select id="graduate-purpose" name="新卒会社説明会のご相談の目的">
+                <option value="">選択してください</option>
+                <option data-intent="consultation">サービスについてのご相談</option>
+                <option data-intent="estimate">お見積もりのご依頼</option>
               </select>
             </div>
             <noscript><p class="contact-privacy-note">個人でご応募の方は、種別に「採用への応募・お問い合わせ」を選び、会社名に「個人」とご記入ください。</p></noscript>

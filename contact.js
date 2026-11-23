@@ -3,6 +3,8 @@
   const category = document.getElementById('contact-type');
   const service = document.getElementById('contact-service');
   const serviceRow = document.getElementById('service-row');
+  const purpose = document.getElementById('graduate-purpose');
+  const purposeRow = document.getElementById('graduate-purpose-row');
   const inputStep = document.getElementById('contact-input');
   const reviewStep = document.getElementById('contact-review');
   const reviewButton = document.getElementById('review-inquiry');
@@ -16,7 +18,8 @@
   endpoint.pathname = '/ajax' + endpoint.pathname;
   let reviewedData;
 
-  const type = new URLSearchParams(window.location.search).get('type');
+  const query = new URLSearchParams(window.location.search);
+  const type = query.get('type');
   const categoryOption = [...category.options].find(option => type && option.dataset.type === type);
   const serviceOption = [...service.options].find(option => type && option.dataset.type === type);
   if (!category.value) {
@@ -24,6 +27,11 @@
     if (serviceOption) {
       category.value = category.querySelector('[data-type="service"]').value;
       service.value = serviceOption.value;
+      if (type === 'graduate-events') {
+        const intent = query.get('intent');
+        const initialPurpose = [...purpose.options].find(option => option.dataset.intent === intent);
+        if (initialPurpose && !purpose.value) purpose.value = initialPurpose.value;
+      }
     }
   }
 
@@ -32,6 +40,9 @@
     const applicable = selectedType === 'service';
     serviceRow.hidden = !applicable;
     service.disabled = !applicable;
+    const isGraduateService = applicable && service.selectedOptions[0]?.dataset.type === 'graduate-events';
+    purposeRow.hidden = !isGraduateService;
+    purpose.disabled = !isGraduateService;
     for (const row of form.querySelectorAll('[data-business-only]')) {
       row.hidden = selectedType === 'careers';
       row.querySelector('input, select').disabled = row.hidden;
@@ -75,6 +86,7 @@
   reviewButton.querySelector('span').textContent = '入力内容を確認する';
   updateFields();
   category.addEventListener('change', updateFields);
+  service.addEventListener('change', updateFields);
   editButton.addEventListener('click', () => {
     showInputs();
     category.focus();
