@@ -9,8 +9,8 @@
     <title>コミュニティサービス｜RELIAL株式会社</title>
     <link rel="icon" type="image/svg+xml" href="assets/relial-mark.svg">
     <link rel="preload" as="font" type="font/woff2" href="assets/fonts/noto-sans-jp-ui.woff2" crossorigin>
-    <link rel="stylesheet" href="site.css?v=7">
-    <script src="site.js?v=3" defer></script>
+    <link rel="stylesheet" href="site.css?v=10">
+    <script src="site.js?v=4" defer></script>
   </head>
   <body id="top" class="industry-page community-page">
     <a class="skip" href="#main">本文へ移動</a>
@@ -19,7 +19,18 @@
         <a class="brand" href="./" aria-label="RELIAL トップページ"><img src="assets/relial-logo.svg" width="154" height="40" alt="RELIAL"></a>
         <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" hidden><span class="menu-icon" aria-hidden="true"></span><span class="menu-label">メニュー</span></button>
         <nav id="site-nav" class="site-nav" aria-label="メインナビゲーション">
-          <a href="./#service">事業紹介</a> <a href="./#results">支援実績</a> <a href="company.html">会社情報</a> <a href="news.html">お知らせ</a>
+          <a href="about.html">RELIALについて</a>
+          <details class="nav-services">
+            <summary aria-controls="nav-service-links">事業紹介<span class="nav-plus" aria-hidden="true"></span></summary>
+            <ul id="nav-service-links">
+                <li><a href="services.html">業界特化の採用支援サービス</a></li>
+                <li><a href="community.html" aria-current="page">コミニティサービス</a></li>
+                <li><a href="graduate-events.html">新卒説明会の企画・運営支援サービス</a></li>
+                <li><a href="monthly-rpo.html">月額採用代行サービス</a></li>
+            </ul>
+          </details>
+          <a href="news.html">NEWS</a>
+          <a href="company.html">会社概要</a>
           <a class="nav-contact" href="contact.html">お問い合わせ<i class="arrow" aria-hidden="true"></i></a>
         </nav>
       </div>
@@ -36,7 +47,7 @@
             <p class="detail-lead">企業同士が採用情報や成功事例、ノウハウを共有し合うことで、中小企業の採用力を高める。私たちは、企業の垣根を越えて採用の課題と向き合い、学び合い、成長できる新しいコミュニティを目指しています。</p>
             <div class="community-actions">
               <a class="button" href="contact.html?type=community">コミュニティへの参加はこちら<i class="arrow" aria-hidden="true"></i></a>
-              <a class="button button-outline" href="company.html">私たちについて<i class="arrow" aria-hidden="true"></i></a>
+              <a class="button button-outline" href="about.html">私たちについて<i class="arrow" aria-hidden="true"></i></a>
             </div>
           </div>
           <div class="detail-visual concept-visual"><img src="assets/pillars.webp" alt="" width="1200" height="800" fetchpriority="high"></div>
