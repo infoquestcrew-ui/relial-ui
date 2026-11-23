@@ -1025,3 +1025,53 @@ body.menu-open { overflow: hidden; }
   .contact-page .contact-consent label { text-align: start; font-size: 14px; }
   .contact-page .contact-actions .button { flex: 1 1 210px; min-height: 48px; }
 }
+
+/* Inquiry review and privacy policy */
+.contact-page .contact-privacy-note { max-width: 42em; margin: 8px auto 16px; color: var(--muted); font-size: 15px; }
+.contact-page .contact-agreement { display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; line-height: 1.7; }
+.contact-page .contact-agreement a { color: var(--blue); font-weight: 650; text-decoration: underline; text-underline-offset: .2em; }
+.contact-page .contact-agreement label { display: inline; min-height: 0; white-space: nowrap; }
+.contact-page .contact-agreement input {
+  appearance: none;
+  display: grid;
+  flex: 0 0 24px;
+  width: 24px;
+  height: 24px;
+  place-items: center;
+  border: 1.5px solid var(--muted);
+  border-radius: 50%;
+  cursor: pointer;
+}
+.contact-page .contact-agreement input:checked { border-color: var(--blue); background: var(--blue); }
+.contact-page .contact-agreement input:checked::after { width: 11px; height: 6px; margin-top: -3px; border: solid #fff; border-width: 0 0 2px 2px; transform: rotate(-45deg); content: ""; }
+.contact-page .contact-actions .contact-submit {
+  min-width: min(100%, 17em);
+  min-height: 54px;
+  background: linear-gradient(100deg, var(--blue), color-mix(in srgb, var(--blue) 60%, var(--blue-2)));
+  font-size: 16px;
+}
+.contact-page .contact-edit { border-color: var(--rule); background: #fff; color: var(--ink); }
+.contact-page .contact-review > h2 { scroll-margin-top: 105px; font-size: clamp(24px, 2.4vw, 32px); text-align: center; }
+.contact-page .contact-review > p { margin: 8px auto 20px; color: var(--muted); text-align: center; }
+.contact-page .contact-review dl { border-top: 1px solid var(--rule); }
+.contact-page .contact-review dl > div { display: grid; grid-template-columns: minmax(11.5em, .8fr) minmax(0, 1.8fr); gap: 5px 32px; padding-block: 16px; border-bottom: 1px solid var(--rule); }
+.contact-page .contact-review dt { font-weight: 650; }
+.contact-page .contact-review dd { min-width: 0; white-space: pre-wrap; overflow-wrap: anywhere; }
+.contact-page .contact-status:empty { margin: 0; }
+.contact-page .contact-policy { gap: 28px; overflow-wrap: anywhere; }
+.contact-page .contact-policy h2 { margin-bottom: 8px; font-size: 19px; line-height: 1.6; }
+.contact-page .contact-policy ol { padding-inline-start: 1.6em; }
+.contact-page .contact-policy li + li { margin-top: .5em; }
+.contact-page .contact-policy section > p + ol { margin-top: .5em; }
+@media (hover: hover) {
+  .contact-page .contact-actions .contact-submit:not(:disabled):hover { background: var(--ink); }
+  .contact-page .contact-edit:hover { border-color: var(--blue); color: var(--blue); }
+}
+@media (max-width: 768px) {
+  .contact-page .contact-agreement { font-size: 14px; }
+  .contact-page .contact-review dl > div { grid-template-columns: minmax(0, 1fr); }
+}
+@media (forced-colors: active) {
+  .contact-page .contact-agreement input { appearance: auto; }
+  .contact-page .contact-agreement input:checked::after { content: none; }
+}

@@ -9,9 +9,9 @@
     <title>お問い合わせ｜RELIAL株式会社</title>
     <link rel="icon" type="image/svg+xml" href="assets/relial-mark.svg">
     <link rel="preload" as="font" type="font/woff2" href="assets/fonts/noto-sans-jp-ui.woff2" crossorigin>
-    <link rel="stylesheet" href="site.css?v=8">
+    <link rel="stylesheet" href="site.css?v=9">
     <script src="site.js?v=3" defer></script>
-    <script src="contact.js?v=1" defer></script>
+    <script src="contact.js?v=2" defer></script>
   </head>
   <body id="top" class="industry-page contact-page">
     <a class="skip" href="#main">本文へ移動</a>
@@ -33,79 +33,86 @@
           <h1>お問い合わせ</h1>
           <p class="detail-lead"><span class="phrase">採用のご相談、</span><wbr><span class="phrase">サービスに関するご質問、</span><wbr><span class="phrase">コミュニティへの参加など、</span><wbr><span class="phrase">お気軽に</span><wbr><span class="phrase">お問い合わせください。</span><wbr><span class="phrase">内容を確認のうえ、</span><wbr><span class="phrase">担当者より</span><wbr><span class="phrase">ご連絡します。</span></p>
         </header>
-        <form id="contact-form" class="industry-card contact-panel" aria-label="お問い合わせフォーム" action="mailto:info@relial.jp" method="post" enctype="text/plain" target="_blank" rel="noopener" data-reveal>
+        <form id="contact-form" class="industry-card contact-panel" aria-label="お問い合わせフォーム" action="https://formsubmit.co/info@relial.jp" method="post" data-reveal>
           <p id="contact-error" class="contact-error" role="alert" tabindex="-1" hidden>送信できませんでした。時間をおいて再度お試しいただくか、info@relial.jp までご連絡ください。</p>
-          <div class="contact-row">
-            <label for="contact-type">お問い合わせ種別<span class="field-badge is-required">必須</span></label>
-            <select id="contact-type" name="お問い合わせ種別" required>
-              <option value="">選択してください</option>
-              <option data-type="recruitment">業種特化の採用支援サービス</option>
-              <option data-type="community">コミュニティへの参加</option>
-              <option data-type="service">その他のサービスについて</option>
-              <option data-type="other">その他</option>
-            </select>
-          </div>
-          <div class="contact-row" id="service-row" hidden>
-            <label for="contact-service">対象サービス<span class="field-badge">任意</span></label>
-            <select id="contact-service" name="対象サービス" disabled>
-              <option value="">選択してください</option>
-              <option data-type="graduate-events">新卒説明会 企画・運営支援サービス</option>
-              <option data-type="monthly-rpo">月額の採用代行</option>
-            </select>
-          </div>
-          <div class="contact-row">
-            <label for="contact-company">会社名<span class="field-badge is-required">必須</span></label>
-            <input id="contact-company" name="会社名" type="text" autocomplete="organization" required>
-          </div>
-          <div class="contact-row">
-            <label for="contact-name">お名前<span class="field-badge is-required">必須</span></label>
-            <input id="contact-name" name="お名前" type="text" autocomplete="name" required>
-          </div>
-          <div class="contact-row">
-            <label for="contact-role">部署・役職<span class="field-badge">任意</span></label>
-            <input id="contact-role" name="部署・役職" type="text" autocomplete="organization-title">
-          </div>
-          <div class="contact-row">
-            <label for="contact-email">メールアドレス<span class="field-badge is-required">必須</span></label>
-            <input id="contact-email" name="email" type="email" autocomplete="email" placeholder="name@example.jp" required>
-          </div>
-          <div class="contact-row">
-            <label for="contact-phone">電話番号<span class="field-badge">任意</span></label>
-            <input id="contact-phone" name="電話番号" type="tel" autocomplete="tel">
-          </div>
-          <div class="contact-row">
-            <label for="contact-industry">業界<span class="field-badge">任意</span></label>
-            <select id="contact-industry" name="業界">
-              <option value="">選択してください</option>
-              <option>SES・SIer</option>
-              <option>不動産</option>
-              <option>建設</option>
-              <option>介護</option>
-              <option>その他</option>
-            </select>
-          </div>
-          <div class="contact-row">
-            <label for="contact-message">お問い合わせ内容<span class="field-badge is-required">必須</span></label>
-            <textarea id="contact-message" name="お問い合わせ内容" rows="6" required></textarea>
-          </div>
-          <div hidden><label for="contact-website">ウェブサイト</label><input id="contact-website" type="text" name="_gotcha" tabindex="-1" autocomplete="off"></div>
-          <div class="contact-consent">
-            <!-- ポリシーのページは【要確認】。できるまではリンクなし。 -->
-            <label><input type="checkbox" name="プライバシーポリシーへの同意" value="同意する" required><span>プライバシーポリシーに<wbr><span class="phrase">同意する</span></span><span class="field-badge is-required">必須</span></label>
-          </div>
-          <div class="contact-delivery">
-            <p id="mail-help">入力内容を <a href="mailto:info@relial.jp" target="_blank" rel="noopener">info@relial.jp</a> 宛てのメールに引き継ぎます。メールアプリで内容を確認し、送信してください。</p>
+          <div id="contact-input">
+            <div class="contact-row">
+              <label for="contact-type">お問い合わせ種別<span class="field-badge is-required">必須</span></label>
+              <select id="contact-type" name="お問い合わせ種別" required>
+                <option value="">選択してください</option>
+                <option data-type="recruitment">業種特化の採用支援サービス</option>
+                <option data-type="community">コミュニティへの参加</option>
+                <option data-type="service">その他のサービスについて</option>
+                <option data-type="other">その他</option>
+              </select>
+            </div>
+            <div class="contact-row" id="service-row" hidden>
+              <label for="contact-service">対象サービス<span class="field-badge">任意</span></label>
+              <select id="contact-service" name="対象サービス" disabled>
+                <option value="">選択してください</option>
+                <option data-type="graduate-events">新卒説明会 企画・運営支援サービス</option>
+                <option data-type="monthly-rpo">月額の採用代行</option>
+              </select>
+            </div>
+            <div class="contact-row">
+              <label for="contact-company">会社名<span class="field-badge is-required">必須</span></label>
+              <input id="contact-company" name="会社名" type="text" autocomplete="organization" required>
+            </div>
+            <div class="contact-row">
+              <label for="contact-name">お名前<span class="field-badge is-required">必須</span></label>
+              <input id="contact-name" name="お名前" type="text" autocomplete="name" required>
+            </div>
+            <div class="contact-row">
+              <label for="contact-role">部署・役職<span class="field-badge">任意</span></label>
+              <input id="contact-role" name="部署・役職" type="text" autocomplete="organization-title">
+            </div>
+            <div class="contact-row">
+              <label for="contact-email">メールアドレス<span class="field-badge is-required">必須</span></label>
+              <input id="contact-email" name="email" type="email" autocomplete="email" placeholder="name@example.jp" required>
+            </div>
+            <div class="contact-row">
+              <label for="contact-phone">電話番号<span class="field-badge">任意</span></label>
+              <input id="contact-phone" name="電話番号" type="tel" autocomplete="tel">
+            </div>
+            <div class="contact-row">
+              <label for="contact-industry">業界<span class="field-badge">任意</span></label>
+              <select id="contact-industry" name="業界">
+                <option value="">選択してください</option>
+                <option>SES・SIer</option>
+                <option>不動産</option>
+                <option>建設</option>
+                <option>介護</option>
+                <option>その他</option>
+              </select>
+            </div>
+            <div class="contact-row">
+              <label for="contact-message">お問い合わせ内容<span class="field-badge is-required">必須</span></label>
+              <textarea id="contact-message" name="お問い合わせ内容" rows="6" required></textarea>
+            </div>
+            <div class="contact-consent">
+              <p class="contact-privacy-note">入力内容は、お問い合わせへの回答のため、FormSubmitを通じてRELIAL株式会社に送信されます。</p>
+              <div class="contact-agreement">
+                <input id="contact-consent" type="checkbox" name="プライバシーポリシーへの同意" value="同意する" aria-labelledby="policy-link consent-label" required>
+                <span><a id="policy-link" href="privacy.html" target="_blank" rel="noopener">プライバシーポリシー</a><label id="consent-label" for="contact-consent">に同意する</label></span>
+              </div>
+            </div>
             <div class="contact-actions">
-              <button class="button contact-submit" type="submit"><span id="submit-label">メールの下書きを開く</span><i class="arrow" aria-hidden="true"></i></button>
-              <button id="copy-inquiry" class="button contact-copy" type="button" hidden>入力内容をコピー</button>
-            </div>
-            <p id="contact-status" class="contact-status" role="status"></p>
-            <div id="manual-copy" class="manual-copy" hidden>
-              <label for="draft-text">コピー用の本文</label>
-              <textarea id="draft-text" readonly rows="7"></textarea>
-              <a id="manual-mail-link" href="mailto:info@relial.jp" target="_blank" rel="noopener">本文を貼り付けるメールを開く<i class="arrow" aria-hidden="true"></i></a>
+              <button id="review-inquiry" class="button contact-submit" type="submit"><span>内容を送信する</span><i class="arrow" aria-hidden="true"></i></button>
             </div>
           </div>
+          <div id="contact-review" class="contact-review" hidden>
+            <h2 id="review-title" tabindex="-1">入力内容の確認</h2>
+            <p>内容をご確認のうえ、送信ボタンを押してください。</p>
+            <dl id="review-values"></dl>
+            <div class="contact-actions">
+              <button id="edit-inquiry" class="button contact-edit" type="button">入力内容を修正する</button>
+              <button id="send-inquiry" class="button contact-submit" type="submit" disabled><span>内容を送信する</span><i class="arrow" aria-hidden="true"></i></button>
+            </div>
+            <p id="sending-status" class="contact-status" role="status"></p>
+          </div>
+          <input type="hidden" name="_subject" value="【RELIAL】ウェブサイトからのお問い合わせ">
+          <input type="hidden" name="_next" value="https://infoquestcrew-ui.github.io/relial-ui/thanks.html">
+          <div hidden><label for="contact-website">ウェブサイト</label><input id="contact-website" type="text" name="_honey" tabindex="-1" autocomplete="off"></div>
         </form>
       </div>
     </main>
