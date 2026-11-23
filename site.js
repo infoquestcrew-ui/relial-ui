@@ -5,44 +5,56 @@
   const menu = header.querySelector('.menu-toggle');
   const menuLabel = menu.querySelector('.menu-label');
   const nav = document.getElementById('site-nav');
-  const services = nav.querySelector('.nav-services');
-  const servicesToggle = services.querySelector('summary');
+  const dropdowns = nav.querySelectorAll('.nav-dropdown');
   const shade = document.createElement('div');
   shade.className = 'menu-shade';
   shade.setAttribute('aria-hidden', 'true');
   shade.hidden = true;
   header.after(shade);
 
-  let hoverPreview = false;
-  function closeServices() {
-    services.open = false;
-    hoverPreview = false;
+  if (document.querySelector('[data-former-section]')) {
+    const followFormerSection = () => {
+      const target = document.getElementById(location.hash.slice(1));
+      if (target?.matches('a[data-former-section]')) location.replace(target.href);
+    };
+    followFormerSection();
+    window.addEventListener('hashchange', followFormerSection);
   }
 
-  services.addEventListener('pointerenter', event => {
-    if (mobile.matches || event.pointerType !== 'mouse' || services.open) return;
-    services.open = true;
-    hoverPreview = true;
-  });
-  services.addEventListener('pointerleave', () => {
-    if (hoverPreview && !services.contains(document.activeElement)) closeServices();
-  });
-  servicesToggle.addEventListener('click', event => {
-    // A click on the hover preview keeps it open. Another click closes it natively.
-    if (hoverPreview) {
-      event.preventDefault();
-      hoverPreview = false;
+  let hoverPreview = null;
+  function closeDropdown(dropdown) {
+    dropdown.open = false;
+    if (hoverPreview === dropdown) hoverPreview = null;
+  }
+
+  for (const dropdown of dropdowns) {
+    dropdown.addEventListener('pointerenter', event => {
+      if (mobile.matches || event.pointerType !== 'mouse' || dropdown.open) return;
+      dropdown.open = true;
+      hoverPreview = dropdown;
+    });
+    dropdown.addEventListener('pointerleave', () => {
+      if (hoverPreview === dropdown && !dropdown.contains(document.activeElement)) closeDropdown(dropdown);
+    });
+    dropdown.querySelector('summary').addEventListener('click', event => {
+      // The first click pins a hover preview. The next click toggles it natively.
+      if (hoverPreview === dropdown) {
+        event.preventDefault();
+        hoverPreview = null;
+      }
+    });
+    dropdown.addEventListener('focusout', event => {
+      if (!mobile.matches && !dropdown.contains(event.relatedTarget)) closeDropdown(dropdown);
+    });
+  }
+  document.addEventListener('click', event => {
+    for (const dropdown of dropdowns) {
+      if (dropdown.open && !dropdown.contains(event.target)) closeDropdown(dropdown);
     }
-  });
-  services.addEventListener('focusout', event => {
-    if (!services.contains(event.relatedTarget)) closeServices();
-  });
-  document.addEventListener('pointerdown', event => {
-    if (services.open && !services.contains(event.target)) closeServices();
   });
 
   function setMenu(open, restoreFocus = false) {
-    if (!open) closeServices();
+    if (!open) dropdowns.forEach(closeDropdown);
     header.classList.toggle('is-open', open);
     menu.setAttribute('aria-expanded', String(open));
     menuLabel.textContent = open ? '閉じる' : 'メニュー';
@@ -60,11 +72,14 @@
     if (event.target.closest('a')) setMenu(false);
   });
   document.addEventListener('keydown', event => {
-    if (event.key === 'Escape' && services.open) {
-      const focusInside = services.contains(document.activeElement);
-      closeServices();
-      if (focusInside) servicesToggle.focus({ preventScroll: true });
-      return;
+    if (event.key === 'Escape') {
+      const expanded = nav.querySelector('.nav-dropdown[open]');
+      if (expanded) {
+        const focusInside = expanded.contains(document.activeElement);
+        closeDropdown(expanded);
+        if (focusInside) expanded.querySelector('summary').focus({ preventScroll: true });
+        return;
+      }
     }
     if (shade.hidden) return;
     if (event.key === 'Escape') {
@@ -161,11 +176,13 @@
   }
 
   function countUp(number) {
-    const total = Number(number.dataset.count);
+    const target = number.dataset.count;
+    const total = Number(target);
+    const decimals = (target.split('.')[1] || '').length;
     const start = performance.now();
     function frame(time) {
       const t = reducedMotion.matches ? 1 : Math.min(1, (time - start) / 1050);
-      number.textContent = String(Math.round(total * (1 - (1 - t) ** 3)));
+      number.textContent = (total * (1 - (1 - t) ** 3)).toFixed(decimals);
       if (t < 1) requestAnimationFrame(frame);
     }
     requestAnimationFrame(frame);
