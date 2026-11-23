@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="description" content="採用のご相談、サービスに関するご質問、コミュニティへの参加など、お気軽にお問い合わせください。内容を確認のうえ、担当者よりご連絡します。">
+    <title>お問い合わせ｜RELIAL株式会社</title>
+    <link rel="icon" type="image/svg+xml" href="assets/relial-mark.svg">
+    <link rel="preload" as="font" type="font/woff2" href="assets/fonts/noto-sans-jp-ui.woff2" crossorigin>
+    <link rel="stylesheet" href="site.css?v=8">
+    <script src="site.js?v=3" defer></script>
+    <script src="contact.js?v=1" defer></script>
+  </head>
+  <body id="top" class="industry-page contact-page">
+    <a class="skip" href="#main">本文へ移動</a>
+    <header class="site-header" id="site-header">
+      <div class="header-inner">
+        <a class="brand" href="./" aria-label="RELIAL トップページ"><img src="assets/relial-logo.svg" width="154" height="40" alt="RELIAL"></a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" hidden><span class="menu-icon" aria-hidden="true"></span><span class="menu-label">メニュー</span></button>
+        <nav id="site-nav" class="site-nav" aria-label="メインナビゲーション">
+          <a href="./#service">事業紹介</a> <a href="./#results">支援実績</a> <a href="company.html">会社情報</a> <a href="news.html">お知らせ</a>
+          <a class="nav-contact" href="contact.html">お問い合わせ<i class="arrow" aria-hidden="true"></i></a>
+        </nav>
+      </div>
+    </header>
+    <main id="main" class="inner-main contact-main">
+      <nav class="crumbs detail-wrap" aria-label="パンくず"><a href="./">トップ</a><span aria-current="page">お問い合わせ</span></nav>
+      <div class="contact-content">
+        <header class="section-head detail-wrap contact-heading" data-reveal>
+          <p class="eyebrow" lang="en">Contact</p>
+          <h1>お問い合わせ</h1>
+          <p class="detail-lead"><span class="phrase">採用のご相談、</span><wbr><span class="phrase">サービスに関するご質問、</span><wbr><span class="phrase">コミュニティへの参加など、</span><wbr><span class="phrase">お気軽に</span><wbr><span class="phrase">お問い合わせください。</span><wbr><span class="phrase">内容を確認のうえ、</span><wbr><span class="phrase">担当者より</span><wbr><span class="phrase">ご連絡します。</span></p>
+        </header>
+        <form id="contact-form" class="industry-card contact-panel" aria-label="お問い合わせフォーム" action="mailto:info@relial.jp" method="post" enctype="text/plain" target="_blank" rel="noopener" data-reveal>
+          <p id="contact-error" class="contact-error" role="alert" tabindex="-1" hidden>送信できませんでした。時間をおいて再度お試しいただくか、info@relial.jp までご連絡ください。</p>
+          <div class="contact-row">
+            <label for="contact-type">お問い合わせ種別<span class="field-badge is-required">必須</span></label>
+            <select id="contact-type" name="お問い合わせ種別" required>
+              <option value="">選択してください</option>
+              <option data-type="recruitment">業種特化の採用支援サービス</option>
+              <option data-type="community">コミュニティへの参加</option>
+              <option data-type="service">その他のサービスについて</option>
+              <option data-type="other">その他</option>
+            </select>
+          </div>
+          <div class="contact-row" id="service-row" hidden>
+            <label for="contact-service">対象サービス<span class="field-badge">任意</span></label>
+            <select id="contact-service" name="対象サービス" disabled>
+              <option value="">選択してください</option>
+              <option data-type="graduate-events">新卒説明会 企画・運営支援サービス</option>
+              <option data-type="monthly-rpo">月額の採用代行</option>
+            </select>
+          </div>
+          <div class="contact-row">
+            <label for="contact-company">会社名<span class="field-badge is-required">必須</span></label>
+            <input id="contact-company" name="会社名" type="text" autocomplete="organization" required>
+          </div>
+          <div class="contact-row">
+            <label for="contact-name">お名前<span class="field-badge is-required">必須</span></label>
+            <input id="contact-name" name="お名前" type="text" autocomplete="name" required>
+          </div>
+          <div class="contact-row">
+            <label for="contact-role">部署・役職<span class="field-badge">任意</span></label>
+            <input id="contact-role" name="部署・役職" type="text" autocomplete="organization-title">
+          </div>
+          <div class="contact-row">
+            <label for="contact-email">メールアドレス<span class="field-badge is-required">必須</span></label>
+            <input id="contact-email" name="email" type="email" autocomplete="email" placeholder="name@example.jp" required>
+          </div>
+          <div class="contact-row">
+            <label for="contact-phone">電話番号<span class="field-badge">任意</span></label>
+            <input id="contact-phone" name="電話番号" type="tel" autocomplete="tel">
+          </div>
+          <div class="contact-row">
+            <label for="contact-industry">業界<span class="field-badge">任意</span></label>
+            <select id="contact-industry" name="業界">
+              <option value="">選択してください</option>
+              <option>SES・SIer</option>
+              <option>不動産</option>
+              <option>建設</option>
+              <option>介護</option>
+              <option>その他</option>
+            </select>
+          </div>
+          <div class="contact-row">
+            <label for="contact-message">お問い合わせ内容<span class="field-badge is-required">必須</span></label>
+            <textarea id="contact-message" name="お問い合わせ内容" rows="6" required></textarea>
+          </div>
+          <div hidden><label for="contact-website">ウェブサイト</label><input id="contact-website" type="text" name="_gotcha" tabindex="-1" autocomplete="off"></div>
+          <div class="contact-consent">
+            <!-- ポリシーのページは【要確認】。できるまではリンクなし。 -->
+            <label><input type="checkbox" name="プライバシーポリシーへの同意" value="同意する" required><span>プライバシーポリシーに<wbr><span class="phrase">同意する</span></span><span class="field-badge is-required">必須</span></label>
+          </div>
+          <div class="contact-delivery">
+            <p id="mail-help">入力内容を <a href="mailto:info@relial.jp" target="_blank" rel="noopener">info@relial.jp</a> 宛てのメールに引き継ぎます。メールアプリで内容を確認し、送信してください。</p>
+            <div class="contact-actions">
+              <button class="button contact-submit" type="submit"><span id="submit-label">メールの下書きを開く</span><i class="arrow" aria-hidden="true"></i></button>
+              <button id="copy-inquiry" class="button contact-copy" type="button" hidden>入力内容をコピー</button>
+            </div>
+            <p id="contact-status" class="contact-status" role="status"></p>
+            <div id="manual-copy" class="manual-copy" hidden>
+              <label for="draft-text">コピー用の本文</label>
+              <textarea id="draft-text" readonly rows="7"></textarea>
+              <a id="manual-mail-link" href="mailto:info@relial.jp" target="_blank" rel="noopener">本文を貼り付けるメールを開く<i class="arrow" aria-hidden="true"></i></a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </main>
+    <footer class="site-footer">
+      <div class="foot-inner wrap">
+        <div class="foot-brand">
+          <a href="./" aria-label="RELIAL トップページ"><img src="assets/relial-logo.svg" width="154" height="40" alt="RELIAL"></a>
+          <p>RELIAL株式会社</p>
+        </div>
+        <nav class="footer-nav" aria-label="フッターナビゲーション">
+          <a href="./#service">事業紹介</a><a href="./#results">支援実績</a>
+          <a href="company.html">会社情報</a><a href="news.html">お知らせ</a>
+          <!-- 採用情報はサイト内のページができた時点で掲載。 -->
+          <a href="contact.html">お問い合わせ<i class="arrow" aria-hidden="true"></i></a>
+        </nav>
+      </div>
+      <div class="foot-bottom wrap"><small lang="en">© RELIAL Inc.</small><span>テストサイト</span><a href="#top" aria-label="ページの先頭へ"><i class="arrow arrow-up" aria-hidden="true"></i></a></div>
+    </footer>
+  </body>
+</html>
