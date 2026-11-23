@@ -9,9 +9,9 @@
     <title>お問い合わせ｜RELIAL株式会社</title>
     <link rel="icon" type="image/svg+xml" href="assets/relial-mark.svg">
     <link rel="preload" as="font" type="font/woff2" href="assets/fonts/noto-sans-jp-ui.woff2" crossorigin>
-    <link rel="stylesheet" href="site.css?v=10">
+    <link rel="stylesheet" href="site.css?v=11">
     <script src="site.js?v=4" defer></script>
-    <script src="contact.js?v=2" defer></script>
+    <script src="contact.js?v=3" defer></script>
   </head>
   <body id="top" class="industry-page contact-page">
     <a class="skip" href="#main">本文へ移動</a>
@@ -54,6 +54,7 @@
                 <option data-type="recruitment">業種特化の採用支援サービス</option>
                 <option data-type="community">コミュニティへの参加</option>
                 <option data-type="service">その他のサービスについて</option>
+                <option data-type="careers">採用への応募・お問い合わせ</option>
                 <option data-type="other">その他</option>
               </select>
             </div>
@@ -65,7 +66,8 @@
                 <option data-type="monthly-rpo">月額の採用代行</option>
               </select>
             </div>
-            <div class="contact-row">
+            <noscript><p class="contact-privacy-note">個人でご応募の方は、種別に「採用への応募・お問い合わせ」を選び、会社名に「個人」とご記入ください。</p></noscript>
+            <div class="contact-row" data-business-only>
               <label for="contact-company">会社名<span class="field-badge is-required">必須</span></label>
               <input id="contact-company" name="会社名" type="text" autocomplete="organization" required>
             </div>
@@ -73,7 +75,7 @@
               <label for="contact-name">お名前<span class="field-badge is-required">必須</span></label>
               <input id="contact-name" name="お名前" type="text" autocomplete="name" required>
             </div>
-            <div class="contact-row">
+            <div class="contact-row" data-business-only>
               <label for="contact-role">部署・役職<span class="field-badge">任意</span></label>
               <input id="contact-role" name="部署・役職" type="text" autocomplete="organization-title">
             </div>
@@ -85,7 +87,7 @@
               <label for="contact-phone">電話番号<span class="field-badge">任意</span></label>
               <input id="contact-phone" name="電話番号" type="tel" autocomplete="tel">
             </div>
-            <div class="contact-row">
+            <div class="contact-row" data-business-only>
               <label for="contact-industry">業界<span class="field-badge">任意</span></label>
               <select id="contact-industry" name="業界">
                 <option value="">選択してください</option>
@@ -136,7 +138,7 @@
         <nav class="footer-nav" aria-label="フッターナビゲーション">
           <a href="./#service">事業紹介</a><a href="./#results">支援実績</a>
           <a href="company.html">会社情報</a><a href="news.html">お知らせ</a>
-          <!-- 採用情報はサイト内のページができた時点で掲載。 -->
+          <a href="recruit.html">採用情報<i class="arrow" aria-hidden="true"></i></a>
           <a href="contact.html">お問い合わせ<i class="arrow" aria-hidden="true"></i></a>
         </nav>
       </div>

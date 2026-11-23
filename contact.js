@@ -27,10 +27,15 @@
     }
   }
 
-  function updateService() {
-    const applicable = category.selectedOptions[0]?.dataset.type === 'service';
+  function updateFields() {
+    const selectedType = category.selectedOptions[0]?.dataset.type;
+    const applicable = selectedType === 'service';
     serviceRow.hidden = !applicable;
     service.disabled = !applicable;
+    for (const row of form.querySelectorAll('[data-business-only]')) {
+      row.hidden = selectedType === 'careers';
+      row.querySelector('input, select').disabled = row.hidden;
+    }
   }
 
   function showInputs() {
@@ -68,14 +73,14 @@
   }
 
   reviewButton.querySelector('span').textContent = '入力内容を確認する';
-  updateService();
-  category.addEventListener('change', updateService);
+  updateFields();
+  category.addEventListener('change', updateFields);
   editButton.addEventListener('click', () => {
     showInputs();
     category.focus();
   });
   window.addEventListener('pageshow', event => {
-    updateService();
+    updateFields();
     if (event.persisted) showInputs();
   });
   form.addEventListener('input', event => event.target.setCustomValidity?.(''));
@@ -83,7 +88,7 @@
   form.addEventListener('submit', async event => {
     event.preventDefault();
     if (reviewStep.hidden) {
-      for (const control of form.querySelectorAll('input[type="text"][required], textarea[required]')) {
+      for (const control of form.querySelectorAll('input[type="text"][required]:enabled, textarea[required]:enabled')) {
         control.setCustomValidity(control.value.trim() ? '' : 'この項目を入力してください。');
       }
       if (form.reportValidity()) renderReview();

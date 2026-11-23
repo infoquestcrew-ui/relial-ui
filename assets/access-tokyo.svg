@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" xml:lang="ja" lang="ja" viewBox="0 0 520 300" width="520" height="300" role="img" aria-labelledby="title desc">
+  <title id="title">東京本社の周辺案内図</title>
+  <desc id="desc">東京都港区浜松町2-2-15の東京本社と、大門駅・JR 浜松町駅・芝公園駅の位置関係を示した略図。北が上です。</desc>
+  <metadata>駅の位置: japan-train-data 0.6.0。駅間の線は簡略化しています。
+MIT License
+
+Copyright (c) 2017 Marco Lüthy
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the &quot;Software&quot;), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.</metadata>
+  <defs><pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse"><path d="M32 0H0V32" fill="none" stroke="#dbe5e9" stroke-width="1"/></pattern></defs>
+  <rect width="520" height="300" fill="#f1f6f7"/>
+  <rect width="520" height="300" fill="url(#grid)"/>
+  <g fill="none" stroke-linejoin="round">
+    <polyline points="768.9,-1114.4 499.8,-528.7 425.0,155.7 -67.9,767.3 -510.1,1842.6" stroke="#afc0c9" stroke-width="8"/>
+    <polyline points="768.9,-1114.4 499.8,-528.7 425.0,155.7 -67.9,767.3 -510.1,1842.6" stroke="#fff" stroke-width="3" stroke-dasharray="8 6"/>
+    <polyline points="-457.4,1213.5 -6.0,612.5 297.4,67.4 544.4,-489.5 946.6,-735.8" stroke="#a8bcbd" stroke-width="3" stroke-dasharray="9 5"/>
+    <polyline points="-762.4,946.8 -6.0,612.5 48.0,239.1 136.3,-213.2 346.4,-753.9" stroke="#a8bcbd" stroke-width="3" stroke-dasharray="9 5"/>
+  </g>
+  <g font-family="system-ui, 'Hiragino Sans', 'Noto Sans CJK JP', Meiryo, sans-serif" font-size="20" font-weight="600" fill="#233e50" stroke="#f2f7f8" stroke-width="4" paint-order="stroke">
+    <circle cx="297.4" cy="67.4" r="5.5" stroke="#556d79" stroke-width="2" fill="white"/>
+    <text x="310.4" y="62.4" text-anchor="start">大門駅</text>
+    <circle cx="425.0" cy="155.7" r="5.5" stroke="#556d79" stroke-width="2" fill="white"/>
+    <text x="425.0" y="184.7" text-anchor="middle">JR 浜松町駅</text>
+    <circle cx="48.0" cy="239.1" r="5.5" stroke="#556d79" stroke-width="2" fill="white"/>
+    <text x="61.0" y="231.1" text-anchor="start">芝公園駅</text>
+  </g>
+  <g transform="translate(307 166)">
+    <ellipse cy="2" rx="11" ry="4" fill="#17354c" opacity=".16"/>
+    <path d="M0 0C-3-5-15-16-15-25a15 15 0 1 1 30 0C15-16 3-5 0 0Z" fill="#1254c9" stroke="white" stroke-width="2"/>
+    <circle cy="-25" r="4.7" fill="white"/>
+  </g>
+  <rect x="164" y="116" width="118" height="37" rx="8" fill="#1254c9"/>
+  <text x="223.0" y="141" text-anchor="middle" fill="white" font-family="system-ui, 'Hiragino Sans', 'Noto Sans CJK JP', Meiryo, sans-serif" font-weight="700" font-size="21">東京本社</text>
+  <g transform="translate(490 23)" fill="#47606f"><path d="M0 9 -5 23 0 20 5 23Z"/><text y="5" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700">N</text></g>
+</svg>

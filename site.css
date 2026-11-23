@@ -1258,3 +1258,78 @@ body.menu-open { overflow: hidden; }
   .office-address { padding-inline: 22px; }
   .office-card .text-link { margin-inline: 22px; }
 }
+
+/* News articles */
+.story-page .story { padding-bottom: clamp(60px, 7vw, 104px); }
+.story-page .story-heading {
+  padding-block: clamp(40px, 5vw, 76px) clamp(28px, 3.6vw, 54px);
+  border-bottom: 1px solid var(--rule);
+}
+.story-heading .card-meta { margin: 22px 0 12px; }
+.story-heading time { font: 600 14px/1.5 var(--en); color: var(--muted); }
+.story-page .story-heading h1 { max-width: 23em; text-wrap: pretty; line-break: strict; }
+.story-heading .story-subtitle { display: block; margin-top: .45em; color: var(--muted); font-size: clamp(20px, 2vw, 30px); letter-spacing: .01em; }
+.story-layout { margin-top: clamp(28px, 4.2vw, 62px); }
+.story-layout.with-contents {
+  display: grid;
+  grid-template-columns: minmax(190px, .85fr) minmax(0, 2.65fr);
+  gap: clamp(26px, 4vw, 68px);
+  align-items: start;
+}
+.story-toc { padding: 20px; border: 1px solid var(--rule); border-radius: 16px; background: var(--pale); }
+.story-toc h2 { margin-bottom: 7px; font-size: 17px; }
+.story-toc ul { list-style: none; }
+.story-toc li + li { border-top: 1px solid var(--rule); }
+.story-toc a { display: block; padding: 9px 0; color: var(--ink); font-size: 14px; font-weight: 600; line-height: 1.65; }
+.story-toc a:is(:hover,:focus-visible) { color: var(--blue); text-decoration: underline; text-underline-offset: .25em; }
+.story-body { max-width: 46em; min-width: 0; overflow-wrap: anywhere; line-height: 1.95; }
+.story-body > * + * { margin-top: 1em; }
+.story-body h2 { margin: 2.3em 0 .65em; font-size: clamp(23px, 2vw, 30px); line-height: 1.55; }
+.story-body h3 { margin: 1.7em 0 .45em; font-size: clamp(18px, 1.6vw, 22px); line-height: 1.65; }
+.story-body > :first-child { margin-top: 0; }
+.story-body h2 + h3 { margin-top: .85em; }
+.story-body a, .office-map-detail summary { color: var(--blue); font-weight: 650; }
+.story-body a { text-decoration: underline; text-underline-offset: .25em; }
+.story-table { width: 100%; table-layout: fixed; border-collapse: collapse; font-size: 15px; line-height: 1.75; }
+.story-table :is(th, td) { padding: 12px 14px; border: 1px solid var(--rule); text-align: start; vertical-align: top; }
+.story-table th { background: var(--pale); }
+.story-table.table-cols-2 th:first-child { width: 25%; }
+.story-table.table-cols-3 th:first-child { width: 4.75em; }
+.story-table.table-cols-3 th:nth-child(2) { width: 25%; }
+.story-note { padding: 20px 24px; border-inline-start: 3px solid var(--blue); border-radius: 0 12px 12px 0; background: var(--pale); }
+.story-return { border-top: 1px solid var(--rule); margin-top: clamp(36px, 5vw, 72px); padding-top: 18px; }
+@media (min-width: 769px) and (min-height: 650px) {
+  .story-toc { position: sticky; top: 104px; max-height: calc(100dvh - 122px); overflow-y: auto; }
+}
+
+/* Careers and office access */
+.career-heading .text-link { margin-top: 22px; }
+.career-position .facts, .career-location { max-width: 52em; margin-inline: auto; }
+.career-location { margin-top: 22px; }
+.office-guide img { width: 100%; height: auto; }
+.office-guide figcaption { padding: 5px 24px 0; color: var(--muted); font-size: 12px; }
+.office-map-detail summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-inline: 26px;
+  min-height: 44px;
+  border-block: 1px solid var(--rule);
+  list-style: none;
+  cursor: pointer;
+}
+.office-map-detail summary::-webkit-details-marker { display: none; }
+.office-map-detail[open] summary { margin-bottom: 12px; }
+.office-map-detail[open] .nav-plus::after { transform: translateY(-50%) rotate(0); }
+.office-map-detail .text-link { margin-top: 14px; }
+@media (max-width: 768px) {
+  .story-layout.with-contents { grid-template-columns: minmax(0, 1fr); }
+  .story-toc { padding: 16px 20px; }
+  .story-table { font-size: 14px; }
+  .story-table :is(th, td) { padding: 9px 7px; }
+  .story-table.table-cols-3 th:first-child { width: 3.45em; }
+  .story-note { padding: 15px 17px; }
+  .office-guide figcaption { padding-inline: 20px; }
+  .office-map-detail summary { margin-inline: 20px; }
+}
