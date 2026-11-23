@@ -5,14 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noindex, nofollow">
     <meta name="theme-color" content="#ffffff">
-    <meta name="description" content="一社の試行錯誤を、次の採用に活かせる知見へ。中小企業の採用担当者が、アンケートを通じて成功例と失敗例を共有するコミュニティです。">
+    <meta name="description" content="企業同士が採用情報や成功事例、ノウハウを共有し合うことで、中小企業の採用力を高める。私たちは、企業の垣根を越えて採用の課題と向き合い、学び合い、成長できる新しいコミュニティを目指しています。">
     <title>コミュニティサービス｜RELIAL株式会社</title>
     <link rel="icon" type="image/svg+xml" href="assets/relial-mark.svg">
     <link rel="preload" as="font" type="font/woff2" href="assets/fonts/noto-sans-jp-ui.woff2" crossorigin>
-    <link rel="stylesheet" href="site.css?v=4">
+    <link rel="stylesheet" href="site.css?v=7">
     <script src="site.js?v=3" defer></script>
   </head>
-  <body id="top">
+  <body id="top" class="industry-page community-page">
     <a class="skip" href="#main">本文へ移動</a>
     <header class="site-header" id="site-header">
       <div class="header-inner">
@@ -20,33 +20,344 @@
         <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" hidden><span class="menu-icon" aria-hidden="true"></span><span class="menu-label">メニュー</span></button>
         <nav id="site-nav" class="site-nav" aria-label="メインナビゲーション">
           <a href="./#service">事業紹介</a> <a href="./#results">支援実績</a> <a href="company.html">会社情報</a> <a href="news.html">お知らせ</a>
-          <a class="nav-contact" href="https://relial.jp/contact/">お問い合わせ<i class="arrow arrow-out" aria-hidden="true"></i></a>
+          <a class="nav-contact" href="contact.html">お問い合わせ<i class="arrow" aria-hidden="true"></i></a>
         </nav>
       </div>
     </header>
     <main id="main" class="inner-main">
       <div class="detail-wrap">
         <nav class="crumbs" aria-label="パンくず"><a href="./">トップ</a><a href="services.html">業種特化の採用支援サービス</a><span aria-current="page">コミュニティサービス</span></nav>
-        <header class="detail-heading with-photo">
-          <div><p class="eyebrow" lang="en">Recruitment community</p><h1><span class="phrase">コミュニティ</span><wbr><span class="phrase">サービス</span></h1><p class="detail-lead">一社の試行錯誤を、次の採用に活かせる知見へ。中小企業の採用担当者が、アンケートを通じて成功例と失敗例を共有するコミュニティです。</p></div>
-          <div class="detail-visual concept-visual"><img src="assets/pillars.webp" alt="" width="1000" height="667" fetchpriority="high"></div>
+        <header class="detail-heading with-photo" data-reveal>
+          <div>
+            <p class="eyebrow" lang="en">Recruitment community</p>
+            <h1><span class="phrase">コミュニティ</span><wbr><span class="phrase">サービス</span></h1>
+            <p class="detail-catch"><span class="phrase">中小企業の</span><wbr><span class="phrase">採用を支える、</span><wbr><span class="phrase">業界のハブへ。</span></p>
+            <p class="community-subcatch">採用を、ひとりで抱えない。</p>
+            <p class="detail-lead">企業同士が採用情報や成功事例、ノウハウを共有し合うことで、中小企業の採用力を高める。私たちは、企業の垣根を越えて採用の課題と向き合い、学び合い、成長できる新しいコミュニティを目指しています。</p>
+            <div class="community-actions">
+              <a class="button" href="contact.html?type=community">コミュニティへの参加はこちら<i class="arrow" aria-hidden="true"></i></a>
+              <a class="button button-outline" href="company.html">私たちについて<i class="arrow" aria-hidden="true"></i></a>
+            </div>
+          </div>
+          <div class="detail-visual concept-visual"><img src="assets/pillars.webp" alt="" width="1200" height="800" fetchpriority="high"></div>
         </header>
       </div>
-      <div class="detail-wrap reading">
-        <section class="detail-block">
-          <h2>事例を共有し、採用に活かすまで</h2>
-          <ol class="steps">
-            <li><div><h3>アンケートに回答する</h3><p>採用で困っていたこと、試した施策、その結果を振り返ります。うまくいかなかった施策や、その理由も共有する事例になります。</p></div></li>
-            <li><div><h3>同じ業界の取り組みを知る</h3><p>参加企業の回答を通じて、各社がどんな状況で何を試したのかを知ります。成果とつまずきの両方を比べられます。</p></div></li>
-            <li><div><h3>自社で試す施策を選ぶ</h3><p>採用人数や職種など、自社に近い条件の事例から次に試すことを選びます。実践した結果を持ち寄り、業界全体の採用力を育てます。</p></div></li>
+
+      <section class="detail-block" aria-labelledby="problems">
+        <div class="detail-wrap">
+          <header class="section-head" data-reveal>
+            <p class="eyebrow" lang="en">Problem</p>
+            <h2 id="problems"><span class="phrase">採用に関する</span><wbr><span class="phrase">情報や</span><wbr><span class="phrase">ノウハウを、</span><br><span class="phrase">一社だけで</span><wbr><span class="phrase">抱えて</span><wbr><span class="phrase">いませんか？</span></h2>
+            <p class="detail-lead">中小企業にとって、人材採用は事業成長を左右する重要な経営課題です。しかし、採用に関する情報やノウハウを十分に蓄積できている企業は、決して多くありません。</p>
+          </header>
+          <div class="choice-grid">
+            <article class="industry-card" data-reveal>
+              <h3>他社の採用状況が分からない</h3>
+              <p>同じ業界や規模の企業が、どのような媒体を使い、どれくらいの費用をかけて、何名採用しているのか。比較できる情報が少ない。</p>
+            </article>
+            <article class="industry-card" data-reveal>
+              <h3>採用の成功事例を知る機会がない</h3>
+              <p>他社がどのような採用施策に取り組み、何が成果につながったのか。実践的なノウハウを知る機会が限られている。</p>
+            </article>
+            <article class="industry-card" data-reveal>
+              <h3>採用活動が属人化している</h3>
+              <p>社内に採用ノウハウが蓄積されず、担当者の経験や感覚に頼った採用活動になってしまう。</p>
+            </article>
+            <article class="industry-card" data-reveal>
+              <h3>採用に投資すべき方法が分からない</h3>
+              <p>求人広告、人材紹介、スカウトなど、さまざまな採用手法がある中で、自社に適した方法や費用対効果を判断しづらい。</p>
+            </article>
+          </div>
+          <p class="industry-note community-statement" data-reveal>私たちは、こうした課題を一社だけで解決するのではなく、企業同士が知恵を持ち寄ることで解決できると考えています。</p>
+        </div>
+      </section>
+
+      <section class="detail-block" aria-labelledby="philosophy">
+        <div class="detail-wrap community-philosophy">
+          <header class="section-head" data-reveal>
+            <p class="eyebrow" lang="en">Philosophy</p>
+            <h2 id="philosophy"><span class="phrase">競い合う</span><wbr><span class="phrase">だけではなく、</span><br><span class="phrase">採用では</span><wbr><span class="phrase">学び合う</span><wbr><span class="phrase">関係へ。</span></h2>
+          </header>
+          <div class="community-prose" data-reveal>
+            <p>ある企業では求人広告で成果が出ていても、別の企業ではスカウトが成果につながっているかもしれません。採用に成功している企業にも、かつては多くの失敗や試行錯誤があったはずです。</p>
+            <p>一社一社の経験や実績を共有することで、ほかの企業に新しい気づきや改善のきっかけが生まれます。私たちが目指すのは、単なる情報交換の場ではなく、企業同士が採用の知恵を共有し、それぞれの採用力を高めていく共創の場です。</p>
+            <p>大企業だけが豊富な情報や採用ノウハウを持つのではなく、中小企業も企業同士のつながりを通じて、採用における選択肢や可能性を広げていける。そんな環境をつくっていきます。</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="detail-block" aria-labelledby="sharing">
+        <div class="detail-wrap">
+          <header class="section-head" data-reveal>
+            <p class="eyebrow" lang="en">Shared insights</p>
+            <h2 id="sharing"><span class="phrase">企業同士で</span><wbr><span class="phrase">共有する、</span><wbr><span class="phrase">採用のリアル。</span></h2>
+            <p class="detail-lead">本コミュニティでは、参加企業から寄せられた採用情報や取り組みを集計・整理し、参加企業同士で共有します。</p>
+          </header>
+          <ol class="industry-features community-sharing">
+            <li class="industry-card" data-reveal>
+              <span class="number-badge" lang="en">01</span>
+              <h3>採用実績</h3>
+              <ul class="community-bullets">
+                <li>年間・月間の採用人数</li>
+                <li>職種別の採用実績</li>
+                <li>募集開始から採用決定までの期間</li>
+                <li>経験者・未経験者別の採用状況</li>
+              </ul>
+            </li>
+            <li class="industry-card" data-reveal>
+              <span class="number-badge" lang="en">02</span>
+              <h3>求人媒体・採用チャネル</h3>
+              <ul class="community-bullets">
+                <li>利用している求人媒体</li>
+                <li>媒体別の応募数・採用数</li>
+                <li>人材紹介・求人広告・スカウトなどの利用状況</li>
+                <li>採用チャネルごとの成果や特徴</li>
+              </ul>
+            </li>
+            <li class="industry-card" data-reveal>
+              <span class="number-badge" lang="en">03</span>
+              <h3>採用単価・費用対効果</h3>
+              <ul class="community-bullets">
+                <li>採用経路別の採用単価</li>
+                <li>求人広告の利用費用</li>
+                <li>人材紹介・スカウトにかかる費用</li>
+                <li>採用活動における費用対効果</li>
+              </ul>
+            </li>
+            <li class="industry-card" data-reveal>
+              <span class="number-badge" lang="en">04</span>
+              <h3>採用ノウハウ・成功事例</h3>
+              <ul class="community-bullets">
+                <li>応募数や返信率の改善につながった取り組み</li>
+                <li>効果があった求人票やスカウトの工夫</li>
+                <li>採用につながった選考方法</li>
+                <li>実際に取り組んだ施策とその成果</li>
+              </ul>
+            </li>
+            <li class="industry-card" data-reveal>
+              <span class="number-badge" lang="en">05</span>
+              <h3>採用課題・企業のリアルな声</h3>
+              <ul class="community-bullets">
+                <li>現在抱えている採用課題</li>
+                <li>採用担当者が感じている悩み</li>
+                <li>採用活動で苦労したこと</li>
+                <li>他社に聞いてみたいこと・共有したいこと</li>
+              </ul>
+            </li>
           </ol>
-        </section>
-        <a class="return-link" href="services.html">業種特化の採用支援サービスへ<i class="arrow" aria-hidden="true"></i></a>
-      </div>
+          <p class="industry-note community-note" data-reveal><small>※共有内容は、参加企業からの情報提供と同意に基づき、過去の実績を中心に集計・整理します。個別企業の回答内容をそのまま公開することはありません。</small></p>
+        </div>
+      </section>
+
+      <section class="detail-block" aria-labelledby="benefits">
+        <div class="detail-wrap">
+          <header class="section-head" data-reveal>
+            <p class="eyebrow" lang="en">Benefits</p>
+            <h2 id="benefits"><span class="phrase">参加する</span><wbr><span class="phrase">ことで</span><wbr><span class="phrase">得られる</span><wbr><span class="phrase">3つの価値</span></h2>
+          </header>
+          <ol class="industry-features">
+            <li class="industry-card" data-reveal>
+              <span class="number-badge" lang="en">01</span>
+              <h3>同じような企業の採用実態を知ることができる</h3>
+              <p>自社だけでは把握しづらい、同業界・同規模企業の採用状況や媒体別の実績を知ることができます。他社との比較を通じて、自社の採用活動を見直すきっかけにつながります。</p>
+            </li>
+            <li class="industry-card" data-reveal>
+              <span class="number-badge" lang="en">02</span>
+              <h3>他社の成功事例やノウハウを自社に活かせる</h3>
+              <p>実際に成果につながった採用施策や、他社が経験した失敗事例を知ることで、自社の採用活動に活かせる新たなヒントが見つかります。</p>
+            </li>
+            <li class="industry-card" data-reveal>
+              <span class="number-badge" lang="en">03</span>
+              <h3>採用担当者・企業同士のつながりが生まれる</h3>
+              <p>日常の業務では接点を持つ機会が少ない、他社の経営者や採用担当者と情報交換できる環境をつくります。一社では解決が難しかった課題も、企業同士の知恵を持ち寄ることで、新しい解決策が見つかるかもしれません。</p>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="detail-block" aria-labelledby="membership">
+        <div class="detail-wrap">
+          <header class="section-head" data-reveal>
+            <p class="eyebrow" lang="en">Membership</p>
+            <h2 id="membership"><span class="phrase">参加方法・</span><wbr><span class="phrase">費用について</span></h2>
+            <p class="detail-lead">本コミュニティは、求人広告やスカウト代行などの採用支援サービスをご利用中の企業様だけでなく、コミュニティ単独でのご利用も可能です。</p>
+          </header>
+          <div class="choice-grid community-fees">
+            <article class="industry-card" data-reveal>
+              <span class="tag">追加費用なし</span>
+              <h3>採用支援サービスをご利用中の企業様</h3>
+              <p>当社の求人広告サービス、またはスカウト代行サービスをご契約中の企業様は、追加費用なしでコミュニティにご参加いただけます。採用支援サービスのご利用とあわせて、他社の採用データや成功事例、ノウハウをご活用いただけます。</p>
+            </article>
+            <article class="industry-card" data-reveal>
+              <span class="tag">別途参加費用</span>
+              <h3>コミュニティ単独でご利用の企業様</h3>
+              <p>求人広告やスカウト代行などの採用支援サービスをご利用でない企業様も、コミュニティ単独でご参加いただけます。その場合は別途参加費用が発生します。費用や参加条件の詳細については、お問い合わせください。</p>
+            </article>
+          </div>
+          <p class="industry-note community-statement" data-reveal>採用支援サービスの利用有無にかかわらず、企業同士が採用情報を共有し、学び合える場を目指しています。</p>
+          <div class="community-actions" data-reveal>
+            <a class="button" href="contact.html?type=community"><span><span class="phrase">参加条件・費用</span><wbr><span class="phrase">について</span><wbr><span class="phrase">問い合わせる</span></span><i class="arrow" aria-hidden="true"></i></a>
+          </div>
+        </div>
+      </section>
+
+      <section class="detail-block" aria-labelledby="flow">
+        <div class="detail-wrap">
+          <header class="section-head" data-reveal>
+            <p class="eyebrow" lang="en">Flow</p>
+            <h2 id="flow"><span class="phrase">参加から</span><wbr><span class="phrase">情報共有までの</span><wbr><span class="phrase">流れ</span></h2>
+          </header>
+          <figure class="rd rd-cycle" data-reveal aria-label="お問い合わせと参加条件のご案内のあと、アンケート回答、集計・共有、自社の採用への活用、継続的な情報交換をくり返す流れ">
+            <p class="rd-row-label">参加まで</p>
+            <ol class="rd-entry-list">
+              <li><span class="rd-who">参加企業</span><span class="rd-en" lang="en">01</span><p class="rd-cycle-title"><span class="rd-ph">お問い合わせ・</span><span class="rd-ph">参加申し込み</span></p></li>
+              <li><span class="rd-who">RELIAL</span><span class="rd-en" lang="en">02</span><p class="rd-cycle-title">参加条件のご案内</p><span class="rd-elbow" aria-hidden="true"></span></li>
+              <li class="rd-entry-note">参加後は、03〜06をくり返して学び合います</li>
+            </ol>
+            <ol class="rd-cycle-list">
+              <li><span class="rd-who">参加企業</span><span class="rd-en" lang="en">03</span><p class="rd-cycle-title">アンケートに回答する</p></li>
+              <li class="is-relial"><span class="rd-who">RELIAL</span><span class="rd-en" lang="en">04</span><p class="rd-cycle-title">集計・整理して共有する</p></li>
+              <li><span class="rd-who">参加企業</span><span class="rd-en" lang="en">05</span><p class="rd-cycle-title">自社の採用に活用する</p></li>
+              <li><span class="rd-who">企業同士</span><span class="rd-en" lang="en">06</span><p class="rd-cycle-title">継続的に情報交換する</p></li>
+            </ol>
+            <div class="rd-loop"><span>定期的なアンケートで、また持ち寄る</span></div>
+          </figure>
+          <ol class="steps">
+            <li data-reveal>
+              <div>
+                <h3>お問い合わせ・参加申し込み</h3>
+                <p>専用フォームから必要事項を入力し、参加についてお問い合わせください。</p>
+              </div>
+            </li>
+            <li data-reveal>
+              <div>
+                <h3>参加条件のご案内</h3>
+                <p>採用支援サービスのご契約状況などを確認し、参加方法や費用についてご案内します。</p>
+              </div>
+            </li>
+            <li data-reveal>
+              <div>
+                <h3>採用アンケートへの回答</h3>
+                <p>自社の採用実績や利用媒体、採用課題などについて、アンケートにご回答いただきます。</p>
+              </div>
+            </li>
+            <li data-reveal>
+              <div>
+                <h3>採用データ・情報の共有</h3>
+                <p>ご提供いただいた情報を集計・整理し、他の参加企業の採用実態や成功事例などとともに共有します。</p>
+              </div>
+            </li>
+            <li data-reveal>
+              <div>
+                <h3>自社の採用活動に活用</h3>
+                <p>他社との比較や情報交換を通じて、自社の採用活動の改善にお役立ていただけます。</p>
+              </div>
+            </li>
+            <li data-reveal>
+              <div>
+                <h3>継続的な情報交換</h3>
+                <p>定期的なアンケートや情報交換の機会を通じて、企業同士で継続的に学び合える環境を目指します。</p>
+              </div>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="detail-block" aria-labelledby="trust">
+        <div class="detail-wrap">
+          <header class="section-head" data-reveal>
+            <p class="eyebrow" lang="en">Trust</p>
+            <h2 id="trust"><span class="phrase">安心して</span><wbr><span class="phrase">参加できる</span><wbr><span class="phrase">コミュニティを</span><wbr><span class="phrase">目指して。</span></h2>
+            <p class="detail-lead">私たちは、企業同士が安心して情報を共有できる環境づくりを大切にしています。</p>
+          </header>
+          <ul class="community-trust">
+            <li class="industry-card" data-reveal>
+              <svg class="community-check" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="m7.8 12 2.7 2.8 5.7-6"/></svg>
+              <div>
+                <h3>企業名の公開は任意です</h3>
+                <p>採用データの共有にあたり、他の参加企業に対する社名公開を必須とはしていません。社名や具体的な事例を公開する場合は、別途企業の同意をいただきます。</p>
+              </div>
+            </li>
+            <li class="industry-card" data-reveal>
+              <svg class="community-check" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="m7.8 12 2.7 2.8 5.7-6"/></svg>
+              <div>
+                <h3>個別企業が特定されない形で集計します</h3>
+                <p>ご提供いただいた採用情報は、原則として個別企業が特定されない形に加工・集計したうえで共有します。</p>
+              </div>
+            </li>
+            <li class="industry-card" data-reveal>
+              <svg class="community-check" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="m7.8 12 2.7 2.8 5.7-6"/></svg>
+              <div>
+                <h3>情報提供と採用支援は別のものです</h3>
+                <p>ご提供いただいた情報は、コミュニティの運営・情報共有の目的に沿って取り扱います。個別の営業案内や採用支援のご提案については、別途ご希望を確認したうえでご案内します。</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="detail-block" aria-labelledby="faq">
+        <div class="detail-wrap">
+          <header class="section-head" data-reveal>
+            <p class="eyebrow" lang="en">FAQ</p>
+            <h2 id="faq">よくあるご質問</h2>
+          </header>
+          <div class="industry-card community-faq" data-reveal>
+            <details>
+              <summary>求人広告やスカウト代行の契約がなくても<wbr><span class="phrase">参加できますか？</span></summary>
+              <p>はい、可能です。採用支援サービスをご利用でない企業様も、コミュニティ単独でご参加いただけます。ただし、その場合は別途参加費用が発生します。</p>
+            </details>
+            <details>
+              <summary>参加するために費用は<wbr><span class="phrase">かかりますか？</span></summary>
+              <p>当社の求人広告サービス、またはスカウト代行サービスをご契約中の企業様は、追加費用なしでご参加いただけます。コミュニティ単独でご利用の場合は、別途参加費用が発生します。費用や参加条件の詳細については、お問い合わせください。</p>
+            </details>
+            <details>
+              <summary>自社の社名や採用実績が他社に公開されることは<wbr><span class="phrase">ありますか？</span></summary>
+              <p>社名の公開は任意です。基本的には個別企業が特定されない形で情報を集計・共有します。企業名を含む事例などを公開する場合は、事前に同意をいただきます。</p>
+            </details>
+            <details>
+              <summary>どのような企業が<wbr><span class="phrase">参加できますか？</span></summary>
+              <p>採用活動に課題を感じている企業や、他社の採用事例・ノウハウを参考にしたい企業などを対象としています。業界や企業規模を越えた情報共有の場を目指しています。</p>
+            </details>
+            <details>
+              <summary>どのような情報を提供すれば<wbr><span class="phrase">よいですか？</span></summary>
+              <p>採用人数、利用媒体、採用単価、採用活動の取り組み、課題などについて、所定のアンケートにご回答いただきます。回答範囲や詳細度は、アンケート項目と情報提供の同意内容に基づいてご案内します。</p>
+            </details>
+            <details>
+              <summary>回答した情報はどのように<wbr><span class="phrase">利用されますか？</span></summary>
+              <p>ご提供いただいた情報は、コミュニティ内での採用情報の集計・分析・共有など、事前にご案内した目的に沿って利用します。詳細はプライバシーポリシーおよび情報共有に関する規約をご確認ください。</p>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <section class="detail-block" aria-labelledby="message">
+        <div class="detail-wrap">
+          <header class="section-head" data-reveal>
+            <p class="eyebrow" lang="en">Message</p>
+            <h2 id="message"><span class="phrase">採用の悩みを、</span><wbr><span class="phrase">一社だけで</span><wbr><span class="phrase">抱えない</span><wbr><span class="phrase">社会へ。</span></h2>
+          </header>
+          <div class="community-prose community-message" data-reveal>
+            <p>一社の成功が、他社の新しい可能性になる。一社の失敗が、他社の次の成功につながる。</p>
+            <p>企業同士が知恵を共有し、互いに学び、成長できる環境があれば、中小企業の採用はもっと前向きに変えていけるはずです。私たちは、企業の垣根を越えた採用情報の共有を通じて、中小企業の採用力向上と、業界全体の発展に貢献していきます。</p>
+            <p><span class="phrase">一社では</span><wbr><span class="phrase">得られなかった</span><wbr><span class="phrase">情報を、</span><wbr><span class="phrase">企業同士の</span><wbr><span class="phrase">つながりから。</span><br><span class="phrase">採用の未来を、</span><wbr><span class="phrase">企業とともに</span><wbr><span class="phrase">つくる。</span></p>
+          </div>
+        </div>
+      </section>
+
       <aside class="contact-band wrap" aria-labelledby="contact-title" data-reveal>
-        <div><p class="eyebrow" lang="en">Contact</p><h2 id="contact-title">採用の課題を、<wbr>お聞かせください。</h2></div>
-        <a class="button button-light" href="https://relial.jp/contact/">採用について相談する<i class="arrow arrow-out" aria-hidden="true"></i></a>
+        <div>
+          <p class="eyebrow" lang="en">Contact</p>
+          <h2 id="contact-title"><span class="phrase">まずは、</span><wbr><span class="phrase">あなたの</span><wbr><span class="phrase">会社から</span><wbr><span class="phrase">一緒に</span><wbr><span class="phrase">参加して</span><wbr><span class="phrase">みませんか？</span></h2>
+        </div>
+        <div class="community-actions">
+          <a class="button button-light" href="contact.html?type=community">コミュニティへの参加はこちら<i class="arrow" aria-hidden="true"></i></a>
+          <a class="button button-outline" href="contact.html">お問い合わせ<i class="arrow" aria-hidden="true"></i></a>
+        </div>
       </aside>
+
+      <p class="detail-wrap community-operator"><small>運営：RELIAL株式会社　※本コミュニティの運営方針、情報の取り扱い、参加条件などの詳細は、各種規約をご確認ください。</small></p>
+      <!-- 【要確認】新サイトにはまだプライバシーポリシーと規約のページがないため、できるまではリンクなしの文言だけにします。 -->
     </main>
     <footer class="site-footer">
       <div class="foot-inner wrap">
@@ -57,7 +368,8 @@
         <nav class="footer-nav" aria-label="フッターナビゲーション">
           <a href="./#service">事業紹介</a><a href="./#results">支援実績</a>
           <a href="company.html">会社情報</a><a href="news.html">お知らせ</a>
-          <a href="https://relial.jp/recruit/">採用情報<i class="arrow arrow-out" aria-hidden="true"></i></a><a href="https://relial.jp/contact/">お問い合わせ<i class="arrow arrow-out" aria-hidden="true"></i></a>
+          <!-- 採用情報はサイト内のページができた時点で掲載。 -->
+          <a href="contact.html">お問い合わせ<i class="arrow" aria-hidden="true"></i></a>
         </nav>
       </div>
       <div class="foot-bottom wrap"><small lang="en">© RELIAL Inc.</small><span>テストサイト</span><a href="#top" aria-label="ページの先頭へ"><i class="arrow arrow-up" aria-hidden="true"></i></a></div>
