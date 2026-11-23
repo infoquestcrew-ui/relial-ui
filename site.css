@@ -1818,57 +1818,77 @@ body.menu-open { overflow: hidden; }
 /* The four services on the home page */
 .home-services {
   padding-block: clamp(54px, 4.8vw, 80px);
-  color: var(--ink);
-  background: white;
+  color: white;
+  background-color: var(--ink);
+  background-color: color-mix(in srgb, var(--ink) 63%, var(--blue));
 }
-.home-services .home-title > :last-child { padding-left: 0; border-left: 0; }
-.services-intro { margin-top: clamp(18px, 1.7vw, 26px); }
+.home-services::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background: url("assets/office.webp") center 46% / cover no-repeat;
+  opacity: .14;
+  pointer-events: none;
+}
+.home-services .home-title > :last-child { color: inherit; }
 .services-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  margin-top: clamp(24px, 2.3vw, 36px);
+  gap: clamp(16px, 1.7vw, 26px);
+  margin-top: clamp(26px, 2.6vw, 40px);
   list-style: none;
-  border: solid var(--rule);
-  border-width: 1px 0 0 1px;
 }
-.services-grid > li {
-  min-width: 0;
-  border: solid var(--rule);
-  border-width: 0 1px 1px 0;
-}
+.services-grid > li { min-width: 0; container-type: inline-size; }
 .services-grid a {
   display: grid;
-  grid-template-columns: clamp(98px, 30%, 180px) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr) clamp(76px, 31%, 174px);
+  grid-template-areas: "name photo" "copy photo";
+  align-content: center;
   align-items: center;
-  gap: clamp(16px, 1.9vw, 30px);
+  gap: 8px clamp(16px, 1.7vw, 26px);
   height: 100%;
-  padding: clamp(18px, 1.75vw, 28px);
+  padding: clamp(20px, 2.2vw, 34px);
+  border-radius: 16px;
+  color: var(--ink);
+  background: white;
+  box-shadow: var(--shadow);
 }
+.services-grid h3 { grid-area: name; align-self: end; word-break: auto-phrase; }
+.services-grid p { grid-area: copy; align-self: start; }
 .services-grid picture {
-  display: flex;
-  justify-content: center;
-  min-width: 0;
+  grid-area: photo;
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 10px;
 }
-.services-grid img { width: auto; max-height: clamp(135px, 13.2vw, 190px); }
-.services-grid h3 { word-break: auto-phrase; }
-.services-grid p { margin-top: 8px; }
+.services-grid img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 58%;
+}
 .services-grid a:focus-visible { outline: 2px solid var(--blue); outline-offset: -5px; }
 @media (hover: hover) {
-  .services-grid a:hover { background: var(--pale); color: var(--blue); }
-  .services-grid a:hover h3 { text-decoration: underline; text-underline-offset: .24em; }
-}
-@media (prefers-reduced-motion: no-preference) {
-  .services-grid a { transition: background-color .22s ease; }
+  .services-grid a:hover h3 { color: var(--blue); text-decoration: underline; text-underline-offset: .24em; }
 }
 @media (max-width: 768px) {
   .home-services { padding-block: 54px; }
-  .home-services .home-title { flex-direction: column; align-items: flex-start; gap: 7px; }
-  .services-intro { margin-top: 21px; }
-  .services-grid { grid-template-columns: minmax(0, 1fr); margin-top: 26px; }
-  .services-grid a { grid-template-columns: clamp(68px, 22vw, 130px) minmax(0, 1fr); align-items: start; gap: clamp(12px, 4vw, 24px); padding: clamp(14px, 4.5vw, 24px); }
-  .services-grid img { width: 100%; max-height: none; }
-  .services-grid p { margin-top: 6px; }
+  .services-grid { grid-template-columns: minmax(0, 1fr); }
+}
+@container (max-width: 24rem) {
+  .services-grid a {
+    grid-template-columns: minmax(0, 1fr) clamp(76px, 30%, 108px);
+    grid-template-areas: "name photo" "copy copy";
+    gap: 12px;
+  }
+  .services-grid h3 { align-self: center; }
 }
 @media print {
+  .home-services { background: white; color: var(--ink); }
+  .home-services::before { display: none; }
   .services-grid > li { break-inside: avoid; }
+  .services-grid a { box-shadow: none; }
 }
