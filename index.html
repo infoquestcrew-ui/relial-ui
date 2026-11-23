@@ -27,10 +27,10 @@
       })();
     </script>
     <link rel="preload" as="font" type="font/woff2" href="assets/fonts/noto-sans-jp-ui.woff2" crossorigin>
-    <link rel="stylesheet" href="site.css?v=15">
-    <link rel="stylesheet" href="home.css?v=10">
+    <link rel="stylesheet" href="site.css?v=16">
+    <link rel="stylesheet" href="home.css?v=11">
     <script src="site.js?v=5" defer></script>
-    <script src="home.js?v=7" defer></script>
+    <script src="home.js?v=8" defer></script>
   </head>
   <body id="top" class="home-page">
     <a class="skip" href="#main">本文へ移動</a>
@@ -151,85 +151,49 @@
         <a href="news-767.html"><time datetime="2026-07-30">2026.07.30</time><span>SES採用レポート2026(上半期)｜エンジニア採用市場・応募率・成功事例</span><i class="arrow" aria-hidden="true"></i></a>
       </aside>
 
-      <section class="home-services home-space" id="service" aria-labelledby="service-title" data-cursor-glow>
-        <div class="heading-line" data-reveal>
-          <h2 class="home-title" id="service-title"><span lang="en" aria-hidden="true">Services</span><span>事業紹介</span></h2>
-          <p>採用の課題と社内の体制に合わせて、<br class="on-wide">3つの支援からお選びいただけます。</p>
+      <section class="home-services" id="service" aria-labelledby="service-title" data-cursor-glow>
+        <div data-reveal>
+          <h2 class="services-title" id="service-title"><span lang="en" aria-hidden="true">SERVICE</span><span>RELIALの事業内容</span></h2>
+          <p class="services-intro">業種ごとの採用支援、企業が学び合うコミュニティ、新卒会社説明会の企画・制作、月額制の採用代行。<br class="on-wide">RELIALは4つの事業を通じて、採用計画の設計から、応募者と向き合う日々の実務まで支援します。</p>
         </div>
-        <div class="offer-browser" data-services>
-          <nav class="offer-routes" aria-label="3つの採用支援サービス" data-reveal>
-            <ul>
-                <li><a class="service-route" data-offer="industry" href="services.html">
-                  <span><strong>業種特化の採用支援サービス</strong><small>採用支援サービス ／ コミュニティサービス</small></span><span class="direction"><i class="arrow" aria-hidden="true"></i></span>
-                </a></li>
-                <li><a class="service-route" data-offer="graduates" href="graduate-events.html">
-                  <span><strong>新卒会社説明会の企画・制作支援</strong><small>企画・資料制作から開催前の準備まで</small></span><span class="direction"><i class="arrow" aria-hidden="true"></i></span>
-                </a></li>
-                <li><a class="service-route" data-offer="monthly" href="monthly-rpo.html">
-                  <span><strong>月額の採用代行</strong><small>月額10万円〜 ／ 媒体運用・スカウト・日程調整</small></span><span class="direction"><i class="arrow" aria-hidden="true"></i></span>
-                </a></li>
-            </ul>
-          </nav>
-          <div class="offer-stage" data-motion data-reveal>
-            <div class="offer-controls" hidden>
-              <button type="button" data-step="-1" aria-label="前の事業の概要を表示"><i class="arrow" aria-hidden="true"></i></button>
-              <span class="offer-position" aria-hidden="true">1 / 3</span>
-              <button type="button" data-step="1" aria-label="次の事業の概要を表示"><i class="arrow" aria-hidden="true"></i></button>
-            </div>
-              <article class="service-preview" data-panel="industry" aria-label="業種特化の採用支援サービス">
-                <div class="offer-diagram industry-map" role="img" aria-label="採用実務の支援と企業間の事例共有を、自社の採用に活かす流れ">
-                  <div class="diagram-drawing">
-                    <svg viewBox="0 0 600 300" preserveAspectRatio="none" aria-hidden="true" focusable="false">
-                      <defs>
-                        <path id="business-upper" pathLength="100" d="M130 89h53c86 0 63 65 150 65h110"/>
-                        <path id="business-lower" pathLength="100" d="M130 217h53c86 0 63-63 150-63h110"/>
-                      </defs>
-                      <g class="diagram-wire"><use href="#business-upper"/><use href="#business-lower"/></g>
-                      <use class="diagram-pulse" href="#business-upper"/><use class="diagram-pulse pulse-later" href="#business-lower"/>
-                    </svg>
-                    <span class="map-node input-one">採用実務の支援</span><span class="map-node input-two">企業間の事例共有</span><span class="map-node output">自社の採用に活用</span>
-                  </div>
-                </div>
-                <div class="preview-copy">
-                  <h3>同じ業界の知見を、自社の採用へ。</h3><p>戦略・媒体選定からスカウトや採用業務の代行まで。実務の支援と、中小企業がアンケートで成功例・失敗例を共有するコミュニティを用意しています。</p>
-                  <a class="home-text-link" href="services.html">2つの支援を見る<i class="arrow" aria-hidden="true"></i></a>
-                </div>
-              </article>
-              <article class="service-preview" data-panel="graduates" aria-label="新卒会社説明会の企画・制作支援">
-                <div class="offer-diagram event-map" role="img" aria-label="新卒会社説明会を企画・設計、資料制作、開催前の準備の順に支援する流れ">
-                  <div class="diagram-drawing">
-                    <svg viewBox="0 0 600 300" preserveAspectRatio="none" aria-hidden="true" focusable="false">
-                      <defs><path id="event-route" pathLength="100" d="M102 139h396"/></defs>
-                      <use class="diagram-wire" href="#event-route"/><use class="diagram-pulse" href="#event-route"/>
-                    </svg>
-                    <span class="event-point event-plan"><i></i><b>企画・設計</b></span>
-                    <span class="event-point event-ready"><i></i><b>資料制作</b></span>
-                    <span class="event-point event-day"><i></i><b>開催前の準備</b></span>
-                  </div>
-                </div>
-                <div class="preview-copy">
-                  <h3>企業の魅力を、学生に伝わる説明会へ。</h3><p>会社説明会の企画・設計から、資料制作、開催前の準備まで。企画だけ、資料制作だけのご依頼にも対応します。</p>
-                  <a class="home-text-link" href="graduate-events.html">説明会の支援内容を見る<i class="arrow" aria-hidden="true"></i></a>
-                </div>
-              </article>
-              <article class="service-preview" data-panel="monthly" aria-label="月額の採用代行">
-                <div class="offer-diagram monthly-map" role="img" aria-label="媒体を選び、スカウト配信と日程調整を進め、運用の改善に活かす流れ">
-                  <div class="diagram-drawing">
-                    <svg viewBox="0 0 600 300" preserveAspectRatio="none" aria-hidden="true" focusable="false">
-                      <defs><path id="monthly-route" pathLength="100" d="M148 99h299a55 55 0 0 1 0 110H148a55 55 0 0 1 0-110z"/></defs>
-                      <use class="diagram-wire" href="#monthly-route"/><use class="diagram-pulse" href="#monthly-route"/>
-                    </svg>
-                    <span class="map-node monthly-select">媒体選定</span><span class="map-node monthly-send">配信・調整</span><span class="map-node monthly-review">運用改善</span>
-                  </div>
-                </div>
-                <div class="preview-copy">
-                  <h3>採用の手間を減らし、採用活動をもっと前へ。</h3><p>月額10万円〜で、媒体選定、求人の運用・改善、スカウト、応募者対応・面接日程調整を代行します。必要な業務だけのご依頼から一括支援まで対応します。</p>
-                  <a class="home-text-link" href="monthly-rpo.html">料金と業務内容を見る<i class="arrow" aria-hidden="true"></i></a>
-                </div>
-              </article>
-            <span class="sr-only" aria-live="polite" data-offer-status></span>
-          </div>
-        </div>
+        <ul class="services-grid" data-reveal>
+          <li>
+            <a href="services.html" aria-labelledby="service-industry-name">
+              <img src="assets/service-industry.webp" width="480" height="480" loading="lazy" decoding="async" alt="">
+              <div>
+                <h3 id="service-industry-name">業種特化の採用支援サービス</h3>
+                <p>業界の採用動向と求める人物像を踏まえ、採用戦略の設計から求人媒体の選定、スカウトの運用まで支援します。</p>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a href="community.html" aria-labelledby="service-community-name">
+              <img src="assets/service-community.webp" width="480" height="480" loading="lazy" decoding="async" alt="">
+              <div>
+                <h3 id="service-community-name">コミュニティサービス</h3>
+                <p>同じ業界の中小企業が、採用の成功例や失敗例を共有する場です。ほかの企業の経験を、自社の採用に活かせます。</p>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a href="graduate-events.html" aria-labelledby="service-graduates-name">
+              <img src="assets/service-graduates.webp" width="480" height="480" loading="lazy" decoding="async" alt="">
+              <div>
+                <h3 id="service-graduates-name"><span class="phrase">新卒会社説明会</span> <span class="phrase">企画・制作支援サービス</span></h3>
+                <p>学生に会社の魅力が伝わる説明会を企画。構成づくり、資料・台本の制作、開催前の準備まで支援します。</p>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a href="monthly-rpo.html" aria-labelledby="service-monthly-name">
+              <img src="assets/service-monthly.webp" width="480" height="480" loading="lazy" decoding="async" alt="">
+              <div>
+                <h3 id="service-monthly-name">月額採用代行サービス</h3>
+                <p>月額10万円〜。求人運用やスカウト、応募者対応・面接日程の調整など、必要な業務を選んで依頼できます。</p>
+              </div>
+            </a>
+          </li>
+        </ul>
       </section>
 
       <section class="home-results" id="results" aria-labelledby="results-title" data-cursor-glow>

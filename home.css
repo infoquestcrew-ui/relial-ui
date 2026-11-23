@@ -205,7 +205,6 @@ html:not([data-opening]) .flow-settled { mask: none; }
   animation: hero-light 6s ease-in-out infinite alternate;
   animation-play-state: var(--motion-state);
 }
-@keyframes travel-route { from { stroke-dashoffset: 100; } to { stroke-dashoffset: 0; } }
 .home-intro {
   position: relative; width: min(1500px, calc(100% - 2 * var(--home-gutter))); margin-inline: auto;
   padding-block: clamp(125px, 17svh, 185px) clamp(75px, 10svh, 125px);
@@ -252,73 +251,7 @@ html:not([data-opening]) .flow-settled { mask: none; }
 .home-title > :first-child { font: italic 600 clamp(42px, 4.2vw, 53px)/1.35 var(--en); letter-spacing: normal; }
 .home-title > :last-child { padding-left: 13px; border-left: 1px solid #9db0b8; color: #40565f; font-size: 16px; font-weight: 700; line-height: 1.6; letter-spacing: normal; }
 .heading-line > p { max-width: 29em; color: var(--home-text); font-size: 15px; line-height: 1.95; }
-.offer-browser { display: grid; grid-template-columns: minmax(0,.84fr) minmax(0,1.36fr); gap: clamp(36px, 5.2vw, 86px); align-items: start; }
-.offer-routes ul, .notice-list { list-style: none; }
-.offer-routes { border-top: 1px solid #9bafb7; }
-.offer-routes li { border-bottom: 1px solid var(--home-rule); }
-.service-route {
-  position: relative; display: flex; align-items: center; justify-content: space-between; gap: 15px; min-height: 113px;
-  padding: 21px 2px 22px 0;
-}
-.service-route::before { content: ""; position: absolute; top: -1px; left: 0; width: 0; height: 2px; background: #007bb7; transition: width .32s var(--turn); }
-.service-route[data-active]::before { width: 44px; }
-.service-route strong { display: block; font-size: clamp(17px, 1.48vw, 25px); font-weight: 650; line-height: 1.65; }
-.service-route small { display: block; margin-top: 7px; color: var(--home-text); font-size: 12px; line-height: 1.8; }
-.service-route[data-active] .direction { background: var(--home-blue); border-color: var(--home-blue); color: white; }
-.offer-stage { position: relative; min-width: 0; }
-.service-preview + .service-preview { margin-top: 34px; }
-.offer-stage.is-ready .service-preview { margin-top: 0; }
-.offer-diagram {
-  position: relative; isolation: isolate; width: 100%; aspect-ratio: 1.95;
-  overflow: hidden; background: #e8f3f6; color: #204457;
-}
-.diagram-drawing { position: absolute; inset: 0; }
-.offer-stage.is-ready .diagram-drawing { inset: 48px 0 8px; }
-.offer-diagram svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
-.diagram-wire, .diagram-pulse { fill: none; stroke: #8fb9cc; stroke-width: 2.7; stroke-linecap: round; stroke-linejoin: round; }
-.diagram-pulse { stroke: #007bb4; stroke-width: 6; stroke-dasharray: 7 93; stroke-dashoffset: -30; }
-.pulse-later { stroke: #487eac; }
-.map-node {
-  position: absolute; display: grid; place-items: center; transform: translate(-50%,-50%);
-  min-height: clamp(32px,3.3vw,51px); padding: 5px clamp(8px,1.2vw,21px); border: 1px solid #a5c4d1;
-  background: #fff; font-size: clamp(12px,1.16vw,19px); font-weight: 650; white-space: nowrap;
-}
-.input-one { left: 24%; top: 30%; }
-.input-two { left: 24%; top: 72%; }
-.output { left: 75%; top: 51%; background: #125889; border-color: #125889; color: #fff; }
-.event-map { background: #f2f4f0; }
-.event-point { position: absolute; top: 46.33%; display: grid; width: 32%; justify-items: center; transform: translate(-50%,-10px); }
-.event-point i { width: 20px; height: 20px; border: 3px solid #317e9c; border-radius: 50%; background: #fcfdfb; }
-.event-point b { margin-top: 13px; color: #24444f; font-size: clamp(12px,1.16vw,19px); font-weight: 630; }
-.event-plan { left: 17%; } .event-ready { left: 50%; } .event-day { left: 83%; }
-.monthly-map { background: #eaf0f8; }
-.monthly-select { left: 25%; top: 33%; } .monthly-send { left: 75%; top: 33%; }
-.monthly-review { left: 50%; top: 70%; color: #fff; background: #244c7d; border-color: #244c7d; }
-.offer-stage { --diagram-loop: 3.8s; }
-.offer-stage[data-started] .service-preview:not([hidden]) .diagram-pulse {
-  animation: travel-route var(--diagram-loop) ease-in-out infinite;
-  animation-play-state: var(--motion-state);
-}
-.offer-stage[data-started] .service-preview:not([hidden]) .pulse-later { animation-delay: -1.45s; }
-.offer-stage[data-started] .service-preview:not([hidden]) .event-point i {
-  animation: stage-signal var(--diagram-loop) var(--turn) infinite;
-  animation-delay: var(--signal-delay, 0s);
-  animation-play-state: var(--motion-state);
-}
-.event-ready { --signal-delay: -2.6s; }
-.event-day { --signal-delay: -1.4s; }
-@keyframes stage-signal {
-  0%, 48%, 100% { transform: scale(1); background: #fcfdfb; }
-  20% { transform: scale(1.22); background: #35a6ce; }
-}
-.preview-copy { position: relative; margin: -24px 0 0 clamp(26px, 3.1vw, 52px); padding: 22px 0 0 clamp(19px, 2vw, 33px); background: #fff; }
-.preview-copy h3 { font: 700 clamp(19px, 1.8vw, 30px)/1.6 var(--jp); }
-.preview-copy > p { margin-top: 10px; color: var(--home-text); font-size: 15px; line-height: 1.95; }
-.preview-copy .home-text-link { margin-top: 14px; }
-.offer-controls { position: absolute; z-index: 1; top: 12px; right: 12px; display: flex; align-items: center; background: white; box-shadow: 0 2px 10px rgb(22 45 56 / 11%); }
-.offer-controls button { display: grid; place-items: center; width: 42px; height: 44px; padding: 0; border: 0; background: transparent; color: var(--home-blue); }
-.offer-controls button:first-child .arrow { transform: rotate(180deg); }
-.offer-position { min-width: 33px; text-align: center; color: #354c55; font: 550 12px/1 var(--en); letter-spacing: .06em; font-variant-numeric: tabular-nums; }
+.notice-list { list-style: none; }
 
 .home-results { padding-block: clamp(64px, 6.5vw, 107px); background: var(--home-paper); }
 .home-results .heading-line { margin-bottom: clamp(30px, 3.4vw, 55px); }
@@ -366,19 +299,12 @@ html:not([data-opening]) .flow-settled { mask: none; }
 .home-contact .direction { width: clamp(48px,5vw,74px); height: clamp(48px,5vw,74px); color: white; border-color: #adc9df; }
 .home-page .site-footer { border: 0; }
 
-@media (prefers-reduced-motion: no-preference) {
-  .offer-stage.is-ready .service-preview:not([hidden]) .offer-diagram { animation: diagram-arrive .45s var(--turn); }
-  .offer-stage.is-ready .service-preview:not([hidden]) .preview-copy { animation: text-arrive .43s var(--turn); }
-  @keyframes text-arrive { from { transform: translateY(12px); opacity: 0; } }
-  @keyframes diagram-arrive { from { clip-path: inset(0 6% 0 0); } to { clip-path: inset(0); } }
-}
 @media (hover: hover) {
   .home-page .nav-contact:hover { background: #003c6b; }
   .hero-action:hover { background: #065d84; }
-  .home-text-link:hover .arrow, .hero-action:hover .arrow, .service-route:hover .arrow { translate: 3px 0; }
-  .home-wire a:hover, .service-route:hover strong, .report-feature a:hover h3, .notice-list a:hover, .record-grid dt a:hover { color: var(--home-blue); }
+  .home-text-link:hover .arrow, .hero-action:hover .arrow { translate: 3px 0; }
+  .home-wire a:hover, .report-feature a:hover h3, .notice-list a:hover, .record-grid dt a:hover { color: var(--home-blue); }
   .report-feature a:hover .report-art::before { transform: translate(3%,-3%) rotate(-43deg); }
-  .offer-controls button:hover { background: #e9f1f4; }
   .home-contact a:hover .direction { background: #fff; color: var(--home-blue); }
 }
 @media (max-width: 960px) {
@@ -387,8 +313,6 @@ html:not([data-opening]) .flow-settled { mask: none; }
   .home-page .site-nav { gap: 19px; }
   .home-hero { min-height: clamp(550px, 84svh, 800px); }
   .home-intro h1 { font-size: clamp(40px, 5.3vw, 54px); }
-  .offer-browser { grid-template-columns: minmax(0,.87fr) minmax(0,1.13fr); gap: 26px; }
-  .service-route { min-height: 100px; }
   .on-wide { display: none; }
 }
 @media (max-width: 760px) {
@@ -425,16 +349,6 @@ html:not([data-opening]) .flow-settled { mask: none; }
   .heading-line > p { max-width: 35em; font-size: 14px; }
   .home-title > :first-child { font-size: 36px; }
   .home-title > :last-child { font-size: 14px; padding-left: 10px; }
-  .offer-browser { grid-template-columns: 1fr; gap: 24px; }
-  .service-route { min-height: 79px; padding: 14px 0; }
-  .service-route strong { font-size: 17px; }
-  .service-route small { margin-top: 4px; }
-  .service-route .direction { width: 33px; height: 33px; }
-  .offer-diagram { aspect-ratio: 1.85; min-height: 204px; }
-  .map-node { font-size: clamp(10px,2.9vw,15px); }
-  .preview-copy { margin: -13px 0 0 16px; padding: 16px 0 0 15px; }
-  .preview-copy > p { font-size: 14px; }
-  .offer-controls { top: 8px; right: 8px; }
   .record-grid { padding-top: 18px; }
   .record-grid dt a { font-size: 13px; gap: 5px; }
   .record-grid b { font-size: clamp(42px,8vw,64px); }
@@ -463,7 +377,7 @@ html:not([data-opening]) .flow-settled { mask: none; }
   .home-intro { padding-block: 30px; }
   .hero-art { display: none; }
   .strategy-water { color: var(--home-blue); background: none; }
-  .offer-controls, .news-filters { display: none !important; }
+  .news-filters { display: none !important; }
 }
 @media (forced-colors: active) {
   .water-letters, .strategy-water { color: Highlight; background: none; }

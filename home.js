@@ -114,41 +114,6 @@
     sync();
   }
 
-  function setUpServices(browser) {
-    const hover = matchMedia('(any-hover: hover)');
-    const routes = Array.from(browser.querySelectorAll('[data-offer]'));
-    const panels = Array.from(browser.querySelectorAll('[data-panel]'));
-    const controls = browser.querySelector('.offer-controls');
-    const position = browser.querySelector('.offer-position');
-    const status = browser.querySelector('[data-offer-status]');
-    let current = 0;
-
-    function select(index, announce = false) {
-      current = index;
-      const key = routes[index].dataset.offer;
-      routes.forEach(route => route.toggleAttribute('data-active', route.dataset.offer === key));
-      panels.forEach(panel => { panel.hidden = panel.dataset.panel !== key; });
-      position.textContent = (index + 1) + ' / ' + routes.length;
-      if (announce) status.textContent = routes[index].querySelector('strong').textContent + 'の概要を表示しました。';
-    }
-
-    routes.forEach((route, index) => {
-      route.addEventListener('focus', () => select(index));
-      route.addEventListener('pointerenter', event => {
-        if (hover.matches && event.pointerType === 'mouse' && !panels.some(panel => panel.contains(document.activeElement))) select(index);
-      });
-    });
-    for (const button of controls.querySelectorAll('[data-step]')) {
-      button.addEventListener('click', () => {
-        const index = (current + Number(button.dataset.step) + routes.length) % routes.length;
-        select(index, true);
-      });
-    }
-    browser.querySelector('.offer-stage').classList.add('is-ready');
-    select(0);
-    controls.hidden = false;
-  }
-
   function setUpNews(section) {
     const controls = section.querySelector('.news-filters');
     const buttons = controls.querySelectorAll('[data-filter]');
@@ -175,50 +140,51 @@
   function setUpCursorGlows() {
     const enabled = matchMedia('(any-hover: hover) and (any-pointer: fine) and (prefers-reduced-motion: no-preference)');
     const forcedColors = matchMedia('(forced-colors: active)');
+    // Share the spacing and the two-glow limit across adjacent sections.
+    const activeGlows = new Set();
+    let lastGlow = null;
+
+    function reset() {
+      for (const glow of activeGlows) glow.remove();
+      activeGlows.clear();
+      lastGlow = null;
+    }
+    enabled.addEventListener('change', reset);
+    forcedColors.addEventListener('change', reset);
 
     for (const section of document.querySelectorAll('[data-cursor-glow]')) {
       const layer = document.createElement('div');
       layer.className = 'cursor-field';
       layer.setAttribute('aria-hidden', 'true');
       section.prepend(layer);
-      let lastTime = -Infinity;
-      let lastX = 0;
-      let lastY = 0;
 
-      function reset() {
-        lastTime = -Infinity;
-        layer.replaceChildren();
-      }
       section.addEventListener('pointermove', event => {
         if (!enabled.matches || forcedColors.matches || event.pointerType !== 'mouse' || event.buttons) return;
+        if (activeGlows.size >= 2) return;
         const now = performance.now();
-        const elapsed = now - lastTime;
-        if (elapsed < 310) return;
-        const bounds = layer.getBoundingClientRect();
-        const x = event.clientX - bounds.left;
-        const y = event.clientY - bounds.top;
-        if (elapsed < 2100 && Math.hypot(x - lastX, y - lastY) < 54) return;
-        lastTime = now;
-        lastX = x;
-        lastY = y;
+        if (lastGlow && (now - lastGlow.time < 1800 ||
+            Math.hypot(event.pageX - lastGlow.x, event.pageY - lastGlow.y) < 120)) return;
 
+        const bounds = layer.getBoundingClientRect();
         const bloom = document.createElement('span');
         bloom.className = 'cursor-bloom';
-        bloom.style.left = x + 'px';
-        bloom.style.top = y + 'px';
-        const remove = () => bloom.remove();
+        bloom.style.left = (event.clientX - bounds.left) + 'px';
+        bloom.style.top = (event.clientY - bounds.top) + 'px';
+        lastGlow = { time: now, x: event.pageX, y: event.pageY };
+        activeGlows.add(bloom);
+        const remove = () => {
+          activeGlows.delete(bloom);
+          bloom.remove();
+        };
         bloom.addEventListener('animationend', remove, { once: true });
         bloom.addEventListener('animationcancel', remove, { once: true });
         layer.append(bloom);
       }, { passive: true });
-      enabled.addEventListener('change', reset);
-      forcedColors.addEventListener('change', reset);
     }
   }
 
   setUpOpening();
   document.querySelectorAll('[data-motion]').forEach(setUpMotion);
-  setUpServices(document.querySelector('[data-services]'));
   setUpNews(document.querySelector('[data-news]'));
   setUpCursorGlows();
 })();
