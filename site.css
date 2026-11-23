@@ -611,3 +611,183 @@ body.menu-open { overflow: hidden; }
   .industry-page :is(.detail-heading, .section-head) .eyebrow, .industry-page .rd-en { color: var(--ink); background: none; }
   .industry-page .number-badge { color: var(--ink); background: #fff; border: 1px solid currentColor; }
 }
+
+/* Recruitment support */
+.recruitment-page .detail-catch,
+.recruitment-page .support-closing { word-break: keep-all; overflow-wrap: anywhere; text-wrap: balance; }
+.recruitment-page .support-problems {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px 40px;
+  list-style: none;
+}
+.recruitment-page .support-problems li { position: relative; padding-inline-start: 36px; font-weight: 550; }
+.recruitment-page .support-problems li::before {
+  position: absolute;
+  top: 3px;
+  left: 0;
+  width: 23px;
+  height: 23px;
+  border: 1px solid var(--rule);
+  border-radius: 50%;
+  background: var(--pale);
+  content: "";
+}
+.recruitment-page .support-problems li::after {
+  position: absolute;
+  top: 10px;
+  left: 6px;
+  width: 11px;
+  height: 6px;
+  border: solid var(--blue);
+  border-width: 0 0 2px 2px;
+  transform: rotate(-45deg);
+  content: "";
+}
+.recruitment-page .support-closing {
+  margin-top: 32px;
+  color: var(--blue);
+  font-size: clamp(21px, 2vw, 28px);
+  font-weight: 700;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.recruitment-page .support-stages {
+  display: grid;
+  gap: 48px;
+  padding-top: 22px;
+  list-style: none;
+}
+.recruitment-page .support-stage {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 3fr);
+  column-gap: clamp(24px, 4vw, 56px);
+}
+.recruitment-page .support-stage-name {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  padding-right: 16px;
+  border-right: 1px solid var(--rule);
+}
+.recruitment-page .support-stage-name strong { color: var(--blue); font-size: clamp(26px, 2.4vw, 34px); line-height: 1.35; }
+.recruitment-page .support-stage-name > span:last-child { color: var(--muted); font-size: 14px; line-height: 1.65; }
+.recruitment-page .support-stage-copy p { margin-top: 10px; color: var(--muted); }
+.recruitment-page .support-stage-copy .industry-tags { margin-top: 16px; }
+
+.recruitment-page .support-industries {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 20px;
+}
+.recruitment-page .support-industries .industry-card { flex: 1 1 205px; padding: 28px; scroll-margin-top: 8px; }
+.recruitment-page .support-industries .industry-card:first-child { flex: 1.6 1 300px; }
+.recruitment-page .support-industries h3 { color: var(--blue); }
+.recruitment-page .support-languages { padding-top: 16px; border-top: 1px solid var(--rule); }
+.recruitment-page .support-languages p { margin-bottom: 6px; color: var(--muted); font-size: 13px; font-weight: 650; }
+.recruitment-page .support-case-meta { display: flex; align-items: start; justify-content: space-between; gap: 8px; }
+.recruitment-page .support-case-meta p { color: var(--blue); font-size: 15px; font-weight: 700; }
+.recruitment-page .sample-label {
+  padding: 3px 11px;
+  border: 1px solid var(--rule);
+  border-radius: 99px;
+  background: var(--pale);
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.6;
+  white-space: nowrap;
+}
+.recruitment-page .support-cases h3 { word-break: keep-all; overflow-wrap: anywhere; }
+.recruitment-page .support-cases dl { display: grid; gap: 12px; }
+.recruitment-page .support-cases dl > div {
+  display: grid;
+  grid-template-columns: 5em minmax(0, 1fr);
+  align-items: baseline;
+  gap: 8px;
+  padding-top: 12px;
+  border-top: 1px solid var(--rule);
+  font-size: 15px;
+  line-height: 1.75;
+}
+.recruitment-page .support-cases dt { color: var(--muted); font-size: 13px; font-weight: 650; }
+.recruitment-page .support-cases dl > div:last-child dd,
+.recruitment-page .support-options h3 { color: var(--blue); font-weight: 700; }
+
+/* Detailed task lists in figure 2 and the five steps in figure 3. */
+.recruitment-page .rd-onestop--detail .rd-tasks { padding: 14px 8px 0 24px; }
+.recruitment-page .rd-chain > li:first-child .rd-tasks { padding-left: 12px; }
+.recruitment-page .rd-tasks li { position: relative; padding-left: 12px; font-size: 13px; line-height: 1.7; }
+.recruitment-page .rd-tasks li + li { margin-top: 4px; }
+.recruitment-page .rd-tasks li::before { position: absolute; top: .72em; left: 0; width: 5px; height: 5px; border-radius: 50%; background: var(--blue); content: ""; }
+.recruitment-page .rd-steps { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 16px; list-style: none; }
+.recruitment-page .rd-steps > li { position: relative; text-align: center; }
+.recruitment-page .rd-steps > li + li::before { position: absolute; top: 28px; right: calc(50% + 36px); width: calc(100% - 56px); border-top: 1.5px solid var(--rule); content: ""; }
+.recruitment-page .rd-step-icon {
+  display: grid;
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 14px;
+  place-items: center;
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--blue) 11%, white);
+  color: var(--blue);
+}
+.recruitment-page .rd-step-icon svg { width: 26px; height: 26px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.recruitment-page .rd-steps > li:last-child .rd-step-icon { background: linear-gradient(100deg, var(--blue), var(--blue-2)); color: #fff; box-shadow: var(--shadow); }
+.recruitment-page .rd-steps .rd-en { display: block; margin-inline: auto; font-size: 12px; line-height: 1.5; }
+.recruitment-page .rd-step-title { margin-top: 2px; font-size: 16px; font-weight: 700; line-height: 1.5; }
+.recruitment-page .rd-step-text { margin-top: 6px; color: var(--muted); font-size: 13px; line-height: 1.75; }
+
+.recruitment-page .support-faq { display: grid; max-width: 850px; gap: 14px; margin-inline: auto; }
+.recruitment-page .support-faq details { display: block; padding: 0; }
+.recruitment-page .support-faq summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 28px;
+  border-radius: 16px;
+  font-weight: 650;
+  line-height: 1.6;
+  list-style: none;
+  cursor: pointer;
+}
+.recruitment-page .support-faq summary::-webkit-details-marker { display: none; }
+.recruitment-page .support-faq summary::after {
+  flex: 0 0 auto;
+  width: 9px;
+  height: 9px;
+  border: solid var(--blue);
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+  content: "";
+}
+.recruitment-page .support-faq summary:focus-visible { outline-color: var(--blue); }
+.recruitment-page .support-faq details[open] summary { color: var(--blue); }
+.recruitment-page .support-faq details[open] summary::after { transform: rotate(225deg); }
+.recruitment-page .support-faq details p { margin: 0 28px 28px; padding-top: 16px; border-top: 1px solid var(--rule); }
+.recruitment-page .support-parent-link { margin-top: 32px; text-align: center; }
+.recruitment-page .support-parent-link .return-link { margin: 0; }
+@media (hover: hover) {
+  .recruitment-page .support-faq summary:hover { color: var(--blue); }
+}
+@media (max-width: 768px) {
+  .recruitment-page .support-problems,
+  .recruitment-page .support-stage,
+  .recruitment-page .rd-steps { grid-template-columns: minmax(0, 1fr); }
+  .recruitment-page .support-industries { display: grid; grid-template-columns: minmax(0, 1fr); }
+  .recruitment-page .support-stage-name { padding: 6px 0 14px; border-right: 0; border-bottom: 1px solid var(--rule); }
+  .recruitment-page .support-cases dl > div { grid-template-columns: 4em minmax(0, 1fr); }
+  .recruitment-page .rd-onestop--detail .rd-chain > li .rd-tasks { padding: 10px 4px 0 14px; }
+  .recruitment-page .rd-steps { gap: 18px; }
+  .recruitment-page .rd-steps > li { display: grid; grid-template-columns: 56px minmax(0, 1fr); column-gap: 16px; align-content: start; text-align: left; }
+  .recruitment-page .rd-step-icon { grid-row: 1 / span 3; margin: 0; }
+  .recruitment-page .rd-steps .rd-en { margin-inline: 0; }
+  .recruitment-page .rd-steps > li + li::before { display: none; }
+  .recruitment-page .rd-steps > li:not(:last-child)::after { position: absolute; top: 64px; bottom: -14px; left: 27px; border-left: 1.5px solid var(--rule); content: ""; }
+}
