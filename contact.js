@@ -1,10 +1,17 @@
 (() => {
   const form = document.getElementById('contact-form');
   const category = document.getElementById('contact-type');
+  const categoryRow = category.closest('.contact-row');
   const service = document.getElementById('contact-service');
   const serviceRow = document.getElementById('service-row');
   const purpose = document.getElementById('graduate-purpose');
   const purposeRow = document.getElementById('graduate-purpose-row');
+  const monthlyFields = document.getElementById('monthly-fields');
+  const monthlyPurpose = document.getElementById('monthly-purpose');
+  const message = document.getElementById('contact-message');
+  const messageLabel = document.getElementById('message-label');
+  const messageBadge = document.getElementById('message-badge');
+  const defaultTitle = document.title;
   const inputStep = document.getElementById('contact-input');
   const reviewStep = document.getElementById('contact-review');
   const reviewButton = document.getElementById('review-inquiry');
@@ -27,10 +34,14 @@
     if (serviceOption) {
       category.value = category.querySelector('[data-type="service"]').value;
       service.value = serviceOption.value;
-      if (type === 'graduate-events') {
-        const intent = query.get('intent');
-        const initialPurpose = [...purpose.options].find(option => option.dataset.intent === intent);
-        if (initialPurpose && !purpose.value) purpose.value = initialPurpose.value;
+      const servicePurpose = type === 'monthly-rpo' ? monthlyPurpose : purpose;
+      const initialPurpose = [...servicePurpose.options].find(option => option.dataset.intent === query.get('intent'));
+      if (initialPurpose && !servicePurpose.value) servicePurpose.value = initialPurpose.value;
+      if (type === 'monthly-rpo') {
+        const selectedSupport = query.getAll('support');
+        for (const checkbox of monthlyFields.querySelectorAll('[data-support]')) {
+          if (selectedSupport.includes(checkbox.dataset.support)) checkbox.checked = true;
+        }
       }
     }
   }
@@ -38,11 +49,26 @@
   function updateFields() {
     const selectedType = category.selectedOptions[0]?.dataset.type;
     const applicable = selectedType === 'service';
-    serviceRow.hidden = !applicable;
     service.disabled = !applicable;
-    const isGraduateService = applicable && service.selectedOptions[0]?.dataset.type === 'graduate-events';
+    const serviceType = applicable ? service.selectedOptions[0]?.dataset.type : '';
+    const isMonthly = serviceType === 'monthly-rpo';
+    const dedicatedMonthly = isMonthly && type === 'monthly-rpo';
+    categoryRow.hidden = dedicatedMonthly;
+    serviceRow.hidden = !applicable || dedicatedMonthly;
+    const isGraduateService = serviceType === 'graduate-events';
     purposeRow.hidden = !isGraduateService;
     purpose.disabled = !isGraduateService;
+    monthlyFields.hidden = !isMonthly;
+    monthlyFields.disabled = !isMonthly;
+    for (const element of document.querySelectorAll('[data-monthly-heading]')) element.hidden = !isMonthly;
+    for (const element of document.querySelectorAll('[data-general-heading]')) element.hidden = isMonthly;
+    document.title = isMonthly ? '採用代行サービスの無料相談・お見積もり｜RELIAL株式会社' : defaultTitle;
+    message.name = isMonthly ? 'その他相談事項' : 'お問い合わせ内容';
+    messageLabel.textContent = message.name;
+    message.required = !isMonthly;
+    messageBadge.textContent = isMonthly ? '任意' : '必須';
+    messageBadge.classList.toggle('is-required', !isMonthly);
+    if (isMonthly) message.setCustomValidity('');
     for (const row of form.querySelectorAll('[data-business-only]')) {
       row.hidden = selectedType === 'careers';
       row.querySelector('input, select').disabled = row.hidden;
@@ -63,10 +89,15 @@
 
   function renderReview() {
     const rows = document.createDocumentFragment();
-    reviewedData = Object.fromEntries(new FormData(form));
-    delete reviewedData._next; // Only the non-JavaScript form needs a return URL.
+    const fields = new FormData(form);
+    fields.delete('_next'); // Only the non-JavaScript form needs a return URL.
+    reviewedData = {};
+    for (const name of new Set(fields.keys())) {
+      const label = name.replace(/\[\]$/, '');
+      reviewedData[label] = fields.getAll(name).join('、');
+    }
     for (const [name, value] of Object.entries(reviewedData)) {
-      if (name.startsWith('_')) continue;
+      if (name.startsWith('_') || (categoryRow.hidden && name === category.name)) continue;
       const row = document.createElement('div');
       const label = document.createElement('dt');
       const content = document.createElement('dd');
@@ -89,7 +120,7 @@
   service.addEventListener('change', updateFields);
   editButton.addEventListener('click', () => {
     showInputs();
-    category.focus();
+    (categoryRow.hidden ? monthlyPurpose : category).focus();
   });
   window.addEventListener('pageshow', event => {
     updateFields();

@@ -9,9 +9,9 @@
     <title>お問い合わせ｜RELIAL株式会社</title>
     <link rel="icon" type="image/svg+xml" href="assets/relial-mark.svg">
     <link rel="preload" as="font" type="font/woff2" href="assets/fonts/noto-sans-jp-ui.woff2" crossorigin>
-    <link rel="stylesheet" href="site.css?v=11">
+    <link rel="stylesheet" href="site.css?v=13">
     <script src="site.js?v=4" defer></script>
-    <script src="contact.js?v=4" defer></script>
+    <script src="contact.js?v=5" defer></script>
   </head>
   <body id="top" class="industry-page contact-page">
     <a class="skip" href="#main">本文へ移動</a>
@@ -37,12 +37,13 @@
       </div>
     </header>
     <main id="main" class="inner-main contact-main">
-      <nav class="crumbs detail-wrap" aria-label="パンくず"><a href="./">トップ</a><span aria-current="page">お問い合わせ</span></nav>
+      <nav class="crumbs detail-wrap" aria-label="パンくず"><a href="./">トップ</a><a href="monthly-rpo.html" data-monthly-heading hidden>RELIAL 採用代行サービス</a><span aria-current="page">お問い合わせ</span></nav>
       <div class="contact-content">
         <header class="section-head detail-wrap contact-heading" data-reveal>
           <p class="eyebrow" lang="en">Contact</p>
-          <h1>お問い合わせ</h1>
-          <p class="detail-lead"><span class="phrase">採用のご相談、</span><wbr><span class="phrase">サービスに関するご質問、</span><wbr><span class="phrase">コミュニティへの参加など、</span><wbr><span class="phrase">お気軽に</span><wbr><span class="phrase">お問い合わせください。</span><wbr><span class="phrase">内容を確認のうえ、</span><wbr><span class="phrase">担当者より</span><wbr><span class="phrase">ご連絡します。</span></p>
+          <h1><span data-general-heading>お問い合わせ</span><span data-monthly-heading hidden>採用代行サービスの<wbr>無料相談・お見積もり</span></h1>
+          <p class="detail-lead" data-general-heading><span class="phrase">採用のご相談、</span><wbr><span class="phrase">サービスに関するご質問、</span><wbr><span class="phrase">コミュニティへの参加など、</span><wbr><span class="phrase">お気軽に</span><wbr><span class="phrase">お問い合わせください。</span><wbr><span class="phrase">内容を確認のうえ、</span><wbr><span class="phrase">担当者より</span><wbr><span class="phrase">ご連絡します。</span></p>
+          <p class="detail-lead" data-monthly-heading hidden>希望する支援内容と、現在の採用状況をお聞かせください。募集職種や採用予定人数が未定の段階でもご相談いただけます。</p>
         </header>
         <form id="contact-form" class="industry-card contact-panel" aria-label="お問い合わせフォーム" action="https://formsubmit.co/info@relial.jp" method="post" data-reveal>
           <p id="contact-error" class="contact-error" role="alert" tabindex="-1" hidden>送信できませんでした。時間をおいて再度お試しいただくか、info@relial.jp までご連絡ください。</p>
@@ -63,7 +64,7 @@
               <select id="contact-service" name="対象サービス">
                 <option value="">選択してください</option>
                 <option data-type="graduate-events">新卒会社説明会 企画・制作支援サービス</option>
-                <option data-type="monthly-rpo">月額の採用代行</option>
+                <option data-type="monthly-rpo">RELIAL 採用代行サービス（月額10万円〜）</option>
               </select>
             </div>
             <div class="contact-row" id="graduate-purpose-row">
@@ -74,7 +75,46 @@
                 <option data-intent="estimate">お見積もりのご依頼</option>
               </select>
             </div>
-            <noscript><p class="contact-privacy-note">個人でご応募の方は、種別に「採用への応募・お問い合わせ」を選び、会社名に「個人」とご記入ください。</p></noscript>
+            <fieldset id="monthly-fields" class="rpo-form">
+              <legend>採用代行のご相談内容</legend>
+              <div class="contact-row">
+                <label for="monthly-purpose">ご相談の目的<span class="field-badge">任意</span></label>
+                <select id="monthly-purpose" name="採用代行のご相談の目的">
+                  <option value="">選択してください</option>
+                  <option data-intent="consultation">サービスについてのご相談</option>
+                  <option data-intent="estimate">無料相談・お見積もり</option>
+                </select>
+              </div>
+              <fieldset class="rpo-support-choices">
+                <legend>希望する支援内容 <span>（複数選択可・任意）</span></legend>
+                <div>
+                  <label><input type="checkbox" name="希望する支援内容[]" data-support="media" value="媒体選定">媒体選定</label>
+                  <label><input type="checkbox" name="希望する支援内容[]" data-support="operations" value="求人運用・改善">求人運用・改善</label>
+                  <label><input type="checkbox" name="希望する支援内容[]" data-support="scout" value="スカウト業務">スカウト業務</label>
+                  <label><input type="checkbox" name="希望する支援内容[]" data-support="candidates" value="応募者対応・日程調整">応募者対応・日程調整</label>
+                  <label><input type="checkbox" name="希望する支援内容[]" data-support="analysis" value="分析・改善">分析・改善</label>
+                  <label><input type="checkbox" name="希望する支援内容[]" data-support="full" value="一括対応">一括対応</label>
+                  <label><input type="checkbox" name="希望する支援内容[]" data-support="other" value="その他">その他</label>
+                </div>
+              </fieldset>
+              <div class="contact-row">
+                <label for="monthly-role">募集職種<span class="field-badge">任意</span></label>
+                <input id="monthly-role" name="募集職種" type="text" placeholder="例：法人営業、システムエンジニア">
+              </div>
+              <div class="contact-row">
+                <label for="monthly-headcount">採用予定人数<span class="field-badge">任意</span></label>
+                <input id="monthly-headcount" name="採用予定人数" type="text" placeholder="例：3名程度、未定">
+              </div>
+              <div class="contact-row">
+                <label for="monthly-media">現在利用している採用媒体<span class="field-badge">任意</span></label>
+                <input id="monthly-media" name="現在利用している採用媒体" type="text" placeholder="媒体名やサービス名をご記入ください">
+              </div>
+              <div class="contact-row">
+                <label for="monthly-timing">採用予定時期<span class="field-badge">任意</span></label>
+                <input id="monthly-timing" name="採用予定時期" type="text" placeholder="例：来年4月まで、相談して決めたい">
+              </div>
+            </fieldset>
+            <noscript><p class="contact-privacy-note">採用代行のご相談は、種別に「その他のサービスについて」、対象サービスに「RELIAL 採用代行サービス（月額10万円〜）」を選び、その他相談事項はお問い合わせ内容にご記入ください。</p><p class="contact-privacy-note">個人でご応募の方は、種別に「採用への応募・お問い合わせ」を選び、会社名に「個人」とご記入ください。</p></noscript>
             <div class="contact-row" data-business-only>
               <label for="contact-company">会社名<span class="field-badge is-required">必須</span></label>
               <input id="contact-company" name="会社名" type="text" autocomplete="organization" required>
@@ -107,7 +147,7 @@
               </select>
             </div>
             <div class="contact-row">
-              <label for="contact-message">お問い合わせ内容<span class="field-badge is-required">必須</span></label>
+              <label for="contact-message"><span id="message-label">お問い合わせ内容</span><span id="message-badge" class="field-badge is-required">必須</span></label>
               <textarea id="contact-message" name="お問い合わせ内容" rows="6" required></textarea>
             </div>
             <div class="contact-consent">
