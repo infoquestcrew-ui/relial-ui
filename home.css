@@ -11,7 +11,6 @@
 }
 .home-wrap { width: min(1280px, calc(100% - 2 * var(--home-gutter))); margin-inline: auto; }
 .home-space { padding-block: clamp(75px, 7.9vw, 132px); }
-.home-page .site-nav > a:not(.nav-contact) { color: var(--home-ink); }
 
 .home-hero {
   position: relative; isolation: isolate; display: grid; align-items: center;
