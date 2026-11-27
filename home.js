@@ -1,24 +1,26 @@
 (() => {
   const header = document.getElementById('site-header');
 
-  function strokeTipOutline(path) {
-    // The leading edge of the visible dash travels along the changing curve.
+  function strokeTipOutline(path, length) {
     const offset = parseFloat(getComputedStyle(path).strokeDashoffset);
     const progress = 1 - offset / path.pathLength.baseVal;
-    if (!(progress > 0)) return '';
+    if (!(progress > 0 && progress < 1)) return '';
 
-    const length = path.getTotalLength();
-    const distance = Math.min(progress, 1) * length;
+    const distance = progress * length;
+    // The mask runs past the flat end of the emblem. Retract the tip inside it.
+    const remaining = Math.min(1, (length - distance - 48) / 65);
+    if (remaining <= 0) return '';
+    const size = remaining * remaining * (3 - 2 * remaining);
     const point = path.getPointAtLength(distance);
-    const before = path.getPointAtLength(Math.max(0, distance - 1));
-    const after = path.getPointAtLength(Math.min(length, distance + 1));
+    const before = path.getPointAtLength(Math.max(0, distance - 6));
+    const after = path.getPointAtLength(Math.min(length, distance + 6));
     const angle = Math.atan2(after.y - before.y, after.x - before.x);
     const dx = Math.cos(angle);
     const dy = Math.sin(angle);
     // Draw in the stroke's coordinates so the same gradient runs through its tip.
     const vertex = (along, across) => {
-      const x = point.x + along * dx - across * dy;
-      const y = point.y + along * dy + across * dx;
+      const x = point.x + size * (along * dx - across * dy);
+      const y = point.y + size * (along * dy + across * dx);
       return x.toFixed(2) + ' ' + y.toFixed(2);
     };
     return `M ${vertex(35, 0)} L ${vertex(-11, 36)} L ${vertex(0, 0)} L ${vertex(-11, -36)} Z`;
@@ -29,58 +31,25 @@
     if (!root.hasAttribute('data-opening')) return;
 
     const scene = document.querySelector('.opening-scene');
-    const svg = document.querySelector('.hero-flow');
-    const clock = scene.getAnimations?.().find(animation => animation.animationName === 'opening-surface');
-    const paths = Array.from(svg.querySelectorAll('.flow-curve'));
-    const curves = [];
+    const tips = Array.from(document.querySelectorAll('.flow-tips [data-route]'), tip => {
+      const path = document.getElementById(tip.dataset.route);
+      return { tip, path, length: path.getTotalLength() };
+    });
     const listeners = new AbortController();
     let tipFrame;
-    let morphAt = null;
     function followTips() {
       if (!root.hasAttribute('data-opening')) return;
-      // Start on the drawing frame so SVG loading time cannot shift the handoff.
-      if (morphAt !== null && clock.currentTime >= morphAt) {
-        const offset = (morphAt - clock.currentTime) / 1000;
-        for (const morph of curves) morph.beginElementAt(offset);
-        morphAt = null;
+      for (const { tip, path, length } of tips) {
+        const outline = strokeTipOutline(path, length);
+        if (tip.getAttribute('d') !== outline) tip.setAttribute('d', outline);
       }
-      const outlines = paths.map(strokeTipOutline);
-      paths.forEach((path, index) => {
-        const tip = path.nextElementSibling;
-        if (tip.getAttribute('d') !== outlines[index]) tip.setAttribute('d', outlines[index]);
-      });
       tipFrame = requestAnimationFrame(followTips);
     }
-    clock?.ready.then(() => {
-      if (listeners.signal.aborted || !root.hasAttribute('data-opening')) return;
-      const { duration } = clock.effect.getTiming();
-      // Turn both moving strokes onto the emblem before either loop closes.
-      morphAt = duration * .62;
-      for (const path of paths) {
-        const morph = document.createElementNS(path.namespaceURI, 'animate');
-        if (typeof morph.beginElementAt !== 'function') {
-          path.setAttribute('d', path.dataset.land);
-          continue;
-        }
-        morph.setAttribute('attributeName', 'd');
-        morph.setAttribute('from', path.getAttribute('d'));
-        morph.setAttribute('to', path.dataset.land);
-        morph.setAttribute('keyTimes', '0;1');
-        morph.setAttribute('calcMode', 'spline');
-        morph.setAttribute('keySplines', '.32 0 .32 1');
-        morph.setAttribute('begin', 'indefinite');
-        morph.setAttribute('fill', 'freeze');
-        morph.setAttribute('dur', duration * .17 + 'ms');
-        path.append(morph);
-        curves.push(morph);
-      }
-      followTips();
-    }, () => {}); // Skipping before the first paint cancels the opening's ready promise.
+    followTips();
     const options = { signal: listeners.signal, passive: true };
     const finish = () => {
       root.removeAttribute('data-opening');
       cancelAnimationFrame(tipFrame);
-      curves.forEach(morph => morph.remove());
       listeners.abort();
     };
 

@@ -8,7 +8,7 @@
     <meta name="description" content="RELIAL株式会社は、業種特化の採用支援とコミュニティ、新卒説明会支援、月額10万円からの採用代行で企業の採用を支援します。">
     <title>採用を、感覚から戦略へ。｜RELIAL株式会社</title>
     <link rel="icon" type="image/svg+xml" href="assets/relial-mark.svg">
-    <link rel="preload" as="font" type="font/woff2" href="assets/fonts/montserrat-latin.woff2" crossorigin>
+    <link rel="preload" as="font" type="font/woff2" href="assets/fonts/libre-franklin-latin.woff2" crossorigin>
     <script>
       (() => {
         const visit = performance.getEntriesByType('navigation')[0];
@@ -27,10 +27,10 @@
       })();
     </script>
     <link rel="preload" as="font" type="font/woff2" href="assets/fonts/noto-sans-jp-ui.woff2" crossorigin>
-    <link rel="stylesheet" href="site.css?v=4e07d1c0">
-    <link rel="stylesheet" href="home.css?v=878a1ce3">
+    <link rel="stylesheet" href="site.css?v=64dd5135">
+    <link rel="stylesheet" href="home.css?v=d7590576">
     <script src="site.js?v=6" defer></script>
-    <script src="home.js?v=cf059c73" defer></script>
+    <script src="home.js?v=45cd7ae1" defer></script>
   </head>
   <body id="top" class="home-page">
     <a class="skip" href="#main">本文へ移動</a>
@@ -91,30 +91,35 @@
                 </linearGradient>
                 <path id="flow-north-rail" pathLength="100" d="M 505 -265 C 475 -99 360 24 235 52 C 179 65 134 57 101 94"/>
                 <path id="flow-south-rail" pathLength="100" d="M -485 498 C -309 503 -265 365 -132 329 C -14 295 111 259 159 202"/>
+                <!-- Each incoming rail meets a circular turn tangent to the corresponding half of the mark. -->
+                <mask id="flow-north-reveal" maskUnits="userSpaceOnUse" x="-530" y="-300" width="1100" height="850">
+                  <path id="flow-north-route" class="flow-route flow-north" pathLength="100"
+                    d="M 505 -265 C 475 -99 360 24 235 52 C 179 65 134 57 101 94 C 81.2 116.2 61.28 135.36 42.79 155.04 A 68.6 68.6 0 0 0 142.81 248.96 L 155.81 235.11"/>
+                </mask>
+                <mask id="flow-south-reveal" maskUnits="userSpaceOnUse" x="-530" y="-300" width="1100" height="850">
+                  <path id="flow-south-route" class="flow-route flow-south" pathLength="100"
+                    d="M -485 498 C -309 503 -265 365 -132 329 C -14 295 111 259 159 202 C 178.2 179.2 202.57 159.31 221.06 139.63 A 68.6 68.6 0 0 0 121.04 45.71 L 108.03 59.56"/>
+                </mask>
+                <!-- Split along the transparent gap so each arrow reveals only its own colour. -->
+                <clipPath id="flow-north-half"><path d="M -2 -2 H 126 L 138 297 H -2 Z"/></clipPath>
+                <clipPath id="flow-south-half"><path d="M 126 -2 H 266 V 297 H 138 Z"/></clipPath>
                 <image id="flow-mark" href="assets/relial-mark.svg" width="263.848" height="294.672"/>
                 <mask id="flow-mark-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="264" height="295" style="mask-type:alpha"><use href="#flow-mark"/></mask>
               </defs>
-              <g class="flow-settled">
-                <g class="flow-rails">
-                  <use href="#flow-north-rail" stroke="url(#flow-navy)"/>
-                  <use href="#flow-south-rail" stroke="url(#flow-cyan)"/>
-                </g>
-                <g class="flow-pulses">
-                  <use href="#flow-north-rail" class="flow-pulse"/>
-                  <use href="#flow-south-rail" class="flow-pulse flow-pulse-later"/>
-                </g>
-                <use href="#flow-mark"/>
-                <g mask="url(#flow-mark-mask)"><rect class="flow-gleam" x="-100" y="-20" width="84" height="350" fill="url(#flow-light)"/></g>
+              <g class="flow-rails">
+                <use class="flow-reveal" href="#flow-north-rail" stroke="url(#flow-navy)" mask="url(#flow-north-reveal)"/>
+                <use class="flow-reveal" href="#flow-south-rail" stroke="url(#flow-cyan)" mask="url(#flow-south-reveal)"/>
               </g>
-              <g class="flow-drawing">
-                <path class="flow-curve flow-north" stroke="url(#flow-navy)" pathLength="100"
-                  d="M 505 -265 C 445 -75 363 62 236 94 C 167 111 130 91 86 110 C 26 134 -5 190 17 239 C 39 291 106 299 143 256 C 184 208 161 146 110 133"
-                  data-land="M 505 -265 C 475 -99 360 24 235 52 C 179 65 134 57 101 94 C 79 117 59 138 44 157 C 12 194 18 228 40 249 C 63 272 104 279 133 252"/>
-                <path class="flow-tip" fill="url(#flow-navy)"/>
-                <path class="flow-curve flow-south" stroke="url(#flow-cyan)" pathLength="100"
-                  d="M -485 498 C -309 503 -252 337 -120 302 C -6 272 93 251 153 199 C 198 160 276 133 277 76 C 278 24 231 -5 186 10 C 138 26 113 85 147 136"
-                  data-land="M -485 498 C -309 503 -265 365 -132 329 C -14 295 111 259 159 202 C 180 179 204 154 221 136 C 251 103 247 68 225 45 C 202 18 163 11 130 42"/>
-                <path class="flow-tip" fill="url(#flow-cyan)"/>
+              <g class="flow-pulses">
+                <use href="#flow-north-rail" class="flow-pulse"/>
+                <use href="#flow-south-rail" class="flow-pulse flow-pulse-later"/>
+              </g>
+              <g clip-path="url(#flow-north-half)"><use class="flow-reveal" href="#flow-mark" mask="url(#flow-north-reveal)"/></g>
+              <g clip-path="url(#flow-south-half)"><use class="flow-reveal" href="#flow-mark" mask="url(#flow-south-reveal)"/></g>
+              <g class="flow-highlight" mask="url(#flow-mark-mask)"><rect class="flow-gleam" x="-100" y="-20" width="84" height="350" fill="url(#flow-light)"/></g>
+              <g class="flow-tips">
+                <path data-route="flow-north-route" fill="url(#flow-navy)"/>
+                <path data-route="flow-south-route" fill="url(#flow-cyan)"/>
               </g>
             </svg>
           </div>

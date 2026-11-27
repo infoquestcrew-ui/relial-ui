@@ -14,8 +14,17 @@
   font-display: swap;
 }
 @font-face {
-  font-family: "Montserrat";
-  src: url("assets/fonts/montserrat-latin.woff2") format("woff2");
+  font-family: "Libre Franklin";
+  src: url("assets/fonts/libre-franklin-latin.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+}
+/* The Public Sans subset uses centered 0.63em tabular digits and 0.315em separators. */
+@font-face {
+  font-family: "RELIAL Numerals";
+  src: url("assets/fonts/public-sans-numerals.woff2") format("woff2");
+  unicode-range: U+0025, U+002C, U+002E, U+0030-0039;
   font-style: normal;
   font-weight: 100 900;
   font-display: swap;
@@ -31,13 +40,13 @@
   --rule: #d5e0e8;
   --pale: #eff5f8;
   --motion: cubic-bezier(.22,.68,.18,1);
-  --jp: "Noto Sans JP", "Noto Sans JP Extended", "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", YuGothic, "Noto Sans CJK JP", Meiryo, sans-serif;
-  --en: "Montserrat", var(--jp);
+  --jp: "Noto Sans JP", "Noto Sans JP Extended", "Hiragino Kaku Gothic ProN", "Hiragino Sans", "BIZ UDPGothic", Meiryo, "Yu Gothic", YuGothic, "Noto Sans CJK JP", sans-serif;
+  --en: "HCo Gotham SSm", "Gotham SSm", "RELIAL Numerals", "Libre Franklin", var(--jp);
   --type: var(--en);
 }
 *, *::before, *::after { box-sizing: border-box; }
 html { scroll-behavior: smooth; scroll-padding-top: 95px; }
-body { margin: 0; color: var(--ink); background: #fff; font: 400 16px/1.85 var(--type); letter-spacing: .065em; -webkit-text-size-adjust: 100%; }
+body { margin: 0; color: var(--ink); background: #fff; font: 400 16px/1.85 var(--type); letter-spacing: .10em; font-variant-numeric: tabular-nums; -webkit-font-smoothing: antialiased; -webkit-text-size-adjust: 100%; }
 body, h1, h2, h3, p, ul, ol, dl, dd, figure { margin: 0; }
 ul, ol { padding: 0; }
 img { display: block; max-width: 100%; height: auto; }
@@ -114,7 +123,7 @@ body.menu-open { overflow: hidden; }
 .flash-label { display: inline-flex; align-items: center; gap: 10px; flex: 0 0 auto; font-size: 13px; font-weight: 700; }
 .flash-label::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--blue); }
 .news-flash a { width: 100%; min-width: 0; display: flex; align-items: center; gap: 25px; padding: 16px 0; font-size: 14px; line-height: 1.65; }
-.news-flash a time, .news-meta time, .card-meta time { color: #54677b; font: 500 13px/1.4 var(--en); letter-spacing: .035em; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.news-flash a time, .news-meta time, .card-meta time { color: #54677b; font: 400 13px/1.4 var(--en); letter-spacing: .1167em; white-space: nowrap; font-variant-numeric: tabular-nums; }
 .flash-title { flex: 1; font-weight: 550; }
 .news-flash a > .arrow, .news-row > .arrow { color: var(--blue); width: 15px; }
 
@@ -1239,7 +1248,7 @@ body.menu-open { overflow: hidden; }
   border-bottom: 1px solid var(--rule);
 }
 .story-heading .card-meta { margin: 22px 0 12px; }
-.story-heading time { font: 600 14px/1.5 var(--en); color: var(--muted); }
+.story-heading time { font: 400 14px/1.5 var(--en); color: var(--muted); letter-spacing: .1167em; font-variant-numeric: tabular-nums; }
 .story-page .story-heading h1 { max-width: 23em; text-wrap: pretty; line-break: strict; }
 .story-heading .story-subtitle { display: block; margin-top: .45em; color: var(--muted); font-size: clamp(20px, 2vw, 30px); letter-spacing: .01em; }
 .story-layout { margin-top: clamp(28px, 4.2vw, 62px); }
@@ -3254,7 +3263,7 @@ body.menu-open { overflow: hidden; }
   gap: clamp(16px, 2.5vw, 36px);
   padding-block: clamp(22px, 2.2vw, 32px);
 }
-.news-archive .notice-link time { color: var(--muted); font: 600 14px/1.5 var(--en); letter-spacing: .035em; font-variant-numeric: tabular-nums; }
+.news-archive .notice-link time { color: var(--muted); font: 400 14px/1.5 var(--en); letter-spacing: .1167em; font-variant-numeric: tabular-nums; }
 .news-archive .notice-link h2 { font-size: clamp(17px, 1.4vw, 21px); line-height: 1.6; word-break: keep-all; overflow-wrap: anywhere; }
 .news-archive .notice-link p { margin-top: .45em; color: var(--muted); font-size: 15px; line-height: 1.85; }
 .news-archive .news-notices .return-link { margin: 24px 0 0; }

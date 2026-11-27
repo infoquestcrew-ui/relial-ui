@@ -43,10 +43,14 @@
 }
 .flow-frame { position: absolute; inset: clamp(66px, 8svh, 104px) 2% clamp(18px, 3svh, 48px) auto; width: 67%; }
 .hero-flow { display: block; width: 100%; height: 100%; overflow: visible; stroke-linecap: round; stroke-linejoin: round; }
-.flow-rails { stroke-width: 28; opacity: .52; }
+.flow-rails { stroke-width: 28; stroke-opacity: .52; }
+.flow-route { fill: none; stroke: white; stroke-width: 136; stroke-linecap: butt; }
 .flow-pulse { stroke: #efffff; stroke-width: 23; stroke-dasharray: 5 110; opacity: 0; }
 .flow-gleam { opacity: 0; }
-.flow-drawing { display: none; }
+.flow-tips { display: none; }
+@media (prefers-reduced-motion: reduce), (forced-colors: active), print {
+  .flow-reveal { mask: none; }
+}
 .hero-art::after {
   content: ""; position: absolute; inset: 0;
   background: linear-gradient(98deg, rgb(252 253 253 / 79%) 5%, rgb(252 253 253 / 58%) 29%, transparent 55%);
@@ -65,15 +69,12 @@
     isolation: isolate; pointer-events: none; background: #fbfcfc;
     animation: opening-surface var(--opening-duration) ease both;
   }
-  [data-opening] .flow-drawing {
-    display: inline;
-    animation: opening-fade .46s ease-in-out 3.30s reverse both;
-  }
-  [data-opening] .flow-settled { animation: opening-fade .46s ease-in-out 3.20s both; }
-  [data-opening] .flow-tip { animation: opening-fade .38s ease-in-out 3.02s reverse both; }
-  [data-opening] .flow-curve { stroke-dasharray: 100 130; stroke-width: 42; }
-  [data-opening] .flow-north { animation: draw-stroke 1.458s linear 1.62s both; }
-  [data-opening] .flow-south { animation: draw-stroke 1.296s linear 1.971s both; }
+  [data-opening] .flow-tips { display: inline; }
+  [data-opening] .flow-route { stroke-dasharray: 100 130; }
+  [data-opening] .flow-north { animation: draw-stroke 1.85s cubic-bezier(.28,.08,.30,1) 1.67s both; }
+  [data-opening] .flow-south { animation: draw-stroke 1.83s cubic-bezier(.28,.08,.30,1) 1.94s both; }
+  [data-opening] .flow-rails { animation: soften-rails .85s ease-in-out 2.97s both; }
+  [data-opening] .flow-pulses, [data-opening] .flow-highlight { animation: opening-fade .45s ease 3.62s both; }
   [data-opening] .opening-scene::before, [data-opening] .opening-scene::after {
     content: ""; position: absolute; z-index: -1; width: 52vmax; aspect-ratio: 264 / 295;
     background: #e5eff4;
@@ -131,8 +132,12 @@
   .opening-title { font-size: min(11.45vw, 19.6vh, 196px); }
 }
 @keyframes draw-stroke {
-  from { stroke-dashoffset: 113; }
+  from { stroke-dashoffset: 100; }
   to { stroke-dashoffset: 0; }
+}
+@keyframes soften-rails {
+  from { stroke-width: 42; stroke-opacity: 1; }
+  to { stroke-width: 28; stroke-opacity: .52; }
 }
 @keyframes opening-fade {
   from { opacity: 0; }
@@ -204,7 +209,7 @@
   position: relative; width: min(1500px, calc(100% - 2 * var(--home-gutter))); margin-inline: auto;
   padding-block: clamp(125px, 17svh, 185px) clamp(75px, 10svh, 125px);
 }
-.home-intro h1 { margin: 0 0 20px; font: 700 clamp(43px, 4.6vw, 58px)/1.45 var(--type); letter-spacing: .10em; }
+.home-intro h1 { margin: 0 0 20px; font: 700 clamp(43px, 4.6vw, 58px)/1.45 var(--type); letter-spacing: .11em; }
 .home-intro h1 span { display: block; width: fit-content; white-space: nowrap; }
 .strategy-water { font-style: normal; color: var(--home-blue); }
 @supports (background-clip: text) or (-webkit-background-clip: text) {
@@ -219,7 +224,7 @@
     animation-play-state: var(--motion-state);
   }
 }
-.intro-body { max-width: min(28em, 43vw); font-size: clamp(15px, 1.2vw, 17px); font-weight: 400; line-height: 2; letter-spacing: inherit; color: #34484f; }
+.intro-body { max-width: min(30em, 46vw); font-size: clamp(15px, 1.2vw, 17px); font-weight: 400; line-height: 2; letter-spacing: .12em; color: #34484f; }
 .hero-action, .home-text-link { display: inline-flex; align-items: center; gap: 17px; width: fit-content; font-weight: 650; }
 .hero-action {
   margin-top: clamp(23px, 2.4vw, 35px); padding: 6px 7px 6px 23px; gap: 19px; border-radius: 30px;
@@ -238,15 +243,16 @@
 .wire-label i { width: 6px; height: 6px; border-radius: 50%; background: #007fb7; }
 .home-wire a { display: flex; align-items: center; flex: 1; min-width: 0; gap: clamp(16px, 2vw, 32px); padding-block: 13px; font-size: 14px; font-weight: 550; }
 .home-wire a > span { flex: 1; }
-.home-wire time, .notice-meta time { font: 500 13px/1.5 var(--en); color: #566870; letter-spacing: .035em; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.home-wire time, .notice-meta time { font: 400 13px/1.5 var(--en); color: #566870; letter-spacing: .1167em; white-space: nowrap; font-variant-numeric: tabular-nums; }
 .home-wire .arrow, .notice-list .arrow, .report-info > .arrow { width: 14px; color: var(--home-blue); }
 
 .heading-line { display: flex; justify-content: space-between; align-items: end; gap: clamp(22px, 5vw, 80px); margin-bottom: clamp(32px, 3.8vw, 62px); }
 .home-title { display: flex; align-items: baseline; flex-wrap: wrap; column-gap: clamp(14px, 1.8vw, 26px); row-gap: 8px; line-height: 1; }
-.home-title > :first-child { font: 600 clamp(42px, 4.2vw, 53px)/1.35 var(--en); letter-spacing: normal; }
+.home-title > :first-child { font: 700 clamp(42px, 4.2vw, 53px)/1.35 var(--en); letter-spacing: .11em; }
 .home-title > :last-child { padding-left: 13px; border-left: 1px solid #9db0b8; color: #40565f; font-size: 16px; font-weight: 700; line-height: 1.6; letter-spacing: normal; }
 .heading-line > p { max-width: 29em; }
 .heading-line > p, .services-grid p { color: var(--home-text); font-size: 15px; line-height: 1.95; }
+.services-grid p { letter-spacing: .065rem; }
 .notice-list { list-style: none; }
 
 .home-results { padding-block: clamp(64px, 6.5vw, 107px); background: var(--home-paper); }
@@ -319,10 +325,10 @@
   }
   .hero-art::after { background: linear-gradient(180deg, transparent 42%, rgb(250 253 253 / 55%) 63%, transparent 89%); }
   .home-intro { padding-block: clamp(180px, 32svh, 325px) clamp(83px, 10svh, 105px); }
-  .home-intro h1 { margin: 0 0 13px; font-size: clamp(24px, 7.6vw, 32px); line-height: 1.4; letter-spacing: .055em; }
+  .home-intro h1 { margin: 0 0 13px; font-size: clamp(24px, 7.6vw, 32px); line-height: 1.4; letter-spacing: .11em; }
   .opening-title { font-size: min(14.45vw, 21.8vh); }
   .opening-line + .opening-line { padding-left: .32em; }
-  .intro-body { max-width: 34em; font-size: 14px; line-height: 1.9; }
+  .intro-body { max-width: 34em; font-size: clamp(13px, calc(7px + 2vw), 14px); line-height: 1.9; }
   .hero-action { margin-top: 20px; padding: 6px 7px 6px 18px; font-size: 13px; gap: 15px; }
   .hero-action .direction { width: 31px; height: 31px; }
   .home-wire { align-items: flex-start; flex-direction: column; gap: 5px; min-height: 0; padding-block: 16px; border-top: 1px solid var(--home-rule); }
@@ -335,6 +341,7 @@
   .heading-line > p { max-width: 35em; }
   .heading-line > p, .services-grid p { font-size: 14px; }
   .home-title > :first-child { font-size: 36px; }
+  .home-results .home-title > :first-child { font-size: clamp(28px, 8.4vw, 36px); }
   .home-title > :last-child { font-size: 14px; padding-left: 10px; }
   .record-grid { padding-top: 18px; }
   .record-grid dt a { font-size: 13px; gap: 5px; }
