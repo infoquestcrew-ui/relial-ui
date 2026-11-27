@@ -2422,3 +2422,43 @@ body.menu-open { overflow: hidden; }
 @media (min-width: 769px) and (max-width: 865px) {
   .guide-recruitment .compare-hint { display: block; margin-bottom: 8px; color: var(--muted); font-size: 12px; }
 }
+
+/* Stack the two recruiters above their speech bubbles on small screens. */
+@media (max-width: 768px) {
+  .guide-recruitment .guide-worries { gap: 18px; }
+  .guide-recruitment .guide-worries img { width: min(58%, 190px); }
+  .guide-recruitment .guide-worries ul {
+    width: min(100%, 28rem);
+    max-width: 100%;
+    gap: 14px;
+  }
+  .guide-recruitment .guide-worries li {
+    justify-self: start;
+    width: calc(100% - 16px);
+    padding: 10px 16px;
+    border: 1px solid var(--rule);
+    border-radius: 16px;
+    background: white;
+    font-size: clamp(14px, 3.6vw, 15px);
+    font-weight: 600;
+    line-height: 1.65;
+    word-break: auto-phrase;
+    text-wrap: balance;
+  }
+  .guide-recruitment .guide-worries li:nth-child(even) {
+    justify-self: end;
+    background: color-mix(in srgb, var(--blue-2) 5%, white);
+  }
+  .guide-recruitment .guide-worries li::before {
+    top: -6px;
+    bottom: auto;
+    left: 30%;
+    width: 10px;
+    height: 10px;
+    border: solid var(--rule);
+    border-width: 1px 0 0 1px;
+    background: inherit;
+    transform: rotate(45deg);
+  }
+  .guide-recruitment .guide-worries li:nth-child(even)::before { left: auto; right: 30%; }
+}
