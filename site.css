@@ -2489,3 +2489,18 @@ body.menu-open { overflow: hidden; }
   .guide-recruitment .guide-hero-actions .guide-link { grid-area: 1 / 2; justify-self: start; }
   .guide-recruitment .guide-hero-actions .consult-note { grid-column: 1 / -1; }
 }
+
+@media (max-width: 768px) {
+  .guide-recruitment .guide-worries ul {
+    width: max-content;
+    min-width: min(100%, 28rem);
+    max-width: min(28rem, calc(100vw - 12px));
+  }
+  .guide-recruitment .guide-worries li {
+    width: 100%;
+    padding-inline: clamp(6px, 2vw, 12px);
+    font-size: clamp(.75rem, 3.5vw, .9375rem);
+    letter-spacing: -.03em;
+  }
+  .guide-recruitment .guide-worries li:nth-child(even) { background: white; }
+}
