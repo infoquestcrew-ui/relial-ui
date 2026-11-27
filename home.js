@@ -1,9 +1,5 @@
 (() => {
   const header = document.getElementById('site-header');
-  const syncHeader = () => header.classList.toggle('is-docked', window.scrollY > 65);
-  window.addEventListener('scroll', syncHeader, { passive: true });
-  window.addEventListener('pageshow', syncHeader);
-  syncHeader();
 
   function strokeTipOutline(path) {
     // The leading edge of the visible dash travels along the changing curve.
