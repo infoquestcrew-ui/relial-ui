@@ -2422,6 +2422,8 @@ body.menu-open { overflow: hidden; }
 .guide-community .preview-mask {
   display: inline-block;
   max-width: 100%;
+}
+.guide-community .preview-mask, .grad-preview .preview-mask {
   filter: blur(2.4px);
   user-select: none;
 }
@@ -2701,15 +2703,18 @@ body.menu-open { overflow: hidden; }
   border-radius: 8px;
   background: linear-gradient(140deg, var(--pale), color-mix(in srgb, var(--blue-2) 6%, white));
 }
-/* The shapes suggest report formats without embedding survey answers or counts. */
-.grad-preview > div { width: 76%; height: 68%; filter: blur(4.5px); opacity: .67; pointer-events: none; }
+/* Only illustrative values and excerpts are masked, as in the community reports. */
+.grad-preview > div { width: 76%; height: 68%; }
+.grad-preview small { position: absolute; width: max-content; color: var(--muted); font: 650 11px/1 var(--en); }
+.grad-bars small { left: calc(100% + 5px); top: 50%; transform: translateY(-50%); }
+.grad-columns small { bottom: calc(100% + 3px); left: 50%; transform: translateX(-50%); }
 .grad-ranking, .grad-bars, .grad-comments { display: flex; flex-direction: column; justify-content: space-evenly; }
 .grad-ranking i { position: relative; display: block; width: 72%; height: 13%; margin-left: 14%; border-radius: 3px; background: var(--muted); }
 .grad-ranking i:nth-child(2) { width: 55%; }
 .grad-ranking i:last-child { width: 64%; }
 .grad-ranking i::before { position: absolute; left: -24px; top: 50%; width: 15px; height: 15px; transform: translateY(-50%); border-radius: 50%; background: var(--blue); content: ""; }
 .grad-bars { border-left: 2px solid var(--muted); }
-.grad-bars i { width: 87%; height: 13%; border-radius: 0 3px 3px 0; background: var(--blue); }
+.grad-bars i { position: relative; width: 87%; height: 13%; border-radius: 0 3px 3px 0; background: var(--blue); }
 .grad-bars i:nth-child(2) { width: 69%; }
 .grad-bars i:nth-child(3) { width: 51%; background: var(--blue-2); }
 .grad-bars i:nth-child(4) { width: 38%; background: var(--blue-2); }
@@ -2718,7 +2723,7 @@ body.menu-open { overflow: hidden; }
 .grad-bars-sources i:nth-child(3) { width: 36%; }
 .grad-bars-sources i:nth-child(4) { width: 65%; }
 .grad-columns { display: flex; align-items: end; justify-content: space-evenly; border-bottom: 2px solid var(--muted); }
-.grad-columns i { width: 12%; height: 85%; background: var(--blue); }
+.grad-columns i { position: relative; width: 12%; height: 85%; background: var(--blue); }
 .grad-columns i:nth-child(2) { height: 62%; }
 .grad-columns i:nth-child(3) { height: 70%; background: var(--blue-2); }
 .grad-columns i:nth-child(4) { height: 48%; background: var(--blue-2); }
@@ -2731,8 +2736,7 @@ body.menu-open { overflow: hidden; }
 
 .graduate-page .grad-points { grid-template-columns: repeat(3, minmax(0, 1fr)); margin: 0; padding-top: 22px; list-style: none; }
 .grad-points .industry-card, .graduate-page .grad-service { position: relative; gap: 10px; padding-top: 36px; }
-.grad-services, .grad-formats { display: grid; gap: 20px; }
-.grad-services { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 46px 24px; padding-top: 22px; }
+.grad-services { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 46px 24px; padding-top: 22px; }
 .grad-services:has(details[open]) { align-items: start; }
 .grad-service .industry-tags { margin-top: auto; padding-block: 5px 8px; }
 .grad-disclosure summary { display: flex; align-items: center; gap: 14px; font-weight: 650; cursor: pointer; list-style: none; }
@@ -2745,28 +2749,9 @@ body.menu-open { overflow: hidden; }
 .grad-service details p { color: var(--muted); font-size: 15px; line-height: 1.8; }
 .grad-scope { margin-top: 24px; color: var(--muted); font-size: 13px; text-align: center; }
 
-.grad-results { display: grid; grid-template-columns: 1fr 1.8fr; align-items: center; gap: clamp(24px, 5vw, 80px); max-width: 900px; margin-inline: auto; }
-.grad-result-total { text-align: center; }
-.grad-result-total dt { font-weight: 650; }
-.grad-result-total dd { margin-top: 8px; color: var(--blue); font-size: clamp(18px, 1.7vw, 24px); font-weight: 700; line-height: 1; }
-.grad-result-total strong { margin-right: .07em; font: 680 clamp(58px, 6vw, 84px)/1 var(--en); letter-spacing: -.06em; }
-.graduate-page .grad-case h3 { color: var(--blue); font-size: 15px; }
-.graduate-page .grad-case p { color: var(--ink); font-size: clamp(17px, 1.45vw, 21px); }
-.grad-case p strong { color: var(--blue); white-space: nowrap; }
 .grad-options { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 14px; list-style: none; }
 .grad-options .industry-card { padding: 24px 12px; align-items: center; justify-content: center; gap: 12px; text-align: center; font-weight: 650; text-wrap: balance; }
 .grad-options .guide-icon { width: 30px; height: 30px; color: var(--blue); }
-.grad-formats { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-.grad-formats .industry-card { gap: 8px; padding: clamp(16px, 1.9vw, 28px); text-align: center; }
-.graduate-page .grad-formats p { font-size: clamp(13px, 1.15vw, 16px); }
-.grad-format-art { display: flex; align-items: center; justify-content: center; gap: 7px; height: 84px; margin-bottom: 6px; border-radius: 10px; background: var(--pale); color: var(--blue); }
-.grad-room { display: grid; justify-items: center; gap: 7px; }
-.grad-room i { display: block; width: 45px; height: 24px; border: 2px solid currentColor; border-top-width: 5px; border-radius: 2px; background: white; }
-.grad-room b { width: 49px; height: 20px; background: radial-gradient(ellipse at center, var(--blue) 39%, transparent 42%) 0 0 / 16px 10px; }
-.grad-laptop { display: grid; justify-items: center; }
-.grad-laptop i { display: block; width: 50px; height: 34px; border: 2px solid currentColor; border-top-width: 5px; border-radius: 4px 4px 1px 1px; background: linear-gradient(90deg, transparent 46%, white 46% 53%, transparent 53%), linear-gradient(0deg, transparent 46%, white 46% 55%, transparent 55%), color-mix(in srgb, var(--blue-2) 32%, white); }
-.grad-laptop::after { width: 62px; height: 5px; border-radius: 1px 1px 6px 6px; background: currentColor; content: ""; }
-.grad-connection { width: 23px; border-top: 2px dotted var(--blue-2); }
 
 .grad-flow { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: clamp(12px, 1.7vw, 22px); list-style: none; }
 .grad-step { display: flex; align-items: center; gap: 10px; color: var(--blue); font: italic 700 17px/1.5 var(--en); }
@@ -2807,7 +2792,7 @@ body.menu-open { overflow: hidden; }
   }
   .grad-data-card { scroll-snap-align: start; }
   .grad-preview { height: 128px; }
-  .graduate-page .grad-points, .grad-services, .grad-formats, .grad-flow, .grad-results { grid-template-columns: minmax(0, 1fr); }
+  .graduate-page .grad-points, .grad-services, .grad-flow { grid-template-columns: minmax(0, 1fr); }
   .graduate-page .grad-points, .grad-services { gap: 40px; }
   .grad-options { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
   .grad-options .industry-card { padding: 18px 10px; font-size: 14px; }
@@ -2819,4 +2804,16 @@ body.menu-open { overflow: hidden; }
   .grad-flow h3 { margin-block: 5px; }
   .grad-step::after { max-width: 68px; }
   .grad-faq details { padding-inline: 16px; }
+}
+
+.grad-format-summary { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 14px 32px; margin-top: 28px; padding-top: 22px; border-top: 1px solid var(--rule); }
+.grad-format-summary h3 { font-size: 16px; }
+.grad-formats { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px 28px; list-style: none; }
+.grad-formats li { display: flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 600; }
+.grad-formats .guide-icon { width: 23px; height: 23px; color: var(--blue); }
+@media (max-width: 768px) {
+  .grad-index a[href="#menus"] { grid-column: 1 / -1; }
+  .grad-format-summary { flex-direction: column; }
+  .grad-formats { display: grid; width: min(100%, 28rem); grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px; }
+  .grad-formats li { flex-direction: column; gap: 5px; font-size: clamp(12px, 3.4vw, 15px); }
 }
