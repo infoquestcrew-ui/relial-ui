@@ -2504,3 +2504,184 @@ body.menu-open { overflow: hidden; }
   }
   .guide-recruitment .guide-worries li:nth-child(even) { background: white; }
 }
+
+/* Recruitment community */
+.guide-community .phrase { max-width: 100%; }
+.guide-community :is(.guide-lead, .detail-lead, .industry-card > p, .guide-safety p, .guide-flow p, .guide-faq) {
+  word-break: auto-phrase;
+  overflow-wrap: anywhere;
+}
+.guide-community .guide-worries {
+  max-width: 960px;
+  margin-inline: auto;
+  grid-template-columns: minmax(160px, .75fr) minmax(0, 1.25fr);
+}
+.guide-community .guide-worries ul { grid-template-columns: minmax(0, 1fr); }
+.guide-community .community-industries {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  list-style: none;
+}
+.guide-community .community-industries > li {
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+  padding: clamp(18px, 2vw, 28px);
+  font-size: clamp(16px, 1.5vw, 20px);
+  font-weight: 700;
+  line-height: 1.5;
+}
+.guide-community .community-industries .guide-icon {
+  width: 52px;
+  height: 52px;
+  padding: 11px;
+  border-radius: 14px;
+  background: var(--pale);
+  color: var(--blue);
+}
+.guide-community .community-themes { max-width: 760px; margin: 36px auto 0; text-align: center; }
+.guide-community .community-themes h3 { font-size: clamp(17px, 1.5vw, 20px); }
+.guide-community .community-themes .industry-tags { justify-content: center; margin-top: 15px; }
+.guide-community .community-themes li { font-size: 13px; color: var(--muted); }
+.guide-community .community-themes .tag { padding: 4px 12px; font-size: 13px; }
+
+.guide-community .community-reports {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+.guide-community .report-preview { gap: 12px; padding: clamp(20px, 2.5vw, 32px); }
+.guide-community .report-preview h3 { line-height: 1.5; text-wrap: balance; }
+.guide-community .report-access {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  gap: 6px;
+  padding: 3px 10px;
+  border: 1px solid var(--rule);
+  border-radius: 99px;
+  color: var(--blue);
+  font-size: 12px;
+  font-weight: 650;
+}
+.guide-community .report-access .guide-icon { width: 15px; height: 15px; }
+.guide-community .report-plot {
+  display: grid;
+  align-content: center;
+  min-height: 164px;
+  margin-top: auto;
+  padding: 16px clamp(12px, 2vw, 24px);
+  border-radius: 10px;
+  background: var(--pale);
+  color: var(--ink);
+  font-size: 13px;
+  line-height: 1.55;
+}
+.guide-community .preview-mask {
+  display: inline-block;
+  max-width: 100%;
+  filter: blur(2.4px);
+  user-select: none;
+}
+.guide-community .report-plot small { font: 650 13px/1.3 var(--en); }
+.guide-community .preview-bars { gap: 14px; }
+.guide-community .preview-bars > div {
+  display: grid;
+  grid-template-columns: 4em minmax(0, 1fr) 2.5em;
+  align-items: center;
+  gap: 8px;
+}
+.guide-community .preview-bars i {
+  height: 15px;
+  border-radius: 0 3px 3px 0;
+  background: linear-gradient(90deg, var(--blue), var(--blue-2));
+}
+.guide-community .preview-funnel { justify-items: center; gap: 3px; }
+.guide-community .preview-funnel > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  min-height: 26px;
+  background: color-mix(in srgb, var(--blue-2) 15%, white);
+  clip-path: polygon(0 0, 100% 0, calc(100% - 7px) 100%, 7px 100%);
+  font-weight: 650;
+}
+.guide-community .preview-funnel > div:nth-child(2) { width: 82%; background: color-mix(in srgb, var(--blue-2) 27%, white); }
+.guide-community .preview-funnel > div:nth-child(3) { width: 64%; background: color-mix(in srgb, var(--blue-2) 40%, white); }
+.guide-community .preview-funnel > div:last-child { width: 46%; background: var(--blue); color: white; }
+.guide-community .distribution-bars {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  height: 98px;
+  border-bottom: 1px solid var(--rule);
+  background: repeating-linear-gradient(to top, transparent 0 24px, var(--rule) 24px 25px);
+}
+.guide-community .distribution-bars > div { display: flex; flex-direction: column; justify-content: flex-end; align-items: center; gap: 3px; }
+.guide-community .distribution-bars i { width: 64%; border-radius: 3px 3px 0 0; background: var(--blue-2); }
+.guide-community .distribution-bars > div:nth-child(3) i { background: var(--blue); }
+.guide-community .distribution-axis { display: flex; justify-content: space-between; margin-top: 6px; color: var(--muted); font-size: 11px; }
+.guide-community .preview-excerpt { gap: 10px; }
+.guide-community .preview-excerpt strong { display: block; margin-bottom: 3px; color: var(--blue); }
+.guide-community .preview-excerpt p + p { padding-top: 9px; border-top: 1px solid var(--rule); }
+.guide-community .report-swipe-hint { display: none; }
+.guide-community .guide-safety p { margin: 0; color: var(--ink); }
+.guide-community .guide-flow h3 small, .guide-community .guide-faq summary b { color: var(--blue); font-family: var(--en); }
+
+@media (max-width: 768px) {
+  .guide-community .guide-worries {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 18px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+  .guide-community .guide-worries img { width: min(58%, 190px); mix-blend-mode: multiply; }
+  .guide-community .guide-worries ul {
+    justify-self: center;
+    width: max-content;
+    min-width: min(100%, 28rem);
+    max-width: min(28rem, calc(100vw - 16px));
+    gap: 14px;
+  }
+  .guide-community .guide-worries li {
+    padding: 10px clamp(8px, 2.5vw, 14px);
+    border: 1px solid var(--rule);
+    border-radius: 16px;
+    background: white;
+    font-size: clamp(.75rem, 3.5vw, .9375rem);
+    font-weight: 600;
+    line-height: 1.65;
+  }
+  .guide-community .guide-worries li::before {
+    top: -6px;
+    bottom: auto;
+    left: 30%;
+    width: 10px;
+    height: 10px;
+    border: solid var(--rule);
+    border-width: 1px 0 0 1px;
+    background: inherit;
+    transform: rotate(45deg);
+  }
+  .guide-community .guide-worries li:nth-child(even)::before { left: auto; right: 30%; }
+  .guide-community .community-industries { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .guide-community .community-industries > li { flex-direction: column; justify-content: center; gap: 9px; padding: 16px 8px; text-align: center; }
+  .guide-community .community-industries .guide-icon { width: 44px; height: 44px; padding: 9px; }
+  .guide-community .community-reports {
+    grid-template-columns: none;
+    grid-auto-flow: column;
+    grid-auto-columns: min(89%, 24rem);
+    gap: 14px;
+    overflow-x: auto;
+    padding: 4px 3px 18px;
+    scroll-padding-inline: 3px;
+    scroll-snap-type: x mandatory;
+    overscroll-behavior-x: contain;
+  }
+  .guide-community .report-preview { scroll-snap-align: start; }
+  .guide-community .report-swipe-hint { display: block; margin: 0 0 8px; color: var(--muted); font-size: 12px; }
+}
