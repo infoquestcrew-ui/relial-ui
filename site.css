@@ -2422,8 +2422,6 @@ body.menu-open { overflow: hidden; }
 .guide-community .preview-mask {
   display: inline-block;
   max-width: 100%;
-}
-.guide-community .preview-mask, .grad-preview .preview-mask {
   filter: blur(2.4px);
   user-select: none;
 }
@@ -2693,47 +2691,6 @@ body.menu-open { overflow: hidden; }
 .grad-data-label { display: inline-flex; align-items: center; gap: 6px; color: var(--blue); font-size: 12px; font-weight: 700; }
 .grad-data-label .guide-icon { width: 15px; height: 15px; }
 .grad-data-card h3 { max-width: 100%; text-wrap: balance; margin-block: 10px 18px; font-size: clamp(17px, 1.45vw, 21px); line-height: 1.55; }
-.grad-preview {
-  display: grid;
-  place-items: center;
-  width: 100%;
-  height: clamp(108px, 10vw, 138px);
-  margin-top: auto;
-  overflow: hidden;
-  border-radius: 8px;
-  background: linear-gradient(140deg, var(--pale), color-mix(in srgb, var(--blue-2) 6%, white));
-}
-/* Only illustrative values and excerpts are masked, as in the community reports. */
-.grad-preview > div { width: 76%; height: 68%; }
-.grad-preview small { position: absolute; width: max-content; color: var(--muted); font: 650 11px/1 var(--en); }
-.grad-bars small { left: calc(100% + 5px); top: 50%; transform: translateY(-50%); }
-.grad-columns small { bottom: calc(100% + 3px); left: 50%; transform: translateX(-50%); }
-.grad-ranking, .grad-bars, .grad-comments { display: flex; flex-direction: column; justify-content: space-evenly; }
-.grad-ranking i { position: relative; display: block; width: 72%; height: 13%; margin-left: 14%; border-radius: 3px; background: var(--muted); }
-.grad-ranking i:nth-child(2) { width: 55%; }
-.grad-ranking i:last-child { width: 64%; }
-.grad-ranking i::before { position: absolute; left: -24px; top: 50%; width: 15px; height: 15px; transform: translateY(-50%); border-radius: 50%; background: var(--blue); content: ""; }
-.grad-bars { border-left: 2px solid var(--muted); }
-.grad-bars i { position: relative; width: 87%; height: 13%; border-radius: 0 3px 3px 0; background: var(--blue); }
-.grad-bars i:nth-child(2) { width: 69%; }
-.grad-bars i:nth-child(3) { width: 51%; background: var(--blue-2); }
-.grad-bars i:nth-child(4) { width: 38%; background: var(--blue-2); }
-.grad-bars-sources i:nth-child(1) { width: 58%; }
-.grad-bars-sources i:nth-child(2) { width: 82%; }
-.grad-bars-sources i:nth-child(3) { width: 36%; }
-.grad-bars-sources i:nth-child(4) { width: 65%; }
-.grad-columns { display: flex; align-items: end; justify-content: space-evenly; border-bottom: 2px solid var(--muted); }
-.grad-columns i { position: relative; width: 12%; height: 85%; background: var(--blue); }
-.grad-columns i:nth-child(2) { height: 62%; }
-.grad-columns i:nth-child(3) { height: 70%; background: var(--blue-2); }
-.grad-columns i:nth-child(4) { height: 48%; background: var(--blue-2); }
-.grad-columns i:nth-child(5) { height: 32%; background: var(--muted); }
-.grad-comments i { height: 36%; border-left: 4px solid var(--blue-2); background: repeating-linear-gradient(to bottom, var(--muted) 0 3px, transparent 3px 9px) right center / 89% 83% no-repeat; }
-.grad-comments i + i { width: 83%; }
-.grad-pie { display: flex; align-items: center; justify-content: center; gap: 12%; }
-.grad-pie i { height: 90%; aspect-ratio: 1; border-radius: 50%; background: conic-gradient(var(--blue) 0 150deg, var(--blue-2) 150deg 252deg, var(--rule) 252deg 312deg, var(--muted) 312deg); }
-.grad-pie span { width: 28%; height: 47%; background: repeating-linear-gradient(to bottom, var(--muted) 0 4px, transparent 4px 12px); }
-
 .graduate-page .grad-points { grid-template-columns: repeat(3, minmax(0, 1fr)); margin: 0; padding-top: 22px; list-style: none; }
 .grad-points .industry-card, .graduate-page .grad-service { position: relative; gap: 10px; padding-top: 36px; }
 .grad-services { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 46px 24px; padding-top: 22px; }
@@ -2791,7 +2748,6 @@ body.menu-open { overflow: hidden; }
     overscroll-behavior-x: contain;
   }
   .grad-data-card { scroll-snap-align: start; }
-  .grad-preview { height: 128px; }
   .graduate-page .grad-points, .grad-services, .grad-flow { grid-template-columns: minmax(0, 1fr); }
   .graduate-page .grad-points, .grad-services { gap: 40px; }
   .grad-options { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
@@ -2817,3 +2773,121 @@ body.menu-open { overflow: hidden; }
   .grad-formats { display: grid; width: min(100%, 28rem); grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px; }
   .grad-formats li { flex-direction: column; gap: 5px; font-size: clamp(12px, 3.4vw, 15px); }
 }
+
+/* Student survey report previews */
+.grad-preview {
+  container-type: inline-size;
+  display: grid;
+  width: 100%;
+  height: clamp(188px, 15vw, 212px);
+  margin-top: auto;
+  padding: 7px;
+  overflow: hidden;
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  background: var(--pale);
+}
+.grad-report {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  gap: .8em;
+  min-width: 0;
+  padding: clamp(9px, 4cqw, 15px);
+  border: 1px solid var(--rule);
+  border-radius: 5px;
+  background: white;
+  font-size: clamp(9px, 4cqw, 12px);
+  line-height: 1.4;
+  font-variant-numeric: tabular-nums;
+  user-select: none;
+}
+.grad-report-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 2px .5em;
+  padding-bottom: .5em;
+  border-bottom: 1px solid var(--rule);
+  filter: blur(5px);
+}
+.grad-report-head small { color: var(--muted); font-size: .88em; }
+.grad-report-body { min-width: 0; min-height: 0; filter: blur(3px); }
+/* Keep the report structure recognizable while obscuring the examples themselves. */
+.grad-report-body :is(th, td, span, small, data, dt, dd), .grad-remarks blockquote > * { filter: blur(4.5px); }
+.grad-report-body data { font-weight: 700; }
+.grad-report-body ul, .grad-reason-bars { list-style: none; }
+
+.grad-rank-table { width: 100%; border-collapse: collapse; }
+.grad-rank-table :is(th, td) { padding: .17em .25em; text-align: right; white-space: nowrap; }
+.grad-rank-table thead { color: var(--blue); background: var(--pale); }
+.grad-rank-table tbody tr + tr { border-top: 1px solid var(--rule); }
+.grad-rank-table tr > :first-child { text-align: center; color: var(--blue); }
+.grad-rank-table tr > :nth-child(2) { text-align: left; }
+.grad-rank-table tbody th { font-weight: 550; }
+
+.grad-report meter {
+  appearance: none;
+  display: block;
+  width: 100%;
+  min-width: 0;
+  height: .65em;
+  border: 0;
+  border-radius: 2px;
+  color: var(--blue);
+  background: var(--pale);
+}
+.grad-report meter::-webkit-meter-bar { height: 100%; border: 0; border-radius: 2px; background: var(--pale); }
+.grad-report meter::-webkit-meter-optimum-value { border-radius: 2px; background: currentColor; }
+.grad-report meter::-moz-meter-bar { border-radius: 2px; background: currentColor; }
+.grad-reason-bars { display: grid; align-content: space-between; gap: .25em; }
+.grad-reason-bars li { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: baseline; gap: .16em .5em; }
+.grad-reason-bars meter { grid-column: 1 / -1; }
+
+.grad-decline-chart { display: grid; grid-template: minmax(0, 1fr) auto / 2.2em minmax(0, 1fr); gap: .4em; }
+.grad-percent-axis { display: flex; flex-direction: column; justify-content: space-between; text-align: right; }
+.grad-percent-axis small { color: var(--muted); font-size: .86em; line-height: 1; }
+.grad-decline-bars, .grad-category-axis { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.grad-decline-bars {
+  border-left: 1px solid var(--rule);
+  border-bottom: 1px solid var(--muted);
+  background: repeating-linear-gradient(to top, var(--rule) 0 1px, transparent 1px 50%);
+}
+.grad-decline-bars li { display: flex; align-items: end; justify-content: center; }
+.grad-decline-bars i { position: relative; width: 56%; border-radius: 2px 2px 0 0; background: var(--blue-2); }
+.grad-decline-bars li:first-child i { background: var(--blue); }
+.grad-decline-bars data { position: absolute; bottom: calc(100% + .25em); left: 50%; transform: translateX(-50%); font-style: normal; }
+.grad-category-axis { grid-column: 2; text-align: center; font-size: .88em; line-height: 1.3; }
+
+.grad-remarks { display: grid; align-content: space-evenly; gap: .6em; }
+.grad-remarks blockquote { margin: 0; padding-left: .75em; border-left: 3px solid var(--blue-2); }
+.grad-remarks strong { display: block; margin-bottom: .2em; color: var(--blue); }
+.grad-remarks p { font-size: .94em; line-height: 1.55; }
+
+.grad-duration-chart { display: grid; grid-template-columns: minmax(0, .95fr) minmax(0, 1.05fr); align-items: center; gap: .7em; }
+.grad-duration-wheel {
+  width: 100%;
+  max-width: 9.2em;
+  aspect-ratio: 1;
+  justify-self: center;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, white 48%, transparent 50%),
+    conic-gradient(from -90deg, color-mix(in srgb, var(--blue-2) 32%, white) 0 12%, var(--blue-2) 12% 45%, var(--blue) 45% 82%, var(--muted) 82% 100%);
+}
+.grad-duration-key { display: grid; gap: .65em; }
+.grad-duration-key div { display: grid; grid-template-columns: .6em 1fr auto; align-items: center; gap: .4em; }
+.grad-duration-key div::before, .grad-source-key span::before { width: .6em; height: .6em; border-radius: 2px; background: var(--blue); content: ""; }
+.grad-duration-key div:nth-child(1)::before { background: color-mix(in srgb, var(--blue-2) 32%, white); }
+.grad-duration-key div:nth-child(2)::before { background: var(--blue-2); }
+.grad-duration-key div:nth-child(4)::before { background: var(--muted); }
+.grad-duration-key dd { font-weight: 700; }
+
+.grad-source-chart { display: grid; grid-template-rows: auto 1fr; gap: .8em; }
+.grad-source-key { display: flex; flex-wrap: wrap; gap: .2em 1em; font-size: .87em; }
+.grad-source-key span { display: inline-flex; align-items: center; gap: .3em; }
+.grad-source-key span:last-child::before { background: var(--blue-2); }
+.grad-source-bars { display: grid; align-content: space-around; gap: .5em; }
+.grad-source-bars li { display: grid; grid-template-columns: 6em minmax(0, 1fr) 2.4em; align-items: center; gap: .15em .4em; }
+.grad-source-bars span { grid-row: span 2; }
+.grad-source-bars data { text-align: right; line-height: 1.1; }
+.grad-source-bars meter:nth-of-type(2) { color: var(--blue-2); }
