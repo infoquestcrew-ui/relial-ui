@@ -9,8 +9,9 @@
     <title>月額10万円〜の採用代行サービス｜RELIAL株式会社</title>
     <link rel="icon" type="image/svg+xml" href="assets/relial-mark.svg">
     <link rel="preload" as="font" type="font/woff2" href="assets/fonts/noto-sans-jp-ui.woff2" crossorigin>
-    <link rel="stylesheet" href="site.css?v=31">
+    <link rel="stylesheet" href="site.css?v=44ba8362">
     <script src="site.js?v=6" defer></script>
+    <script src="monthly-rpo.js?v=e87b0654" defer></script>
   </head>
   <body id="top" class="industry-page service-guide guide-monthly">
     <a class="skip" href="#main">本文へ移動</a>
@@ -61,9 +62,13 @@
           <div class="guide-hero-layout">
             <div class="guide-hero-copy">
               <p class="guide-service-name">月額採用代行サービス</p>
-              <h1><span class="phrase">採用実務を、</span><br><span class="phrase">月額<strong>10</strong>万円〜で。</span></h1>
-              <p class="guide-lead">業界を問わず、社内で手が足りない採用実務を引き受けます。媒体運用だけ、面接調整だけでもご依頼いただけます。</p>
-              <div class="guide-hero-actions"><div class="guide-action"><a class="button guide-button" href="contact.html?type=monthly-rpo&amp;intent=consultation">無料で相談する<i class="arrow" aria-hidden="true"></i></a><p class="consult-note">30分・オンライン・その場での契約不要</p></div><a class="guide-link" href="#scope">依頼したい業務を選ぶ<i class="arrow" aria-hidden="true"></i></a></div>
+              <h1><span class="phrase">足りない採用の手を、</span><br><span class="phrase">必要な分だけ。</span></h1>
+              <p class="guide-lead">媒体運用からスカウト、応募者対応まで。<br>採用実務を1つの業務から、月額10万円〜でお任せいただけます。</p>
+              <div class="guide-hero-actions">
+                <a class="button guide-button" href="contact.html?type=monthly-rpo&amp;intent=consultation" aria-describedby="hero-consult-note">無料で相談する<i class="arrow" aria-hidden="true"></i></a>
+                <a class="guide-link" href="#scope">依頼したい業務を選ぶ<i class="arrow" aria-hidden="true"></i></a>
+              </div>
+              <p class="consult-note" id="hero-consult-note">ご相談・お見積もりは無料です。オンライン30分ほどでお話を伺います。</p>
             </div>
             <figure class="guide-hero-image"><img src="assets/operations.webp" alt="求人の運用データを確認しながら採用業務を進める様子" fetchpriority="high" decoding="async"></figure>
             <div class="guide-record"><p>RELIAL全体の実績</p><dl>
@@ -84,11 +89,12 @@
           <div class="guide-worries" data-reveal>
             <img src="assets/recruiting-concerns.webp" width="800" height="600" loading="lazy" decoding="async" alt="">
             <ul aria-label="採用担当者の悩み">
-              <li>媒体の選定に迷っている</li>
-              <li>掲載後に原稿を直す時間がない</li>
-              <li>スカウトの送信が追いつかない</li>
-              <li>面接調整で一日が終わる</li>
-              <li>振り返るべき数字が分からない</li>
+              <li>どの媒体に出せばいいか、毎回迷う</li>
+              <li>掲載後の原稿を、見直す時間がない</li>
+              <li>スカウトを送りたいのに、手が回らない</li>
+              <li>面接の日程調整だけで、一日が終わる</li>
+              <li>応募への連絡が遅れ、候補者を逃している</li>
+              <li>何の数字を見て改善すればいいか、分からない</li>
             </ul>
           </div>
         </div>
@@ -98,16 +104,28 @@
         <div class="detail-wrap">
           <header class="section-head" data-reveal>
             <p class="eyebrow" lang="en">Working cycle</p>
-            <h2 id="features">選んで、動かして、改善する</h2>
-            <p class="detail-lead">方針はあるけれど動かす人が足りないときに。毎月の運用で見えた課題を、次の施策に反映します。</p>
+            <h2 id="features"><span class="phrase">任せて終わりにしない、</span><wbr><span class="phrase">毎月の振り返り。</span></h2>
+            <p class="detail-lead">方針はあるのに、動かす人が足りない。そんな企業の採用実務を引き受けます。</p>
           </header>
           <figure id="reasons" class="rpo-cycle" data-reveal>
             <ol class="guide-process">
-              <li><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="assets/service-icons.svg#target"></use></svg><strong>選定</strong><span>職種・予算・時期を確認</span><small class="tag">媒体と施策を決める</small></li>
-              <li><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="assets/service-icons.svg#calendar"></use></svg><strong>実務</strong><span>決めた業務をチームが運用</span><small class="tag">掲載・連絡・日程調整</small></li>
-              <li><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="assets/service-icons.svg#chart"></use></svg><strong>改善</strong><span>応募と選考の数字を比較</span><small class="tag">次の打ち手を提案</small></li>
+              <li>
+                <svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="assets/service-icons.svg#target"></use></svg>
+                <strong><small>01</small> 決める</strong>
+                <p>職種・予算・時期を伺い、使う媒体と進め方を決めます。</p>
+              </li>
+              <li>
+                <svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="assets/service-icons.svg#calendar"></use></svg>
+                <strong><small>02</small> 運用する</strong>
+                <p>掲載・スカウト・応募者対応など、決めた業務をRELIALが担当します。</p>
+              </li>
+              <li>
+                <svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="assets/service-icons.svg#chart"></use></svg>
+                <strong><small>03</small> 振り返る</strong>
+                <p>毎月、応募や面接の数字をご報告し、翌月の進め方をご提案します。</p>
+              </li>
             </ol>
-            <figcaption><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="assets/service-icons.svg#repeat"></use></svg>運用結果を、次の選定へ戻す</figcaption>
+            <figcaption><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="assets/service-icons.svg#repeat"></use></svg>振り返った結果を、翌月の運用に活かします。</figcaption>
           </figure>
         </div>
       </section>
@@ -129,7 +147,6 @@
               <tr id="tasks-analysis"><th scope="row"><label><input type="checkbox" name="support" value="analysis"><span>分析・改善提案</span></label><small>媒体ごとの費用対効果が不明</small></th><td data-label="RELIALの業務">媒体・職種別の応募単価と面接到達率の比較、課題整理、次月施策の提案</td><td data-label="貴社にお願いすること">採用結果と現場の所感を共有</td></tr>
             </tbody></table>
             <div class="selector-actions" id="full-support"><button class="button guide-button" type="submit">選んだ内容で相談する<i class="arrow" aria-hidden="true"></i></button><a class="guide-link" href="contact.html?type=monthly-rpo&amp;intent=consultation&amp;support=full">一括で相談する<i class="arrow" aria-hidden="true"></i></a></div>
-            <p class="consult-note selector-note">30分・オンライン・その場での契約不要</p>
           </form>
         </div>
       </section>
@@ -139,23 +156,154 @@
           <header class="section-head" data-reveal>
             <p class="eyebrow" lang="en">Cases</p>
             <h2 id="cases">支援前後の変化を比べる</h2>
-            <p class="detail-lead">課題と業務の組み合わせを示す架空例です。社員数・期間・成果はすべてサンプルです。</p>
           </header>
-          <div class="choice-grid guide-cases">
-            <article class="guide-case industry-card" data-reveal>
-              <div class="case-heading"><h3>小売業・従業員120名</h3><span class="sample-label">サンプル</span></div>
-              <p class="case-metric">応募から初回連絡までの平均<small>各1か月</small></p>
-              <dl class="case-change"><div><dt>支援前</dt><dd>24<small>時間</small></dd></div><div><dt>支援後</dt><dd><strong>4</strong><small>時間</small></dd></div></dl>
-              <dl class="case-work"><div><dt>課題</dt><dd>店舗責任者が応募通知を確認しきれない</dd></div><div><dt>打ち手</dt><dd>初期連絡と面接枠の管理を一本化</dd></div></dl>
+          <div class="choice-grid guide-cases" role="region" aria-labelledby="cases" tabindex="0" data-reveal>
+            <article class="industry-card guide-case">
+              <h3>小売業<wbr>・従業員120名</h3>
+              <dl class="rpo-case-work">
+                <div><dt>依頼した業務</dt><dd>応募者対応・日程調整</dd></div>
+                <div><dt>課題</dt><dd>店舗の責任者が応募の通知を確認しきれず、連絡が翌日以降になっていた</dd></div>
+                <div>
+                  <dt>RELIALが行ったこと</dt>
+                  <dd>
+                    <ul>
+                      <li>応募の通知先をRELIALに一本化</li>
+                      <li>面接枠を事前に共有してもらい、初回連絡の時点で日程を確定</li>
+                      <li>面接前日にリマインドを送信</li>
+                    </ul>
+                  </dd>
+                </div>
+              </dl>
+              <footer class="rpo-case-result">
+                <p class="case-metric">応募から初回連絡まで</p>
+                <dl class="case-change" aria-label="支援結果">
+                  <div><dt>支援前</dt><dd>24<small>時間</small></dd></div>
+                  <div><dt>支援後</dt><dd><strong>30</strong><small>分以内</small></dd></div>
+                </dl>
+              </footer>
             </article>
-            <article class="guide-case industry-card" data-reveal>
-              <div class="case-heading"><h3>IT企業・従業員45名</h3><span class="sample-label">サンプル</span></div>
-              <p class="case-metric">スカウト返信率<small>各2か月</small></p>
-              <dl class="case-change"><div><dt>支援前</dt><dd>3<small>%</small></dd></div><div><dt>支援後</dt><dd><strong>8</strong><small>%</small></dd></div></dl>
-              <dl class="case-work"><div><dt>課題</dt><dd>候補者の抽出と文面作成に時間がかかる</dd></div><div><dt>打ち手</dt><dd>経験別に文面を作り配信結果を比較</dd></div></dl>
+            <article class="industry-card guide-case">
+              <h3>IT企業<wbr>・従業員45名</h3>
+              <dl class="rpo-case-work">
+                <div><dt>依頼した業務</dt><dd>スカウト業務</dd></div>
+                <div><dt>課題</dt><dd>普段の業務が忙しく、スカウトが活用できていなかった</dd></div>
+                <div>
+                  <dt>RELIALが行ったこと</dt>
+                  <dd>
+                    <ul>
+                      <li>経験年数ごとに、スカウト文面を作り分け</li>
+                      <li>送信する曜日と時間帯ごとに、返信率を比較</li>
+                      <li>返信が多かった文面と時間帯に寄せて配信</li>
+                    </ul>
+                  </dd>
+                </div>
+              </dl>
+              <footer class="rpo-case-result">
+                <p class="case-metric">スカウト返信率</p>
+                <dl class="case-change" aria-label="支援結果">
+                  <div><dt>支援前</dt><dd>1<small>%</small></dd></div>
+                  <div><dt>支援後</dt><dd><strong>7</strong><small>%</small></dd></div>
+                </dl>
+              </footer>
+            </article>
+            <article class="industry-card guide-case">
+              <h3>飲食チェーン</h3>
+              <dl class="rpo-case-work">
+                <div><dt>依頼した業務</dt><dd>求人運用・改善</dd></div>
+                <div><dt>課題</dt><dd>全店舗で同じ原稿を使い回し、応募が一部の店舗に偏っていた</dd></div>
+                <div>
+                  <dt>RELIALが行ったこと</dt>
+                  <dd>
+                    <ul>
+                      <li>店舗ごとに近隣の競合求人を調べ、時給やシフト条件で埋もれている点を特定</li>
+                      <li>応募の多い店舗の原稿から効いている要素を抜き出し、ほかの店舗に展開</li>
+                      <li>学生・主婦など店舗ごとに来てほしい層を決め、訴求と掲載先を使い分け</li>
+                    </ul>
+                  </dd>
+                </div>
+              </dl>
+              <footer class="rpo-case-result">
+                <p class="case-metric">月間の応募数</p>
+                <dl class="case-change" aria-label="支援結果">
+                  <div><dt>支援前</dt><dd>6<small>件</small></dd></div>
+                  <div><dt>支援後</dt><dd><strong>35</strong><small>件</small></dd></div>
+                </dl>
+              </footer>
+            </article>
+            <article class="industry-card guide-case">
+              <h3>介護事業者<wbr>・3拠点</h3>
+              <dl class="rpo-case-work">
+                <div><dt>依頼した業務</dt><dd>応募者対応・日程調整</dd></div>
+                <div><dt>課題</dt><dd>現場が忙しく、応募者への折り返しが遅れて面接につながらなかった</dd></div>
+                <div>
+                  <dt>RELIALが行ったこと</dt>
+                  <dd>
+                    <ul>
+                      <li>応募者への初回連絡を当日中に実施</li>
+                      <li>各拠点の面接枠を一覧にまとめ、その場で日程を提示</li>
+                      <li>面接前日と当日の朝にリマインドを送信</li>
+                    </ul>
+                  </dd>
+                </div>
+              </dl>
+              <footer class="rpo-case-result">
+                <p class="case-metric">面接の設定率</p>
+                <dl class="case-change" aria-label="支援結果">
+                  <div><dt>支援前</dt><dd>30<small>%</small></dd></div>
+                  <div><dt>支援後</dt><dd><strong>75</strong><small>%</small></dd></div>
+                </dl>
+              </footer>
+            </article>
+            <article class="industry-card guide-case">
+              <h3>製造業<wbr>・従業員200名</h3>
+              <dl class="rpo-case-work">
+                <div><dt>依頼した業務</dt><dd>採用計画・媒体選定</dd></div>
+                <div><dt>課題</dt><dd>毎年同じ媒体に掲載を続け、採用費が膨らんでいた</dd></div>
+                <div>
+                  <dt>RELIALが行ったこと</dt>
+                  <dd>
+                    <ul>
+                      <li>媒体ごとに1人採用するまでの費用を算出し、費用に見合わない掲載を特定</li>
+                      <li>RELIALの支援実績から、同じ職種で採用につながりやすい媒体を選び直し</li>
+                      <li>年間の採用計画から逆算し、応募が集まりやすい時期に予算を集中</li>
+                    </ul>
+                  </dd>
+                </div>
+              </dl>
+              <footer class="rpo-case-result">
+                <p class="case-metric">1人あたりの採用費</p>
+                <dl class="case-change" aria-label="支援結果">
+                  <div><dt>支援前</dt><dd>48<small>万円</small></dd></div>
+                  <div><dt>支援後</dt><dd><strong>26</strong><small>万円</small></dd></div>
+                </dl>
+              </footer>
+            </article>
+            <article class="industry-card guide-case">
+              <h3>不動産仲介会社<wbr>・従業員50名</h3>
+              <dl class="rpo-case-work">
+                <div><dt>依頼した業務</dt><dd>分析・改善提案</dd></div>
+                <div><dt>課題</dt><dd>内定を出しても辞退が続き、採用人数が計画に届かなかった</dd></div>
+                <div>
+                  <dt>RELIALが行ったこと</dt>
+                  <dd>
+                    <ul>
+                      <li>辞退した候補者の理由を集計し、共通点を整理</li>
+                      <li>内定後の連絡の頻度と内容を見直し</li>
+                      <li>入社前に、配属先の社員と話せる場を設けることを提案</li>
+                    </ul>
+                  </dd>
+                </div>
+              </dl>
+              <footer class="rpo-case-result">
+                <p class="case-metric">内定承諾率</p>
+                <dl class="case-change" aria-label="支援結果">
+                  <div><dt>支援前</dt><dd>30<small>%</small></dd></div>
+                  <div><dt>支援後</dt><dd><strong>60</strong><small>%</small></dd></div>
+                </dl>
+              </footer>
             </article>
           </div>
-          <div class="guide-action"><a class="button guide-button" href="contact.html?type=monthly-rpo&amp;intent=consultation">自社で任せたい業務を相談する<i class="arrow" aria-hidden="true"></i></a><p class="consult-note">30分・オンライン・その場での契約不要</p></div>
+          <div class="guide-action"><a class="button guide-button" href="contact.html?type=monthly-rpo&amp;intent=consultation">自社で任せたい業務を相談する<i class="arrow" aria-hidden="true"></i></a></div>
         </div>
       </section>
 
@@ -163,21 +311,13 @@
         <div class="detail-wrap">
           <header class="section-head" data-reveal>
             <p class="eyebrow" lang="en">Pricing</p>
-            <h2 id="pricing">月額料金と費用の内訳</h2>
-            <p class="detail-lead">募集職種や月間の応募件数を伺い、委託する範囲と社内で担う範囲を決めます。</p>
+            <h2 id="pricing">料金</h2>
           </header>
-          <article class="industry-card rpo-pricing">
-            <div class="rpo-rate">
-              <h3>月額の運用代行費</h3>
-              <p class="guide-amount"><small>月額</small><strong>10</strong>万円〜</p>
-              <p>担当業務・媒体数・対応件数・稼働量に応じて個別にお見積もりします。</p>
-            </div>
-            <dl class="fee-breakdown">
-              <div><dt>掲載費・広告費</dt><dd>出稿先に支払う費用は、運用代行費と分けてお見積もりします。</dd></div>
-              <div><dt>ツール利用料</dt><dd>既存の媒体・採用管理システムの利用状況を確認し、新規に必要な費用があれば契約前にご案内します。</dd></div>
-            </dl>
+          <article class="industry-card rpo-pricing" data-reveal>
+            <h3>月額の運用代行費</h3>
+            <p class="guide-amount"><small>月額</small><strong>10</strong>万円〜</p>
+            <p>担当業務・媒体数・対応件数・稼働量に応じて個別にお見積もりします。</p>
           </article>
-          <div class="guide-action"><a class="button guide-button" href="contact.html?type=monthly-rpo&amp;intent=estimate">料金の見積もりを相談する<i class="arrow" aria-hidden="true"></i></a><p class="consult-note">30分・オンライン・その場での契約不要</p></div>
         </div>
       </section>
 
@@ -185,18 +325,39 @@
         <div class="detail-wrap">
           <header class="section-head" data-reveal>
             <p class="eyebrow" lang="en">Channels</p>
-            <h2 id="channels">運用実績のある採用媒体</h2>
+            <h2 id="channels">対応可能媒体</h2>
             <p class="detail-lead">求人広告、求人検索エンジン、ダイレクトリクルーティングなど、今お使いの媒体からご相談いただけます。</p>
           </header>
-          <ul class="guide-brands" data-reveal>
-            <li><img src="assets/media/doda.webp" alt="doda" width="351" height="95" loading="lazy" decoding="async"></li>
-            <li><img src="assets/media/en-tenshoku.webp" alt="エン転職" width="400" height="98" loading="lazy" decoding="async"></li>
-            <li><img src="assets/media/type.webp" alt="type" width="317" height="120" loading="lazy" decoding="async"></li>
-            <li><img src="assets/media/wantedly.webp" alt="Wantedly" width="351" height="95" loading="lazy" decoding="async"></li>
-            <li><img src="assets/media/doda-direct.webp" alt="doda ダイレクト" width="400" height="116" loading="lazy" decoding="async"></li>
-            <li><img src="assets/media/forkwell.webp" alt="Forkwell Jobs" width="351" height="95" loading="lazy" decoding="async"></li>
-          </ul>
-          <p class="guide-note">掲載は取り扱い媒体の一例です。募集職種・経験層・既存契約に合わせてご提案します。</p>
+          <div class="rpo-channels" id="channel-logos" data-reveal>
+            <div class="rpo-channel-row">
+              <ul>
+                <li><span>BIZREACH</span></li>
+                <li><span>Direct type</span></li>
+                <li><img src="assets/media/type.webp" width="317" height="120" alt="type" decoding="async"></li>
+                <li><img src="assets/media/doda-direct.webp" width="400" height="116" alt="doda ダイレクト" decoding="async"></li>
+              </ul>
+            </div>
+            <div class="rpo-channel-row">
+              <ul>
+                <li><span>yagioffer</span></li>
+                <li><span>レバテックダイレクト</span></li>
+                <li><span>OpenWork</span></li>
+                <li><img src="assets/media/wantedly.webp" width="351" height="95" alt="Wantedly" decoding="async"></li>
+              </ul>
+            </div>
+            <div class="rpo-channel-row">
+              <ul>
+                <li><span>エン転職ダイレクト</span></li>
+                <li><span>ミドルの転職</span></li>
+                <li><span>AMBI</span></li>
+                <li><img src="assets/media/forkwell.webp" width="351" height="95" alt="Forkwell Jobs" decoding="async"></li>
+              </ul>
+            </div>
+          </div>
+          <div class="rpo-channel-foot">
+            <p class="guide-note">上記以外の媒体にも対応しています。</p>
+            <button class="rpo-channel-toggle" type="button" aria-controls="channel-logos" hidden>自動スクロールを一時停止</button>
+          </div>
         </div>
       </section>
 
@@ -207,12 +368,12 @@
             <h2 id="flow">ご利用までの流れ</h2>
           </header>
           <ol class="guide-flow" data-reveal>
-            <li><span class="flow-dot"><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="assets/service-icons.svg#chat"></use></svg></span><h3>無料相談</h3><p>任せたい業務を共有</p></li>
-            <li><span class="flow-dot"><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="assets/service-icons.svg#search"></use></svg></span><h3>状況確認</h3><p>職種・媒体・件数の確認</p></li>
-            <li><span class="flow-dot"><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="assets/service-icons.svg#file"></use></svg></span><h3>お見積もり</h3><p>範囲・稼働量・費用を提示</p></li>
-            <li><span class="flow-dot"><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="assets/service-icons.svg#check"></use></svg></span><h3>契約・準備</h3><p>権限・原稿・面接枠の確認</p></li>
-            <li><span class="flow-dot"><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="assets/service-icons.svg#flag"></use></svg></span><h3>支援開始</h3><p>担当者が運用を開始</p></li>
-            <li><span class="flow-dot"><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="assets/service-icons.svg#repeat"></use></svg></span><h3>振り返り</h3><p>数値と対応状況を共有</p></li>
+            <li><span class="flow-dot"><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="assets/service-icons.svg#chat"></use></svg></span><h3>無料相談</h3><p>ご希望を伺う</p></li>
+            <li><span class="flow-dot"><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="assets/service-icons.svg#search"></use></svg></span><h3>状況確認</h3><p>職種・媒体を確認</p></li>
+            <li><span class="flow-dot"><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="assets/service-icons.svg#file"></use></svg></span><h3>お見積もり</h3><p>範囲と費用を提示</p></li>
+            <li><span class="flow-dot"><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="assets/service-icons.svg#check"></use></svg></span><h3>契約・準備</h3><p>権限と原稿を確認</p></li>
+            <li><span class="flow-dot"><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="assets/service-icons.svg#flag"></use></svg></span><h3>支援開始</h3><p>依頼業務を開始</p></li>
+            <li><span class="flow-dot"><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="assets/service-icons.svg#repeat"></use></svg></span><h3>振り返り</h3><p>毎月の結果を共有</p></li>
           </ol>
         </div>
       </section>
@@ -224,23 +385,52 @@
             <h2 id="faq">よくあるご質問</h2>
           </header>
           <div class="guide-faq">
-            <details><summary>1種類の業務だけでも依頼できますか？</summary><p>はい。スカウト配信だけ、応募後の連絡だけなど、現在の採用体制に合わせて組み合わせられます。委託の開始点と社内へ引き渡す時点を決めてから運用に入ります。</p></details>
-            <details><summary>現在使っている媒体を継続できますか？</summary><p>利用中の媒体名・契約プラン・管理者権限をお知らせください。既存の契約を活かせるかを確認し、募集職種への反応を見て継続・改善・追加を提案します。</p></details>
-            <details><summary>スカウトの送信対象や文面は確認できますか？</summary><p>ご希望の職種、必要な経験、対象エリアをもとに検索条件を整理します。送信前に文面やアプローチ方針を確認し、運用後は対象者ごとの反応をもとに見直します。</p></details>
-            <details><summary>応募者の連絡や面接日程の調整はどう分担しますか？</summary><p>先に貴社の面接枠・連絡方法・担当者を伺います。RELIALが候補日を回収して案内し、判断が必要な問い合わせや条件に関する質問は貴社へ引き継ぎます。面接・選考結果の決定は貴社の担当です。</p></details>
-            <details><summary>何を伝えると見積もりが具体的になりますか？</summary><p>募集職種、採用予定人数と時期、運用中の媒体、月間のおおよその応募・スカウト件数をご用意ください。件数が見えていない場合も、今いちばん時間がかかっている作業から整理できます。</p></details>
-            <details><summary>月額10万円で依頼できる件数は決まっていますか？</summary><p>一律の送信数や対応件数を公表したプランではありません。媒体ごとの運用方法、文面作成の範囲、連絡の頻度などを確認し、対応量と超過が見込まれるときの扱いを見積もり時に整理します。</p></details>
-            <details><summary>応募が増えた場合、依頼範囲を見直せますか？</summary><p>繁忙期に面接調整へ人手を回したい、募集終了後は分析だけ頼みたい、といった変更は担当者へご相談ください。追加作業の量・費用・切り替え時期を確認し合意したうえで進めます。</p></details>
-            <details><summary>応募者対応を引き継ぐとき、最初に何を決めますか？</summary><p>連絡する時間帯、メールの差出人、面接枠の更新方法、回答に迷ったときの確認先を整理します。すでに選考が進んでいる方は直近の連絡と次の対応予定を共有し、重複連絡を防ぎます。</p></details>
-            <details><summary>成果はどの数字で確認しますか？</summary><p>媒体別の応募数と費用に加え、初回連絡までの時間、面接の設定率、スカウトの返信率などから課題に合う指標を選びます。単に応募の総数を追うだけでなく、求める人材との接点が増えたかも振り返ります。</p></details>
-            <details><summary>業種特化の採用支援との違いは何ですか？</summary><p>採用方針からチームとつくりたいSES・不動産・建設・介護の企業には業種特化の採用支援があります。月額代行は業界を問わず、日々の実務を委託したい場合に向いています。参加特典の条件は契約ごとにご案内します。育成したい職種や訴求から見直す場合は、<a class="guide-inline" href="recruitment-support.html">業種特化の採用支援</a>をご覧ください。</p></details>
+            <details>
+              <summary><span><b>Q1.</b> 1つの業務だけでも依頼できますか？</span></summary>
+              <p>はい。媒体運用だけ、日程調整だけといったご依頼も承ります。</p>
+            </details>
+            <details>
+              <summary><span><b>Q2.</b> 今使っている媒体や採用管理システムは、そのまま使えますか？</span></summary>
+              <p>はい。今の契約や設定を確認したうえで、そのまま運用を引き継ぎます。</p>
+            </details>
+            <details>
+              <summary><span><b>Q3.</b> 月額10万円で、どこまで対応してもらえますか？</span></summary>
+              <p>業務の内容や件数によって異なります。お見積もりの際に、対応する範囲と件数を明確にしてからご契約いただきます。</p>
+            </details>
+            <details>
+              <summary><span><b>Q4.</b> 求人媒体の掲載費や広告費は、月額料金に含まれますか？</span></summary>
+              <p>含まれません。媒体に支払う費用は、運用代行費とは分けてお見積もりします。</p>
+            </details>
+            <details>
+              <summary><span><b>Q5.</b> 新しくツールの費用がかかることはありますか？</span></summary>
+              <p>今お使いの媒体や採用管理システムを確認し、新たに費用が必要な場合は、ご契約前にご案内します。</p>
+            </details>
+            <details>
+              <summary><span><b>Q6.</b> 繁忙期だけ、依頼する業務を増やすことはできますか？</span></summary>
+              <p>はい。応募が増える時期に合わせて、依頼の範囲を変更できます。</p>
+            </details>
+            <details>
+              <summary><span><b>Q7.</b> 応募者への連絡は、どこまで任せられますか？</span></summary>
+              <p>初回のご連絡、日程調整、リマインドまでRELIALが担当します。合否の判断は貴社で行っていただきます。</p>
+            </details>
+            <details>
+              <summary><span><b>Q8.</b> 業界を問わず依頼できますか？</span></summary>
+              <p>はい。業界や職種を問わずご依頼いただけます。</p>
+            </details>
+            <details>
+              <summary><span><b>Q9.</b> 成果はどのように確認できますか？</span></summary>
+              <p>毎月のご報告で、応募数・面接の設定率・スカウトの返信率などの数字を共有します。</p>
+            </details>
           </div>
         </div>
       </section>
 
       <aside class="contact-band wrap guide-final" aria-labelledby="contact-title" data-reveal>
         <div><p class="eyebrow" lang="en">Contact</p><h2 id="contact-title">手が足りない業務から、ご相談ください。</h2></div>
-        <div class="guide-action"><a class="button guide-button" href="contact.html?type=monthly-rpo&amp;intent=consultation">無料相談・お問い合わせ<i class="arrow" aria-hidden="true"></i></a><p class="consult-note">30分・オンライン・その場での契約不要</p></div>
+        <div class="guide-action">
+          <a class="button guide-button" href="contact.html?type=monthly-rpo&amp;intent=consultation" aria-describedby="final-consult-note">まずは無料で、話を聞いてみる<i class="arrow" aria-hidden="true"></i></a>
+          <p class="consult-note" id="final-consult-note">依頼する業務が決まっていなくても大丈夫です。</p>
+        </div>
       </aside>
     </main>
     <footer class="site-footer">

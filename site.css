@@ -2085,23 +2085,7 @@ body.menu-open { overflow: hidden; }
 .sitemap-shortcuts a + a { border-left: 1px solid var(--rule); }
 .sitemap-directory a:is(:hover, :focus-visible) { color: var(--blue); text-decoration: underline; text-underline-offset: .3em; }
 
-/* Monthly RPO rate and company services */
-.guide-monthly .rpo-pricing {
-  display: grid;
-  grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
-  align-items: center;
-  gap: clamp(24px, 3vw, 42px);
-  max-width: 52rem;
-  margin-inline: auto;
-}
-.rpo-rate { display: grid; gap: 12px; }
-.rpo-rate .guide-amount { line-height: 1.2; font-size: 18px; }
-.rpo-rate .guide-amount strong { font-size: clamp(52px, 5vw, 66px); }
-.rpo-rate > p:last-child, .rpo-pricing dd { color: var(--muted); font-size: 14px; line-height: 1.8; }
-.rpo-pricing .fee-breakdown { margin: 0; padding-left: clamp(24px, 3vw, 42px); border-left: 1px solid var(--rule); }
-.rpo-pricing .fee-breakdown > div { display: block; padding: 0; border: 0; }
-.rpo-pricing .fee-breakdown > div + div { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--rule); }
-.rpo-pricing dd { margin-top: 3px; }
+/* Company services */
 .company-services { list-style: none; }
 .company-services li + li { margin-top: 6px; }
 .company-services a { color: var(--blue); text-decoration: underline; text-underline-offset: .22em; }
@@ -2128,8 +2112,6 @@ body.menu-open { overflow: hidden; }
   .sitemap-shortcuts { grid-template-columns: 1fr; padding: 4px 20px; }
   .sitemap-shortcuts a { padding: 14px 0; }
   .sitemap-shortcuts a + a { border-left: 0; border-top: 1px solid var(--rule); }
-  .guide-monthly .rpo-pricing { grid-template-columns: minmax(0, 1fr); gap: 22px; max-width: 32rem; }
-  .rpo-pricing .fee-breakdown { padding: 18px 0 0; border-left: 0; border-top: 1px solid var(--rule); }
 }
 
 /* Industry-specific recruitment support */
@@ -2352,12 +2334,12 @@ body.menu-open { overflow: hidden; }
   word-break: auto-phrase;
   overflow-wrap: anywhere;
 }
-.guide-community .guide-worries {
+:is(.guide-community, .guide-monthly) .guide-worries {
   max-width: 960px;
   margin-inline: auto;
   grid-template-columns: minmax(160px, .75fr) minmax(0, 1.25fr);
 }
-.guide-community .guide-worries ul { grid-template-columns: minmax(0, 1fr); }
+:is(.guide-community, .guide-monthly) .guide-worries ul { grid-template-columns: minmax(0, 1fr); }
 .guide-community .community-industries {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -2472,7 +2454,7 @@ body.menu-open { overflow: hidden; }
 .guide-community .guide-flow h3 small, .guide-community .guide-faq summary b { color: var(--blue); font-family: var(--en); }
 
 @media (max-width: 768px) {
-  .guide-community .guide-worries {
+  :is(.guide-community, .guide-monthly) .guide-worries {
     grid-template-columns: minmax(0, 1fr);
     gap: 18px;
     padding: 0;
@@ -2480,15 +2462,15 @@ body.menu-open { overflow: hidden; }
     background: transparent;
     box-shadow: none;
   }
-  .guide-community .guide-worries img { width: min(58%, 190px); mix-blend-mode: multiply; }
-  .guide-community .guide-worries ul {
+  :is(.guide-community, .guide-monthly) .guide-worries img { width: min(58%, 190px); mix-blend-mode: multiply; }
+  :is(.guide-community, .guide-monthly) .guide-worries ul {
     justify-self: center;
     width: max-content;
     min-width: min(100%, 28rem);
     max-width: min(28rem, calc(100vw - 16px));
     gap: 14px;
   }
-  .guide-community .guide-worries li {
+  :is(.guide-community, .guide-monthly) .guide-worries li {
     padding: 10px clamp(8px, 2.5vw, 14px);
     border: 1px solid var(--rule);
     border-radius: 16px;
@@ -2497,7 +2479,7 @@ body.menu-open { overflow: hidden; }
     font-weight: 600;
     line-height: 1.65;
   }
-  .guide-community .guide-worries li::before {
+  :is(.guide-community, .guide-monthly) .guide-worries li::before {
     top: -6px;
     bottom: auto;
     left: 30%;
@@ -2508,7 +2490,7 @@ body.menu-open { overflow: hidden; }
     background: inherit;
     transform: rotate(45deg);
   }
-  .guide-community .guide-worries li:nth-child(even)::before { left: auto; right: 30%; }
+  :is(.guide-community, .guide-monthly) .guide-worries li:nth-child(even)::before { left: auto; right: 30%; }
   .guide-community .community-industries { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
   .guide-community .community-industries > li { flex-direction: column; justify-content: center; gap: 9px; padding: 16px 8px; text-align: center; }
   .guide-community .community-industries .guide-icon { width: 44px; height: 44px; padding: 9px; }
@@ -2891,3 +2873,101 @@ body.menu-open { overflow: hidden; }
 .grad-source-bars span { grid-row: span 2; }
 .grad-source-bars data { text-align: right; line-height: 1.1; }
 .grad-source-bars meter:nth-of-type(2) { color: var(--blue-2); }
+
+/* Monthly recruitment operations */
+.guide-monthly .guide-hero h1 { font-size: clamp(32px, 3.55vw, 54px); }
+.guide-monthly .guide-hero-actions { align-items: center; }
+.guide-monthly .selector-actions { padding-bottom: 18px; }
+.guide-monthly .rpo-cycle .guide-process li { padding: 22px clamp(16px, 2vw, 28px); }
+.guide-monthly .rpo-cycle strong { display: flex; align-items: baseline; gap: 8px; }
+.guide-monthly .rpo-cycle strong small, .guide-monthly .guide-faq summary b { margin: 0; color: var(--blue); font-family: var(--en); }
+.guide-monthly .rpo-cycle strong small { font-size: .65em; }
+.guide-monthly .rpo-cycle .guide-process p { color: var(--muted); text-align: left; font-size: 15px; line-height: 1.7; }
+
+.guide-monthly .guide-cases { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(12px, 1.5vw, 22px); }
+.guide-monthly .guide-case { container-type: inline-size; padding: clamp(16px, 1.9vw, 28px); }
+.guide-monthly .guide-case h3 { font-size: clamp(18px, 1.5vw, 22px); text-wrap: balance; }
+.rpo-case-work { display: grid; gap: 14px; font-size: 14px; line-height: 1.7; }
+.rpo-case-work dt { margin-bottom: 3px; color: var(--blue); font-weight: 700; }
+.rpo-case-work ul { padding-inline-start: 1.2em; list-style: disc; }
+.rpo-case-work li + li { margin-top: 5px; }
+.rpo-case-work li::marker { color: var(--blue); }
+.rpo-case-result { margin-top: auto; padding-top: 15px; border-top: 1px solid var(--rule); }
+.rpo-case-result .case-metric { font-size: 15px; }
+.rpo-case-result .case-change { display: grid; grid-template-columns: 1fr 1.25fr; gap: 18px; padding: 8px 0 0; border: 0; }
+.rpo-case-result .case-change > div + div { padding: 0; }
+.rpo-case-result .case-change > div + div::before { left: -20px; bottom: .15em; font-size: 15px; }
+.rpo-case-result dd { white-space: nowrap; font-weight: 650; font-size: clamp(21px, 9cqw, 30px); }
+.rpo-case-result dd strong { font-size: clamp(27px, 12cqw, 41px); }
+.rpo-case-result dd small { padding-left: 2px; font-size: clamp(11px, 4.4cqw, 14px); }
+
+.guide-monthly .rpo-pricing { max-width: 32rem; margin-inline: auto; gap: 12px; text-align: center; }
+.guide-monthly .rpo-pricing .guide-amount { font-size: 18px; line-height: 1.2; }
+.guide-monthly .rpo-pricing .guide-amount strong { font-size: clamp(52px, 5vw, 66px); }
+
+.rpo-channels { display: grid; gap: 10px; }
+.rpo-channel-row > ul { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; list-style: none; }
+.rpo-channel-row > ul[aria-hidden] { display: none; }
+.rpo-channel-row li {
+  display: grid;
+  place-items: center;
+  width: clamp(122px, 16vw, 198px);
+  height: clamp(64px, 7vw, 92px);
+  padding: 10px clamp(12px, 1.5vw, 24px);
+  border: 1px solid var(--rule);
+  border-radius: 12px;
+  background: white;
+}
+.rpo-channel-row img { width: 100%; height: 100%; min-height: 0; object-fit: contain; }
+.rpo-channel-row li > span { text-align: center; font-size: clamp(14px, 1.3vw, 19px); font-weight: 650; line-height: 1.45; }
+.rpo-channel-foot { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 4px 20px; margin-top: 16px; }
+.rpo-channel-foot .guide-note { margin: 0; }
+.rpo-channel-toggle {
+  display: none;
+  align-items: center;
+  min-height: 42px;
+  padding-inline: 6px;
+  border: 0;
+  background: transparent;
+  color: var(--blue);
+  font-size: 13px;
+  text-decoration: underline;
+  text-underline-offset: .3em;
+}
+@keyframes rpo-channel-scroll { from { transform: translateX(0); } to { transform: translateX(-100%); } }
+@media screen and (prefers-reduced-motion: no-preference) {
+  .rpo-channels.can-scroll .rpo-channel-row { display: flex; overflow: hidden; }
+  .rpo-channels.can-scroll .rpo-channel-row > ul {
+    display: flex;
+    flex: 0 0 auto;
+    min-width: 100%;
+    flex-wrap: nowrap;
+    padding-inline-end: 12px;
+    animation: rpo-channel-scroll 16s linear infinite;
+  }
+  .rpo-channels.can-scroll .rpo-channel-row li { flex-grow: 1; }
+  .rpo-channels.can-scroll .rpo-channel-row:nth-child(2) > ul { animation-direction: reverse; }
+  .rpo-channels.can-scroll.is-paused .rpo-channel-row > ul { animation-play-state: paused; }
+  .rpo-channel-toggle:not([hidden]) { display: inline-flex; }
+}
+@media (min-width: 769px) and (max-width: 960px) {
+  .guide-monthly .guide-flow p { font-size: 12px; }
+}
+@media (max-width: 768px) {
+  .guide-monthly .guide-hero h1 { font-size: clamp(27px, 8vw, 46px); }
+  .guide-monthly .rpo-cycle .guide-process li { grid-template-columns: 28px minmax(0, 1fr); gap: 4px 12px; padding: 14px 18px; }
+  .guide-monthly .rpo-cycle .guide-process p { grid-column: 2; }
+  .guide-monthly .rpo-cycle figcaption { padding-inline: 10px; font-size: clamp(12px, 3.5vw, 15px); }
+  .guide-monthly .guide-cases {
+    grid-template-columns: none;
+    grid-auto-flow: column;
+    grid-auto-columns: min(90%, 23rem);
+    gap: 12px;
+    padding: 3px 4px 14px;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: 4px;
+  }
+  .guide-monthly .guide-case { padding: 20px; scroll-snap-align: start; }
+}
