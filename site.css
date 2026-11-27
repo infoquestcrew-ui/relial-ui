@@ -3321,4 +3321,9 @@ body.menu-open { overflow: hidden; }
 @media (max-width: 768px) {
   body { letter-spacing: .035em; }
   .guide-hero h1, .industry-page :is(.section-head, .contact-band) h2 { letter-spacing: .035em; }
+  .contact-band h2.corp-contact-title {
+    font-size: clamp(1.5rem, 8vw, 2.25rem);
+    word-break: normal;
+    overflow-wrap: normal;
+  }
 }
