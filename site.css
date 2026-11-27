@@ -2906,7 +2906,7 @@ body.menu-open { overflow: hidden; }
 }
 .guide-monthly .guide-service-name { color: var(--pale); font-size: clamp(14px, 1.16vw, 17px); }
 .guide-monthly .guide-service-name::before { width: 30px; height: 2px; background: var(--blue-2); }
-.guide-monthly .guide-hero h1 { margin-block: 18px 24px; font-size: clamp(35px, 4.05vw, 60px); line-height: 1.38; }
+.guide-monthly .guide-hero h1 { margin-block: 18px 24px; font-size: min(4.05vw, 52px); line-height: 1.38; }
 .guide-monthly .guide-hero h1 .phrase:last-child { color: color-mix(in srgb, var(--blue-2) 45%, white); }
 .guide-monthly .guide-lead { color: var(--pale); }
 .guide-monthly .guide-hero-actions { align-items: center; }
@@ -3121,7 +3121,7 @@ body.menu-open { overflow: hidden; }
     gap: 24px;
     padding-block: 28px 3px;
   }
-  .guide-monthly .guide-hero h1 { margin-block: 12px 16px; font-size: clamp(29px, 8.4vw, 49px); }
+  .guide-monthly .guide-hero h1 { margin-block: 12px 16px; font-size: clamp(20px, 8.1vw, 49px); }
   .guide-monthly .guide-hero-image img { aspect-ratio: 2.45; object-position: 50% 59%; }
   .guide-monthly .guide-hero-actions { column-gap: 14px; }
   .guide-monthly .guide-hero-actions .guide-button { min-height: 48px; gap: 9px; padding-inline: 15px; letter-spacing: .01em; }
