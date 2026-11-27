@@ -2685,3 +2685,14 @@ body.menu-open { overflow: hidden; }
   .guide-community .report-preview { scroll-snap-align: start; }
   .guide-community .report-swipe-hint { display: block; margin: 0 0 8px; color: var(--muted); font-size: 12px; }
 }
+
+.guide-community .hub-map { grid-template-columns: minmax(0, 1fr) max-content; }
+.guide-community :is(.hub-core small, .hub-report) { word-break: auto-phrase; text-wrap: balance; }
+.guide-community .hub-return { display: grid; align-items: center; }
+.guide-community .hub-return span {
+  position: static;
+  transform: none;
+  width: max-content;
+  max-width: none;
+  margin-right: -5px;
+}
