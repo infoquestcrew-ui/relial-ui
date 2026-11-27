@@ -2984,38 +2984,6 @@ body.menu-open { overflow: hidden; }
   background: white;
 }
 
-.guide-monthly .rpo-cycle { max-width: 1000px; }
-.guide-monthly .rpo-cycle .guide-process { position: relative; gap: clamp(20px, 2.8vw, 40px); }
-.guide-monthly .rpo-cycle .guide-process::after {
-  content: "";
-  position: absolute;
-  inset: 100% 16% auto;
-  height: 26px;
-  border: solid var(--blue-2);
-  border-width: 0 1px 1px;
-  border-radius: 0 0 12px 12px;
-}
-.guide-monthly .rpo-cycle .guide-process li {
-  align-items: flex-start;
-  justify-content: start;
-  gap: 14px;
-  padding: clamp(22px, 2.5vw, 36px);
-  text-align: left;
-}
-.guide-monthly .rpo-cycle li + li::before { left: calc(clamp(20px, 2.8vw, 40px) * -.5 - 5px); }
-.guide-monthly .rpo-cycle li > .guide-icon {
-  width: 50px;
-  height: 50px;
-  padding: 11px;
-  border-radius: 14px;
-  background: var(--pale);
-}
-.guide-monthly .rpo-cycle strong { display: flex; align-items: baseline; gap: 10px; }
-.guide-monthly .rpo-cycle strong small { margin: 0; color: var(--blue); font: italic 650 .68em/1 var(--en); }
-.guide-monthly .rpo-cycle li p { color: var(--muted); font-size: 15px; line-height: 1.75; }
-.guide-monthly .rpo-cycle figcaption { max-width: 100%; margin-top: 8px; border: 1px solid var(--rule); background: white; }
-.guide-monthly .rpo-cycle figcaption::before { content: none; }
-
 .guide-monthly .rpo-selector { max-width: 1040px; margin-inline: auto; }
 .guide-monthly .rpo-selector thead th { padding: 17px 20px; }
 .guide-monthly .rpo-selector thead th:nth-child(2) { background: var(--blue); }
@@ -3026,7 +2994,7 @@ body.menu-open { overflow: hidden; }
 .guide-monthly .rpo-selector th small { padding-left: 31px; }
 .guide-monthly .selector-actions { padding: 22px; }
 
-.guide-monthly .guide-cases { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(12px, 1.6vw, 24px); }
+.guide-monthly .guide-cases { grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: start; gap: clamp(12px, 1.6vw, 24px); }
 .guide-monthly .guide-case {
   container-type: inline-size;
   gap: 0;
@@ -3041,26 +3009,54 @@ body.menu-open { overflow: hidden; }
   font-size: clamp(16px, 1.4vw, 21px);
   text-wrap: balance;
 }
-.rpo-case-work { display: grid; gap: 14px; padding: 20px clamp(16px, 1.7vw, 25px); font-size: 14px; line-height: 1.7; }
-.rpo-case-work dt { margin-bottom: 4px; color: var(--muted); font-size: 12px; font-weight: 700; }
-.rpo-case-work > div:first-child dd { color: var(--blue); font-weight: 700; }
+.rpo-case-scope, .rpo-case-work { padding: 16px clamp(16px, 1.7vw, 25px); font-size: 14px; line-height: 1.7; }
+.rpo-case-work { display: grid; gap: 14px; }
+.rpo-case-scope dt, .rpo-case-work dt { margin-bottom: 4px; color: var(--muted); font-size: 12px; font-weight: 700; }
+.rpo-case-scope dd { color: var(--ink); font-weight: 700; }
 .rpo-case-work ul { padding-inline-start: 1.15em; list-style: disc; }
 .rpo-case-work li + li { margin-top: 5px; }
 .rpo-case-work li::marker { color: var(--blue-2); }
+.rpo-case-details { border-top: 1px solid var(--rule); }
+.rpo-case-details summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 48px;
+  padding: 12px clamp(16px, 1.7vw, 25px);
+  color: var(--blue);
+  font-size: 14px;
+  font-weight: 700;
+  list-style: none;
+  cursor: pointer;
+}
+.rpo-case-details summary::-webkit-details-marker { display: none; }
+.rpo-case-details summary::after {
+  content: "";
+  width: 9px;
+  height: 9px;
+  margin-inline-end: 2px;
+  border: solid currentColor;
+  border-width: 0 2px 2px 0;
+  transform: translateY(-2px) rotate(45deg);
+}
+.rpo-case-details[open] summary::after { transform: translateY(2px) rotate(225deg); }
+.rpo-case-details summary:focus-visible { outline-offset: -4px; }
+.rpo-case-details[open] .rpo-case-work { border-top: 1px solid var(--rule); }
 .rpo-case-result {
-  margin-top: auto;
   padding: 16px clamp(14px, 1.5vw, 22px) 20px;
-  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
   background: var(--pale);
 }
 .rpo-case-result .case-metric { font-size: 15px; }
 .rpo-case-result .case-change {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1.24fr);
+  align-items: stretch;
   gap: 20px;
   padding: 10px 0 0;
   border: 0;
 }
+.rpo-case-result .case-change > div { display: flex; flex-direction: column; justify-content: space-between; }
 .rpo-case-result .case-change > div + div { padding: 0; }
 .rpo-case-result .case-change > div + div::before { left: -22px; bottom: .2em; font-size: 16px; }
 .rpo-case-result dt { font-size: 12px; }
@@ -3068,22 +3064,6 @@ body.menu-open { overflow: hidden; }
 .rpo-case-result .case-change > div + div dd { color: var(--blue); }
 .rpo-case-result dd strong { font-size: clamp(29px, 11cqw, 45px); }
 .rpo-case-result dd small { padding-left: 2px; font-size: clamp(12px, 4cqw, 15px); }
-
-.guide-monthly .rpo-pricing {
-  display: grid;
-  grid-template-columns: minmax(0, .68fr) minmax(0, 1fr);
-  gap: 0;
-  max-width: 46rem;
-  margin-inline: auto;
-  padding: 0;
-  overflow: hidden;
-}
-.guide-monthly .rpo-pricing img { width: 100%; height: 100%; object-fit: cover; }
-.guide-monthly .rpo-pricing > div { padding: clamp(26px, 3.2vw, 46px); }
-.guide-monthly .rpo-pricing h3 { font-size: 20px; }
-.guide-monthly .rpo-pricing .guide-amount { margin-block: 8px 18px; color: var(--blue); font-size: 20px; line-height: 1.15; font-weight: 700; }
-.guide-monthly .rpo-pricing .guide-amount strong { font-size: clamp(60px, 5.8vw, 82px); }
-.guide-monthly .rpo-pricing p:last-child { padding-top: 13px; border-top: 1px solid var(--rule); color: var(--muted); font-size: 14px; }
 
 .rpo-channels { display: grid; grid-template-columns: minmax(0, 1fr); justify-content: stretch; gap: 12px; }
 .rpo-channel-row { min-width: 0; }
@@ -3160,13 +3140,6 @@ body.menu-open { overflow: hidden; }
   .guide-monthly .guide-worries img { width: min(60%, 210px); }
   .guide-monthly .guide-worries li { padding: 10px clamp(8px, 2.5vw, 14px); font-size: clamp(.75rem, 3.5vw, .9375rem); }
   .guide-monthly .guide-worries li::before { top: -6px; left: 30%; border-width: 1px 0 0 1px; }
-  .guide-monthly .rpo-cycle .guide-process { gap: 18px; }
-  .guide-monthly .rpo-cycle .guide-process::after { content: none; }
-  .guide-monthly .rpo-cycle .guide-process li { grid-template-columns: 44px minmax(0, 1fr); gap: 3px 14px; align-items: center; padding: 17px; }
-  .guide-monthly .rpo-cycle li > .guide-icon { grid-row: span 2; width: 44px; height: 44px; padding: 9px; }
-  .guide-monthly .rpo-cycle li + li::before { top: -14px; left: 50%; }
-  .guide-monthly .rpo-cycle li p { grid-column: 2; font-size: 14px; }
-  .guide-monthly .rpo-cycle figcaption { margin-top: 16px; padding-inline: 10px; font-size: clamp(12px, 3.5vw, 15px); }
   .guide-monthly .rpo-selector tbody tr { padding: 17px; }
   .guide-monthly .rpo-selector tbody :is(th, td) { padding: 0; }
   .guide-monthly .rpo-selector tbody tr:has(:checked) { box-shadow: inset 3px 0 var(--blue); }
@@ -3186,12 +3159,99 @@ body.menu-open { overflow: hidden; }
     scroll-padding-inline: 4px;
   }
   .guide-monthly .guide-case { scroll-snap-align: start; }
-  .guide-monthly .rpo-pricing { grid-template-columns: minmax(0, 1fr); max-width: 28rem; }
-  .guide-monthly .rpo-pricing img { aspect-ratio: 3.4; height: auto; object-position: center 57%; }
-  .guide-monthly .rpo-pricing > div { padding: 22px; }
   .guide-monthly .guide-flow { max-width: 26rem; }
   .guide-monthly .guide-faq summary { padding-inline: 4px; }
   .guide-monthly .guide-faq summary > span { gap: 6px; }
   .guide-monthly .guide-faq summary b { font-size: 16px; }
   .guide-monthly .guide-faq details p { padding: 0 14px 18px; }
+}
+
+/* Keep the monthly rate, its billing unit and the estimate terms together. */
+.guide-monthly .rpo-fees { padding-block: clamp(48px, 6vw, 84px); }
+.rpo-fees .section-head { margin-bottom: clamp(24px, 2.7vw, 38px); }
+.rpo-fees .section-head h2 {
+  width: fit-content;
+  padding-inline: .26em;
+  background: linear-gradient(transparent 74%, color-mix(in srgb, var(--blue-2) 27%, transparent) 74% 91%, transparent 91%);
+}
+.guide-monthly .rpo-pricing {
+  max-width: 42rem;
+  margin-inline: auto;
+  padding: 0;
+  gap: 0;
+  overflow: hidden;
+  border: 2px solid color-mix(in srgb, var(--blue-2) 50%, var(--rule));
+  text-align: center;
+}
+.guide-monthly .rpo-pricing h3 {
+  padding: 14px 18px;
+  background: linear-gradient(110deg, color-mix(in srgb, var(--ink) 28%, var(--blue)), var(--blue));
+  color: white;
+  font-size: clamp(19px, 1.8vw, 25px);
+}
+.guide-monthly .rpo-pricing .guide-amount {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  column-gap: .16em;
+  padding: clamp(22px, 2.6vw, 36px) 12px;
+  color: var(--ink);
+  font-size: clamp(23px, 2.25vw, 32px);
+  line-height: 1;
+  white-space: nowrap;
+}
+.rpo-pricing .guide-amount small {
+  align-self: center;
+  margin-inline-end: .45em;
+  padding: .48em .7em;
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--blue) 9%, white);
+  color: var(--blue);
+  font-size: clamp(15px, 1.45vw, 20px);
+  line-height: 1.2;
+}
+.rpo-pricing .guide-amount strong { margin: 0; font-size: clamp(62px, 8vw, 100px); }
+.rpo-estimate {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 16px clamp(14px, 2.5vw, 30px);
+  border-top: 1px solid var(--rule);
+  background: color-mix(in srgb, var(--pale) 65%, white);
+  color: var(--muted);
+  font-size: clamp(14px, 1.2vw, 16px);
+  line-height: 1.7;
+  text-align: start;
+}
+.rpo-estimate .guide-icon { color: var(--blue); }
+.rpo-estimate p { text-wrap: pretty; }
+.rpo-estimate strong { color: var(--ink); }
+
+.rpo-roles {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(10px, 1.3vw, 18px);
+  max-width: 1024px;
+  margin-inline: auto;
+  list-style: none;
+}
+.rpo-roles li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px clamp(10px, 1.2vw, 17px);
+  border: 1px solid var(--rule);
+  border-radius: 16px;
+  background: white;
+  font-size: clamp(14px, 1.2vw, 17px);
+  font-weight: 650;
+  line-height: 1.5;
+  word-break: auto-phrase;
+}
+.rpo-roles .guide-icon { width: 38px; height: 38px; padding: 8px; border-radius: 50%; background: var(--pale); color: var(--blue); }
+@media (max-width: 768px) {
+  .rpo-roles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .rpo-roles li { flex-direction: column; justify-content: center; gap: 5px; padding: 11px 5px; text-align: center; }
+  .rpo-fees .guide-button { padding-inline: 14px; gap: 8px; }
 }
