@@ -43,14 +43,11 @@
 }
 .flow-frame { position: absolute; inset: clamp(66px, 8svh, 104px) 2% clamp(18px, 3svh, 48px) auto; width: 67%; }
 .hero-flow { display: block; width: 100%; height: 100%; overflow: visible; stroke-linecap: round; stroke-linejoin: round; }
-.flow-rails { stroke-width: 28; stroke-opacity: .52; }
-.flow-route { fill: none; stroke: white; stroke-width: 136; stroke-linecap: butt; }
+.flow-rails { stroke-width: 28; opacity: .52; }
 .flow-pulse { stroke: #efffff; stroke-width: 23; stroke-dasharray: 5 110; opacity: 0; }
 .flow-gleam { opacity: 0; }
-.flow-tips { display: none; }
-@media (prefers-reduced-motion: reduce), (forced-colors: active), print {
-  .flow-reveal { mask: none; }
-}
+html:not([data-opening]) .flow-settled { mask: none; }
+.flow-drawing { display: none; }
 .hero-art::after {
   content: ""; position: absolute; inset: 0;
   background: linear-gradient(98deg, rgb(252 253 253 / 79%) 5%, rgb(252 253 253 / 58%) 29%, transparent 55%);
@@ -69,12 +66,14 @@
     isolation: isolate; pointer-events: none; background: #fbfcfc;
     animation: opening-surface var(--opening-duration) ease both;
   }
-  [data-opening] .flow-tips { display: inline; }
-  [data-opening] .flow-route { stroke-dasharray: 100 130; }
-  [data-opening] .flow-north { animation: draw-stroke 1.85s cubic-bezier(.28,.08,.30,1) 1.67s both; }
-  [data-opening] .flow-south { animation: draw-stroke 1.83s cubic-bezier(.28,.08,.30,1) 1.94s both; }
-  [data-opening] .flow-rails { animation: soften-rails .85s ease-in-out 2.97s both; }
-  [data-opening] .flow-pulses, [data-opening] .flow-highlight { animation: opening-fade .45s ease 3.62s both; }
+  /* The emblem follows its original timeline independently of the headline. */
+  [data-opening] .hero-flow { --opening-duration: 5.4s; --logo-delay: 0s; }
+  [data-opening="mobile"] .hero-flow { --logo-delay: -.38s; }
+  [data-opening] .flow-drawing { display: inline; }
+  [data-opening] .flow-curve { stroke-dasharray: 100 130; stroke-width: 42; }
+  [data-opening] .flow-north { animation: draw-north var(--opening-duration) linear both; }
+  [data-opening] .flow-south { animation: draw-south var(--opening-duration) linear both; }
+  [data-opening] .flow-sweep { animation: register-strokes var(--opening-duration) linear var(--logo-delay) both; }
   [data-opening] .opening-scene::before, [data-opening] .opening-scene::after {
     content: ""; position: absolute; z-index: -1; width: 52vmax; aspect-ratio: 264 / 295;
     background: #e5eff4;
@@ -131,13 +130,19 @@
 @media (min-width: 761px) and (hover: hover) and (pointer: fine) {
   .opening-title { font-size: min(11.45vw, 19.6vh, 196px); }
 }
-@keyframes draw-stroke {
-  from { stroke-dashoffset: 100; }
-  to { stroke-dashoffset: 0; }
+@keyframes draw-north {
+  0%, 30% { stroke-dashoffset: 113; }
+  57%, 100% { stroke-dashoffset: 0; }
 }
-@keyframes soften-rails {
-  from { stroke-width: 42; stroke-opacity: 1; }
-  to { stroke-width: 28; stroke-opacity: .52; }
+@keyframes draw-south {
+  0%, 36.5% { stroke-dashoffset: 113; }
+  60.5%, 100% { stroke-dashoffset: 0; }
+}
+@keyframes register-strokes {
+  0%, 85.5% { transform: translateX(-940px) skewX(-16deg); }
+  88.5% { transform: translateX(-55px) skewX(-16deg); }
+  97% { transform: translateX(385px) skewX(-16deg); }
+  100% { transform: translateX(1100px) skewX(-16deg); }
 }
 @keyframes opening-fade {
   from { opacity: 0; }
