@@ -2462,3 +2462,30 @@ body.menu-open { overflow: hidden; }
   }
   .guide-recruitment .guide-worries li:nth-child(even)::before { left: auto; right: 30%; }
 }
+
+.recruit-consultation .industry-tags {
+  align-items: baseline;
+  justify-content: center;
+  margin: 18px auto 0;
+}
+.recruit-consultation .industry-tags .tag {
+  padding: 4px 12px;
+  background: white;
+  color: var(--blue);
+  font-size: 14px;
+}
+.recruit-consultation .industry-tags .phrase .tag { margin-inline-end: 6px; }
+.guide-recruitment .guide-button > span {
+  min-width: 0;
+  text-align: center;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+@media (min-width: 769px) {
+  .guide-recruitment .guide-hero-actions {
+    display: grid;
+    grid-template-columns: max-content minmax(0, 1fr);
+  }
+  .guide-recruitment .guide-hero-actions .guide-link { grid-area: 1 / 2; justify-self: start; }
+  .guide-recruitment .guide-hero-actions .consult-note { grid-column: 1 / -1; }
+}
