@@ -3327,3 +3327,51 @@ body.menu-open { overflow: hidden; }
     overflow-wrap: normal;
   }
 }
+
+@media (max-width: 768px) {
+  .mobile-phrase { display: inline-block; }
+  .foot-group { grid-template-columns: minmax(max-content, .65fr) minmax(0, 1.35fr); }
+
+  main :where(p, dd), .story-body li, .contact-policy li {
+    line-break: strict;
+    word-break: auto-phrase;
+    text-wrap: pretty;
+  }
+  main :is(.industry-card p, .guide-flow p, .grad-flow p, .guide-note, .consult-note, .detail-lead),
+  .services-grid p, .grad-timing, .community-hub figcaption, .contact-review > p,
+  .guide-faq :is(p, summary), .grad-faq :is(p, summary), .guide-disclosure summary,
+  .story-body :is(h2, h3), .story-toc a, .sitemap-group li a, .contact-policy h2,
+  .home-news :is(h3, .notice-list strong), .industry-card h3, .contact-review dt {
+    line-break: strict;
+    word-break: auto-phrase;
+    text-wrap: balance;
+  }
+  .services-grid h3, .company-services a, .home-wire a > span,
+  .home-news :is(h3, strong):has(wbr), .sitemap-group li a:has(wbr),
+  .service-guide .section-head h2:has(wbr), .service-guide .guide-final h2,
+  .guide-perk h3 .phrase, .contact-band .button > span:has(wbr),
+  :is(.guide-faq, .grad-faq) summary span:has(> wbr),
+  .contact-heading h1 [data-monthly-heading], .rpo-support-choices label span {
+    word-break: keep-all;
+    overflow-wrap: break-word;
+  }
+
+  .corporate-page .corp-intro:not(.story-heading) h1 { font-size: clamp(30px, 9vw, 38px); }
+  .story-page .story-heading h1 { font-size: clamp(22px, 6.5vw, 36px); }
+  .guide-community .guide-hero h1 { font-size: clamp(24px, 9vw, 51px); }
+  .service-guide .section-head h2:has(wbr) { font-size: clamp(21px, 6.75vw, 35px); }
+  .graduate-page .section-head :is(#challenges, #student-voices) { font-size: clamp(18px, 5.9vw, 32px); }
+  .service-guide .guide-final h2 { font-size: clamp(20px, 6.6vw, 35px); }
+  .career-page .contact-band h2 { font-size: clamp(25px, 8.2vw, 36px); }
+  .contact-page .contact-heading h1:has([data-monthly-heading]:not([hidden])) { font-size: clamp(22px, 7vw, 36px); }
+  .contact-page form.contact-panel { padding-inline: clamp(16px, 5vw, 28px); }
+  .contact-page .contact-row > label { flex-wrap: nowrap; word-break: auto-phrase; text-wrap: balance; }
+  .contact-page .contact-actions .contact-submit, .contact-band .guide-action .button {
+    gap: .65em;
+    padding-inline: 12px;
+  }
+  .home-page .home-contact a > span:first-child { font-size: clamp(18px, 6vw, 24px); }
+}
+@media (min-width: 769px), print {
+  wbr.mobile-break { display: none; }
+}
