@@ -28,7 +28,6 @@
     const root = document.documentElement;
     if (!root.hasAttribute('data-opening')) return;
 
-    const mobile = root.dataset.opening === 'mobile';
     const svg = document.querySelector('.hero-flow');
     const sweep = svg.querySelector('.flow-sweep');
     const clock = sweep.getAnimations?.().find(animation => animation.animationName === 'register-strokes');
@@ -39,8 +38,8 @@
     let morphAt = null;
     function followTips() {
       if (!root.hasAttribute('data-opening')) return;
-      // Start the mobile morph on the drawing frame itself, independent of SVG loading time.
-      if (morphAt !== null && (!mobile || clock.currentTime >= morphAt)) {
+      // Start on the drawing frame so image loading cannot delay the fold.
+      if (morphAt !== null && clock.currentTime >= morphAt) {
         const offset = (morphAt - clock.currentTime) / 1000;
         for (const morph of curves) morph.beginElementAt(offset);
         morphAt = null;
