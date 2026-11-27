@@ -3305,3 +3305,19 @@ body.menu-open { overflow: hidden; }
   .story-body { padding: clamp(16px, 4.5vw, 28px); }
   .story-body .facts > div { grid-template-columns: minmax(0, 1fr); gap: 3px; }
 }
+
+/* Keep both lines of service copy readable beside the photo or below it on smaller cards. */
+@media screen and (min-width: 769px) {
+  .home-services .services-grid { grid-template-columns: repeat(auto-fit, minmax(min(100%, 27rem), 1fr)); }
+  .home-services .services-grid a { grid-template-columns: minmax(24rem, 1fr) minmax(0, 174px); }
+  @container (max-width: 34rem) {
+    .home-services .services-grid a {
+      grid-template-columns: minmax(0, 1fr) 108px;
+      grid-template-areas: "name photo" "copy copy";
+    }
+    .home-services .services-grid h3 { align-self: center; }
+  }
+}
+@media (max-width: 768px), print {
+  .home-services .services-grid p br { display: none; }
+}
