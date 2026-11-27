@@ -1,9 +1,6 @@
 (() => {
   const form = document.getElementById('contact-form');
   const category = document.getElementById('contact-type');
-  const categoryRow = category.closest('.contact-row');
-  const service = document.getElementById('contact-service');
-  const serviceRow = document.getElementById('service-row');
   const purpose = document.getElementById('graduate-purpose');
   const purposeRow = document.getElementById('graduate-purpose-row');
   const monthlyFields = document.getElementById('monthly-fields');
@@ -28,12 +25,9 @@
   const query = new URLSearchParams(window.location.search);
   const type = query.get('type');
   const categoryOption = [...category.options].find(option => type && option.dataset.type === type);
-  const serviceOption = [...service.options].find(option => type && option.dataset.type === type);
-  if (!category.value) {
-    if (categoryOption) category.value = categoryOption.value;
-    if (serviceOption) {
-      category.value = category.querySelector('[data-type="service"]').value;
-      service.value = serviceOption.value;
+  if (categoryOption && !category.value) {
+    category.value = categoryOption.value;
+    if (type === 'monthly-rpo' || type === 'graduate-events') {
       const servicePurpose = type === 'monthly-rpo' ? monthlyPurpose : purpose;
       const initialPurpose = [...servicePurpose.options].find(option => option.dataset.intent === query.get('intent'));
       if (initialPurpose && !servicePurpose.value) servicePurpose.value = initialPurpose.value;
@@ -48,21 +42,15 @@
 
   function updateFields() {
     const selectedType = category.selectedOptions[0]?.dataset.type;
-    const applicable = selectedType === 'service';
-    service.disabled = !applicable;
-    const serviceType = applicable ? service.selectedOptions[0]?.dataset.type : '';
-    const isMonthly = serviceType === 'monthly-rpo';
-    const dedicatedMonthly = isMonthly && type === 'monthly-rpo';
-    categoryRow.hidden = dedicatedMonthly;
-    serviceRow.hidden = !applicable || dedicatedMonthly;
-    const isGraduateService = serviceType === 'graduate-events';
+    const isMonthly = selectedType === 'monthly-rpo';
+    const isGraduateService = selectedType === 'graduate-events';
     purposeRow.hidden = !isGraduateService;
     purpose.disabled = !isGraduateService;
     monthlyFields.hidden = !isMonthly;
     monthlyFields.disabled = !isMonthly;
     for (const element of document.querySelectorAll('[data-monthly-heading]')) element.hidden = !isMonthly;
     for (const element of document.querySelectorAll('[data-general-heading]')) element.hidden = isMonthly;
-    document.title = isMonthly ? '採用代行サービスの無料相談・お見積もり｜RELIAL株式会社' : defaultTitle;
+    document.title = isMonthly ? '月額採用代行サービスの無料相談・お見積もり｜RELIAL株式会社' : defaultTitle;
     message.name = isMonthly ? 'その他相談事項' : 'お問い合わせ内容';
     messageLabel.textContent = message.name;
     message.required = !isMonthly;
@@ -97,7 +85,7 @@
       reviewedData[label] = fields.getAll(name).join('、');
     }
     for (const [name, value] of Object.entries(reviewedData)) {
-      if (name.startsWith('_') || (categoryRow.hidden && name === category.name)) continue;
+      if (name.startsWith('_')) continue;
       const row = document.createElement('div');
       const label = document.createElement('dt');
       const content = document.createElement('dd');
@@ -117,10 +105,9 @@
   reviewButton.querySelector('span').textContent = '入力内容を確認する';
   updateFields();
   category.addEventListener('change', updateFields);
-  service.addEventListener('change', updateFields);
   editButton.addEventListener('click', () => {
     showInputs();
-    (categoryRow.hidden ? monthlyPurpose : category).focus();
+    category.focus();
   });
   window.addEventListener('pageshow', event => {
     updateFields();

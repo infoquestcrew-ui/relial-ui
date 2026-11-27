@@ -28,12 +28,9 @@
     const root = document.documentElement;
     if (!root.hasAttribute('data-opening')) return;
 
-    const mobile = root.dataset.opening === 'mobile';
     const scene = document.querySelector('.opening-scene');
     const svg = document.querySelector('.hero-flow');
-    const clockElement = mobile ? svg.querySelector('.flow-sweep') : scene;
-    const clockName = mobile ? 'register-strokes' : 'opening-surface';
-    const clock = clockElement.getAnimations?.().find(animation => animation.animationName === clockName);
+    const clock = scene.getAnimations?.().find(animation => animation.animationName === 'opening-surface');
     const paths = Array.from(svg.querySelectorAll('.flow-curve'));
     const curves = [];
     const listeners = new AbortController();
@@ -41,8 +38,8 @@
     let morphAt = null;
     function followTips() {
       if (!root.hasAttribute('data-opening')) return;
-      // Start the mobile morph on the drawing frame itself, independent of SVG loading time.
-      if (morphAt !== null && (!mobile || clock.currentTime >= morphAt)) {
+      // Start on the drawing frame so SVG loading time cannot shift the handoff.
+      if (morphAt !== null && clock.currentTime >= morphAt) {
         const offset = (morphAt - clock.currentTime) / 1000;
         for (const morph of curves) morph.beginElementAt(offset);
         morphAt = null;
@@ -56,21 +53,24 @@
     }
     clock?.ready.then(() => {
       if (listeners.signal.aborted || !root.hasAttribute('data-opening')) return;
-      const { duration, delay } = clock.effect.getTiming();
-      morphAt = duration * .66 + delay;
+      const { duration } = clock.effect.getTiming();
+      // Turn both moving strokes onto the emblem before either loop closes.
+      morphAt = duration * .62;
       for (const path of paths) {
         const morph = document.createElementNS(path.namespaceURI, 'animate');
-        if (typeof morph.beginElementAt !== 'function') continue;
-        const open = path.getAttribute('d');
-        const folded = path.dataset.fold;
+        if (typeof morph.beginElementAt !== 'function') {
+          path.setAttribute('d', path.dataset.land);
+          continue;
+        }
         morph.setAttribute('attributeName', 'd');
-        morph.setAttribute('values', [open, folded, folded, path.dataset.land].join(';'));
-        morph.setAttribute('keyTimes', '0;.37;.49;1');
+        morph.setAttribute('from', path.getAttribute('d'));
+        morph.setAttribute('to', path.dataset.land);
+        morph.setAttribute('keyTimes', '0;1');
         morph.setAttribute('calcMode', 'spline');
-        morph.setAttribute('keySplines', '.52 0 .3 1;0 0 1 1;.15 .79 .22 1');
+        morph.setAttribute('keySplines', '.32 0 .32 1');
         morph.setAttribute('begin', 'indefinite');
         morph.setAttribute('fill', 'freeze');
-        morph.setAttribute('dur', duration * .245 + 'ms');
+        morph.setAttribute('dur', duration * .17 + 'ms');
         path.append(morph);
         curves.push(morph);
       }
@@ -84,10 +84,8 @@
       listeners.abort();
     };
 
-    const lastElement = mobile ? document.querySelector('.home-wire') : scene;
-    const lastAnimation = mobile ? 'opening-copy-in' : 'opening-surface';
-    lastElement.addEventListener('animationend', event => {
-      if (event.target === lastElement && event.animationName === lastAnimation) finish();
+    scene.addEventListener('animationend', event => {
+      if (event.target === scene && event.animationName === 'opening-surface') finish();
     }, options);
     window.addEventListener('keydown', finish, options);
     window.addEventListener('pointerdown', finish, options);
