@@ -12,6 +12,21 @@
 .home-wrap { width: min(1280px, calc(100% - 2 * var(--home-gutter))); margin-inline: auto; }
 .home-space { padding-block: clamp(75px, 7.9vw, 132px); }
 
+.home-page .site-nav .nav-label:focus-visible { color: var(--blue); }
+@media screen and (min-width: 769px) {
+  .home-page .site-nav > a.nav-label {
+    display: inline-flex;
+    align-self: stretch;
+    align-items: center;
+    background-image: linear-gradient(var(--blue), var(--blue));
+    background-position: left calc(50% + 1.15em);
+    transition: background-size .18s;
+  }
+  .home-page .site-nav .nav-label:hover,
+  .home-page .site-nav details[open] > .nav-label { color: var(--blue); }
+  .home-page .site-nav > a.nav-label:hover { background-size: 100% 1px; }
+}
+
 .home-hero {
   position: relative; isolation: isolate; display: grid; align-items: center;
   min-height: clamp(620px, 90svh, 980px); background: #f9fcfd;
