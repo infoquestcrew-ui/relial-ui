@@ -15,6 +15,18 @@
   reopen.setAttribute('aria-expanded', 'true');
   reopen.inert = true;
   header.prepend(reopen);
+
+  // A previously cached stylesheet renders this control as an unstyled, in-flow button.
+  const styles = document.querySelector('link[rel="stylesheet"][href^="site.css"]');
+  if (styles && window.matchMedia('screen').matches && getComputedStyle(reopen).position === 'static') {
+    const fresh = styles.cloneNode();
+    const url = new URL(styles.href);
+    url.searchParams.set('layout', 'floating-header');
+    fresh.href = url.href;
+    fresh.addEventListener('load', () => styles.remove(), { once: true });
+    styles.after(fresh);
+  }
+
   const shade = document.createElement('div');
   shade.className = 'menu-shade';
   shade.setAttribute('aria-hidden', 'true');
